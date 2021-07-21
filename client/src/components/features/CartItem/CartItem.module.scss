@@ -1,4 +1,69 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 0.7rem;
+  padding: 0.5rem;
+  .image{
+    flex: 0.2;
+    height: 100px;
+    
+  }
+  .link{
+    flex: 0.4;
+    
+  }
+  .price{
+    flex: 0.2;
+    text-align: center;
+
+  }
+  .quantity{
+    flex: 0.15;
+    padding: 0.5rem 0;    
+    text-align: center;
+  
+    .quantity_input{
+      text-align: center;
+      border: none;
+      border-bottom: 1px solid $color-editor-border ;    
+      font-size: 18.2px;
+      font-family: $font;
+      background-color: inherit;
+      width: 70%;
+      &:focus{
+        outline: none;
+        text-align: center;
+      }
+    }    
+  }
+  .delete{
+    
+    text-align: right;
+    flex: 0.05;
+    .delete_btn{
+      padding: 0.7rem;
+      border: none;
+      border-radius: 5px;
+      transition: all 0.3s ease-out;
+      &:hover,
+      &:focus,
+      &:active      
+      {
+        transition: all 0.3s ease-out;
+        transform: scale(1.2);
+        background-color: red;
+        color: white;
+        
+      }
+      i{
+        font-size: 1rem;
+      }
+    }
+  }
+  
+}

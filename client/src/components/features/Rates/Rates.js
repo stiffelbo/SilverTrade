@@ -7,9 +7,8 @@ const Component = (props) => {
 
   return (
     <div className={styles.root}>
-      <div className={styles.rate}>
-        <i class="fas fa-euro-sign"></i>
-        <h4>25.78</h4>
+      <div className={styles.rate}>        
+        <h4>Silver Spot:</h4>
       </div>
       <div className={styles.rate}>
         <i class="fas fa-dollar-sign"></i>

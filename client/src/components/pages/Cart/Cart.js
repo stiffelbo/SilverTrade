@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { CartItem } from '../../features/CartItem/CartItem';
+import { CartSummary } from '../../features/CartSummary/CartSummary';
+
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
@@ -10,7 +13,16 @@ const Component = (props) => {
 
   return (
     <div className={styles.root}>
-      <h2>Cart</h2>
+      <div className={styles.items}>
+        <CartItem />
+        <CartItem />
+        <CartItem />
+        <CartItem />
+    
+      </div>
+      <div className={styles.summary}>
+      <CartSummary />
+      </div>
     </div>
   );
 }

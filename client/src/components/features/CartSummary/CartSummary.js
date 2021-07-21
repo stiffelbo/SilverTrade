@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './AddToCardForm.module.scss';
+import styles from './CartSummary.module.scss';
 
 /* Components */
 
@@ -13,46 +13,39 @@ import styles from './AddToCardForm.module.scss';
 
 
 
-const Component = ({stock, price}) => {
+const Component = (props) => {
 
+  const price = 9987;
   return (
-    <div className={styles.root}>
-      <div className={styles.row}>
-        <div className={styles.label}>
-          <i class="fas fa-warehouse"></i>
-          <span>Stock: </span>
-        </div>
-        <div className={styles.value}>
-          <p>{stock}</p>
-        </div>   
-  
-      </div>
+    <div className={styles.root}>      
       <div className={styles.row}>
         <div className={styles.label}>
           <i className="fas fa-tag"></i>
-          <span>Price: </span>
+          <span>Total: </span>
         </div>
         <div className={styles.value}>
-          <p>{price}</p>
+          <p>
+            {price}
+            <i className="fas fa-dollar-sign"></i>
+          </p>
         </div>       
       </div>
       <div className={styles.row}>
         <div className={styles.label}>
           <i class="fas fa-shopping-basket"></i>
-          <span>Amount: </span>
+          <span>Items: </span>
         </div>
         <div className={styles.value}>
-          <input type="number" step="1" className={styles.input} required/>
+          <p>67</p>
         </div>       
       </div>    
-      <button>Add To Card <i className="fas fa-check"></i></button> 
+      <button>Checkout <i className="fas fa-wallet"></i></button> 
     </div>
   );
 }
 
 Component.propTypes = {  
-  stock: PropTypes.number,
-  price: PropTypes.number,
+  className: PropTypes.string,
 };
 
 // const mapStateToProps = state => ({
@@ -66,7 +59,7 @@ Component.propTypes = {
 // const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as AddToCardForm,
-  // Container as AddToCardForm,
-  // Component as AddToCardFormComponent,
+  Component as CartSummary,
+  // Container as CartSummary,
+  // Component as CartSummaryComponent,
 };

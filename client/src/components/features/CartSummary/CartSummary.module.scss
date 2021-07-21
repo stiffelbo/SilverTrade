@@ -24,19 +24,6 @@
       flex: 0.3;
       text-align: left;
     }
-    input{
-      padding: 0.5rem 0;
-      text-align: left;
-      border: none;
-      width: 100%;
-      font-size: 18.2px;
-      font-family: $font;
-      background-color: inherit;
-      &:focus{
-        outline: none;
-        text-align: center;
-      }
-    }
   }
   button{
     display: block;

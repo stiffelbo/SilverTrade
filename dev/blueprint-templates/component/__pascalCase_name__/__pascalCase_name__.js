@@ -17,8 +17,7 @@ const Component = (props) => {
 
   return (
     <div className={styles.root}>
-      <h2>{{pascalCase name}}</h2>
-      {children}
+      <h2>{{pascalCase name}}</h2>    
     </div>
   );
 }
