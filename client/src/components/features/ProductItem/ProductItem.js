@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Flipper from '../../common/Flipper/Flipper';
+
 import { Link } from 'react-router-dom';
 
 // import { connect } from 'react-redux';
@@ -9,10 +11,14 @@ import { Link } from 'react-router-dom';
 import styles from './ProductItem.module.scss';
 
 const Component = (props) => {
-
+  const images = [
+    "../coin_img/USA_2021_1oz_AmericanEagle_AW.jpg",
+    "../coin_img/USA_2021_1oz_AmericanEagle_REW.jpg",
+  ];
+  
   return (
     <div className={styles.root}>
-      <img src="../coin_img/USA_2021_1oz_AmericanEagle_AW.jpg" alt="product"/>
+      <Flipper images={images} />
       <div className={styles.info}>
         <p className={styles.title}>American Eagle</p>
         <div className={styles.infoGrid}>
