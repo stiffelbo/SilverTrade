@@ -1,8 +1,15 @@
-import React from 'react'
+import React from 'react';
+//import PropTypes from 'prop-types';
+
+/*  Components  */
+
+import { Navbar } from '../Navbar/Navbar';
+
+import styles from './MainLayout.module.scss';
 
 const MainLayout = ({ children }) => (
-  <div>
-   
+  <div className={styles.root}>
+    <Navbar />
     {children}
 
   </div>

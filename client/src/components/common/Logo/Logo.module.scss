@@ -1,0 +1,29 @@
+@import '../../../styles/settings.scss';
+
+.root {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;  
+  .title{
+    font-size: 2rem;
+  }
+  i{
+    font-size: 2rem;
+    padding-right: 1rem; 
+  }
+  
+}
+
+
+@media (max-width: 767px){
+  .root {
+    .title{
+      font-size: 1.6rem;
+    }
+    i{
+      font-size: 1.6rem;
+      padding-right: 0.5rem; 
+    }
+  }
+}

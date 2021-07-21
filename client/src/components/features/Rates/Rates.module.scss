@@ -1,0 +1,22 @@
+@import '../../../styles/settings.scss';
+
+.root {
+  display: flex;
+  flex-direction: row;
+  .rate{    
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    &:first-child{
+      margin-right: 1rem;
+    }
+  }
+}
+
+
+@media (max-width: 767px){
+  .root {
+    display: none;
+  }
+}

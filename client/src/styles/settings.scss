@@ -1,10 +1,11 @@
 $color-text: #141414;
 $color-text-light: #1d1d1d;
-$color-text-bright: #fff;
+$color-text-bright: #cecaca;
 $color-primary: #3498db;
 $color-secondary: #218c74;
-$color-background: #fff;
+$color-background: rgb(151, 146, 146);
 
+$color-dark: #171717;
 $color-success: #01916d;
 $color-success-back: #00bc8c;
 $color-info: #2b7cb3;
@@ -16,12 +17,12 @@ $color-danger-back: #d68529;
 $color-error: #EA2027;
 $color-error-back: #ff5d6c;
 
-$color-textfield-border: #ddd;
+$color-textfield-border: rgb(155, 155, 155);
 $color-editor-border: #ccc;
 $color-editor-border-light: #ddd;
 
-$font-header: 'Source Sans Pro', sans-serif;
-$font-text: 'Source Sans Pro', sans-serif;
+$font: 'Nunito Sans', sans-serif;
+
 
 $radius: 5px;
 $base-size: 14px;

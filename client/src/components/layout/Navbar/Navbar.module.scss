@@ -1,0 +1,62 @@
+@import '../../../styles/settings.scss';
+
+.root {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: $base-size*0.5 $base-size*2;
+  height: $base-size*5;
+  background-color: $color-dark;
+  color: $color-text-bright; 
+  box-shadow: 0px 3px 2px 1px rgba(0,0,0,0.75);
+  z-index: 50;
+  ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    li{
+      list-style: none;
+      margin-right: $base-size*2;
+
+    }
+  }
+}
+
+.cart_link{
+  text-decoration: none;
+  color: inherit;  
+}
+
+.hamburger{
+  width: $base-size*2.5;
+  height: $base-size*2.5;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  div {
+    background-color: $color-text-bright;
+    height: 4px;
+    border-radius: 2px;
+    width: 100%;  
+  }
+}
+
+
+@media (max-width: 960px){
+  .root  {
+    justify-content: space-around;
+
+    ul{
+      display: none;
+    }
+    
+  }
+  .hamburger{
+    display: flex;
+  }
+  
+}
+
