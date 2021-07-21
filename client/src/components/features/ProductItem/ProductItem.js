@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
+
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
@@ -10,8 +12,23 @@ const Component = (props) => {
 
   return (
     <div className={styles.root}>
-      <h2>ProductItem</h2>
-      {children}
+      <img src="../coin_img/USA_2021_1oz_AmericanEagle_AW.jpg" alt="product"/>
+      <div className={styles.info}>
+        <p className={styles.title}>American Eagle</p>
+        <div className={styles.infoGrid}>
+          <p> USA</p>
+          <p> 2019</p>
+        </div>
+        <div className={styles.infoGrid}>
+          <p> Silver</p>
+          <p> 999</p>
+        </div>
+        <div className={styles.priceGrid}>
+          <p><i class="fas fa-dollar-sign"></i> 5.98</p> 
+          <p><i class="fas fa-euro-sign"></i> 5.98</p>  
+        </div>
+      </div>
+      <Link to={`/product/${89990}`} className={styles.link}>Check Coin</Link>   
     </div>
   );
 }

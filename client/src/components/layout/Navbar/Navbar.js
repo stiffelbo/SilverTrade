@@ -13,7 +13,7 @@ import { CartLogo } from '../../common/CartLogo/CartLogo';
 
 import styles from './Navbar.module.scss';
 
-const Component = (props) => {
+const Component = ({click}) => {
 
   return (
     <nav className={styles.root}>
@@ -31,7 +31,7 @@ const Component = (props) => {
           </Link>
         </li>
       </ul>
-      <div className={styles.hamburger}>
+      <div className={styles.hamburger} onClick={click}>
         <div></div>
         <div></div>
         <div></div>
@@ -42,6 +42,7 @@ const Component = (props) => {
 
 Component.propTypes = {  
   className: PropTypes.string,
+  click: PropTypes.func,
 };
 
 // const mapStateToProps = state => ({

@@ -1,4 +1,122 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+  width: 300px;
+  padding: 1rem;
+  box-shadow: 0 1px 4px rgba(0,0,0, 0.4);
+  border-radius: 5px;
+  margin: 0.5rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  img{
+    height: 200px;
+    border-radius: 50%;
+  }
+  p {
+    margin-bottom: 0.5rem;
+  }
+  .infoGrid{
+    margin: 0;        
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+  .title{
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    overflow: hidden;
+    border-bottom: 1px solid $color-textfield-border;
+  }
+  .priceGrid{ 
+    padding-top: 10px;
+    border-top: 1px solid $color-textfield-border;       
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    p {
+      text-align: center;
+    }
+  }
+  .price{
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;    
+  }
+  .link{
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    text-align: center;    
+    font-weight: 600;
+    color: $color-text;
+    background-color: $color-editor-border-light;
+    border-radius: 3px;
+    transition: all 0.3s ease-out;
+    &:hover{
+      transition: all 0.3s ease-out;
+      color: $color-editor-border-light;
+      background-color: $color-text;
+    }
+  }
+}
+
+@media(max-width: 1280px){
+  .root {
+    width: 360px;
+  }
+}
+
+@media(max-width: 1150px){
+  .root {
+    width: 330px;
+  }
+}
+
+@media(max-width: 960px){
+  .root {
+    width: 450px;
+  }
+}
+
+@media(max-width: 860px){
+  .root {
+    width: 400px;
+  }
+}
+
+@media(max-width: 800px){
+  .root {
+    width: 350px;
+  }
+}
+
+@media(max-width: 760px){
+  .root {
+    width: 520px;
+  }
+}
+
+@media(max-width: 600px){
+  .root {
+    width: 420px;
+  }
+}
+
+@media(max-width: 500px){
+  .root {
+    width: 400px;
+  }
+}
+
+@media(max-width: 430px){
+  .root {
+    width: 330px;
+  }
+}
+
+@media(max-width: 360px){
+  .root {
+    width: 300px;
+  }
+}

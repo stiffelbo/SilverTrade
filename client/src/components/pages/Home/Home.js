@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { ProductItem } from '../../features/ProductItem/ProductItem';
+
+
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
@@ -9,8 +12,20 @@ import styles from './Home.module.scss';
 const Component = (props) => {
 
   return (
-    <div className={styles.root}>
-      <h2>Home</h2>      
+    <div className={styles.root}>     
+      <section className={styles.products}>
+        <ProductItem />
+        <ProductItem />
+        <ProductItem />
+        <ProductItem />
+        <ProductItem />
+        <ProductItem />
+        <ProductItem />
+        <ProductItem />
+        <ProductItem />
+        <ProductItem />
+        <ProductItem />
+      </section>      
     </div>
   );
 }

@@ -1,37 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import { CartLogo } from '../../common/CartLogo/CartLogo';
+
+import clsx from 'clsx';
 
 import styles from './Sidebar.module.scss';
 
-const Component = (props) => {
+const Component = ({show, click}) => {
+
+  const display = show ? styles.show : styles.hide;
 
   return (
-    <div className={styles.root}>
-      <h2>Sidebar</h2>
-      {children}
+    <div className={clsx(display, styles.root)}>
+      <ul>
+        <li>
+          <Link to="/cart" className={styles.cart_link} onClick={click}>
+            <CartLogo />
+          </Link>
+        </li>
+        <li>
+          <Link to="/" className={styles.cart_link} onClick={click}>
+            <h2>Shop</h2>
+          </Link>
+        </li>
+      </ul>
+  
     </div>
   );
 }
 
 Component.propTypes = {  
-  className: PropTypes.string,
+  show: PropTypes.bool,
+  click: PropTypes.func,
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
   Component as Sidebar,
-  // Container as Sidebar,
-  // Component as SidebarComponent,
 };

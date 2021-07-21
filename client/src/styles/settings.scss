@@ -4,6 +4,7 @@ $color-text-bright: #cecaca;
 $color-primary: #3498db;
 $color-secondary: #218c74;
 $color-background: rgb(151, 146, 146);
+$color-background-light: rgb(245, 245, 245);
 
 $color-dark: #171717;
 $color-success: #01916d;
@@ -19,10 +20,11 @@ $color-error-back: #ff5d6c;
 
 $color-textfield-border: rgb(155, 155, 155);
 $color-editor-border: #ccc;
-$color-editor-border-light: #ddd;
+$color-editor-border-light: #e9e9e9;
 
 $font: 'Nunito Sans', sans-serif;
 
+$screen-width: 1300px;
 
 $radius: 5px;
 $base-size: 14px;

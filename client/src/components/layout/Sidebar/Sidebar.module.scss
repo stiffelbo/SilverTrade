@@ -1,4 +1,58 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+  display: flex;
+  width: 70%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $color-background-light;
+  z-index: 200; 
+  transition: all 0.3s ease-out;
+  ul{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    height: 100%;
+    li {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      list-style: none;
+      height: $base-size*6;
+      &:hover{       
+        background-color: rgb(172, 169, 172);
+      }      
+      a{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;       
+        width: 100%;
+      }     
+    }
+  }
+  .cart_link{
+    text-decoration: none;
+    color: inherit;  
+  }
+}
+
+.show{  
+  transform: translateX(0);
+  
+}
+.hide{  
+  transform: translateX(-100%);
+}
+
+@media (min-width: 960px) {
+  .root {display: none;}
+}

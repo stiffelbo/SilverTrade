@@ -13,7 +13,7 @@ import styles from './CartLogo.module.scss';
 
 
 
-const Component = (props) => {
+const Component = ({dark}) => {
 
   return (
     <div className={styles.root}>
@@ -25,7 +25,7 @@ const Component = (props) => {
 }
 
 Component.propTypes = {  
-  className: PropTypes.string,
+  dark: PropTypes.bool,
 };
 
 // const mapStateToProps = state => ({
