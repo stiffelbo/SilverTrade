@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Flipper from '../../common/Flipper/Flipper';
+import { AddToCardForm } from '../../features/AddToCardForm/AddToCardForm';
 import { InfoTable } from '../../common/InfoTable/InfoTable';
 
 // import { connect } from 'react-redux';
@@ -13,8 +14,8 @@ const Component = (props) => {
 
   const data = [
     {
-      prop: "Product ID",
-      val: "57656jdj73738",
+      prop: "Name",
+      val: "American Eagle",
     },
     {
       prop: "Country",
@@ -29,43 +30,43 @@ const Component = (props) => {
       val: "1 Dollar",
     },
     {
+      prop: "Metal",
+      val: "Silver",
+    },
+    {
+      prop: "Purity",
+      val: "999",
+    },
+    {
+      prop: "Quality",
+      val: "BU",
+    },
+    {
+      prop: "Mint",
+      val: "US Mint",
+    },
+    {
       prop: "Product ID",
       val: "57656jdj73738",
-    },
-    {
-      prop: "Country",
-      val: "USA",
-    },
-    {
-      prop: "Year",
-      val: "2019",
-    },
-    {
-      prop: "Face Value",
-      val: "1 Dollar",
     },
   ];
 
   const images = [
     "../coin_img/USA_2021_1oz_AmericanEagle_AW.jpg",
     "../coin_img/USA_2021_1oz_AmericanEagle_REW.jpg",
-  ]
+  ];
 
   return (
     <div className={styles.root}>
-      
-      <section className={styles.data}>
         <div className={styles.left}>
-          <InfoTable data={data}/>                   
+          <Flipper images={images} />                   
+        </div> 
+        <div className={styles.center}>          
+         <InfoTable data={data}/>
         </div> 
         <div className={styles.right}>          
-         <InfoTable data={data}/>
-        </div>    
-      </section>
-      <section className={styles.images}>
-        <Flipper images={images} />
-      </section>
-        
+         <AddToCardForm price={5,666} stock={70} />
+        </div>
     </div>
   );
 }

@@ -9,60 +9,37 @@
 .root {
   margin: 1rem auto;
   display: flex;
-  flex-direction: column;
-  max-width: $screen-width;
+  flex-direction: row;
+  align-items: center;
+  max-width: $screen-width;    
 
-  ul, li {
-    margin: 0;
-    padding: 0;
+  .left{
+    flex: 0.3;
+    padding: 2rem;
+    height: 350px;    
   }
-  li{
-    list-style-type: none;
+  .center{
+    flex: 0.4;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+    justify-content: center;    
+    padding: 1rem 2rem;
   }
+  .right{
+    flex: 0.3;
+  }
+  
+}
 
-  .images{
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    
-    .image{
-      flex: 0.5;
-      padding: 1rem;
-      text-align: center;
-      img{
-        max-width: 70%;
-      }
-    }
-  }
-  .data{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;    
-    padding: 1rem;
-    border: 1px solid gray;
-    .left{
-      flex: 70%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;      
-      .info_list{
-        flex-basis: 45%;
-      }
-    }
-    .right{
-      flex: 30%;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      .info_list_right{
-        width: 100%;
-      }
-    }
+@media (max-width: 960px) {
+  .root {
+    flex-direction: column;
+    .left, .center, .right{
+      margin-top: 1rem;
+      flex: 1;
+      width: 90%;
+      border: 1px solid $color-editor-border-light;
+      border-radius: 5px;        
+    }        
   }
 }

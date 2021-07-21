@@ -1,0 +1,57 @@
+@import '../../../styles/settings.scss';
+
+.root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  .row{
+    padding: 0.5rem 1rem;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    .label{
+      flex: 0.7;
+      i{
+        width: 30px;
+        margin-right: 0.5rem;
+      }
+    }
+    .value{
+      
+      flex: 0.3;
+      text-align: left;
+    }
+    input{
+      padding: 0.5rem 0;
+      text-align: left;
+      border: none;
+      width: 100%;
+      font-size: 18.2px;
+      font-family: "Nunito Sans", sans-serif;
+      &:focus{
+        outline: none;
+        text-align: center;
+      }
+    }
+  }
+  button{
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    text-align: center;    
+    font-weight: 600;
+    color: $color-text;
+    background-color: $color-editor-border-light;
+    border: none;
+    border-radius: 3px;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease-out;
+    &:hover{
+      transition: all 0.3s ease-out;      
+      background-color: $color-success;
+    }
+  }
+}

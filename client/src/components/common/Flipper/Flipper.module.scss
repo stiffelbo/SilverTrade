@@ -1,8 +1,9 @@
 @import '../../../styles/settings.scss';
 
 .root {
+  height: 100%;
   .show{
-    display: block;
+    display: flex;
   }
   .hide{
     display: none;

@@ -6,7 +6,7 @@ import styles from './InfoTable.module.scss';
 const Component = ({data}) => {  
 
   return (
-    <table className={styles.root}>
+    <table className={styles.root} cellspacing="0">
       <tbody>
         {data && data.map(item => <tr><td>{item.prop}</td><td>{item.val}</td></tr>)}  
       </tbody>

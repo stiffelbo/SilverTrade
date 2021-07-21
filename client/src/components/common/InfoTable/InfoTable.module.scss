@@ -1,8 +1,17 @@
 @import '../../../styles/settings.scss';
 
 .root {
-  width: 100%;
+  width: 100%;  
+  td{
+    padding: 0.2rem 1rem;
+  }
+  tr:nth-child(odd){
+    background-color: rgb(241, 240, 234);
+  }
   tr td:first-child{
     font-weight: bold;
+  }
+  tr td:last-child{
+    text-align: right;
   }
 }
