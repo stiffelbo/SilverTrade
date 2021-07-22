@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './AddToCardForm.module.scss';
@@ -10,16 +10,17 @@ import clsx from 'clsx';
 
 /* Redux */
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import { connect } from 'react-redux';
+import { getSpot } from '../../../redux/spotRedux.js';
 
 
+const Component = ({stock, price, spot}) => {
 
-const Component = ({stock, price}) => {
   const disabled = stock > 0 ? false : true;
   const disabledClass = disabled ? styles.disabled : styles.enabled;
   const onStock = disabled ? "Out of stock" : `${stock} pcs`;
   const bntIcon = disabled ? "fas fa-times" : "fas fa-check";
+  const unitPrice = (Number(price) + Number(spot.spot)).toFixed(2);
   return (
     <div className={styles.root}>
       <div className={styles.row}>
@@ -38,7 +39,16 @@ const Component = ({stock, price}) => {
           <span>Price: </span>
         </div>
         <div className={styles.value}>
-          <p>{price}</p>
+          <p>{unitPrice} $</p>
+        </div>       
+      </div>
+      <div className={styles.row}>
+        <div className={styles.label}>
+        <i class="fas fa-hand-holding-usd"></i>
+          <span>Total: </span>
+        </div>
+        <div className={styles.value}>
+          <p>{unitPrice} $</p>
         </div>       
       </div>
       <div className={styles.row}>
@@ -50,7 +60,7 @@ const Component = ({stock, price}) => {
           <input type="number" step="1" min="0" max={stock} className={styles.input} required disabled={disabled}/>
         </div>       
       </div>    
-      <button className={clsx(disabledClass)} disabled={disabled}>Add To Card <i className={bntIcon}></i></button> 
+      <button className={clsx(disabledClass)} disabled={disabled}>Add To Cart <i className={bntIcon}></i></button> 
     </div>
   );
 }
@@ -60,18 +70,18 @@ Component.propTypes = {
   price: PropTypes.number,
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+const mapStateToProps = state => ({
+  spot: getSpot(state),
+});
 
 // const mapDispatchToProps = dispatch => ({
 //   someAction: arg => dispatch(reduxActionCreator(arg)),
 // });
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps, null)(Component);
 
 export {
-  Component as AddToCardForm,
-  // Container as AddToCardForm,
+  // Component as AddToCardForm,
+  Container as AddToCardForm,
   // Component as AddToCardFormComponent,
 };

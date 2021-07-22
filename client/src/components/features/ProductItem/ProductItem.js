@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Flipper from '../../common/Flipper/Flipper';
-import { AddToCardForm } from '../AddToCardForm/AddToCardForm';
 
 import { Link } from 'react-router-dom';
 
@@ -11,8 +10,10 @@ import { Link } from 'react-router-dom';
 
 import styles from './ProductItem.module.scss';
 
-const Component = ({id, name, country, year, alloy, purity, premium, images }) => {
- 
+const Component = ({id, name, country, year, alloy, purity, premium, images, spot }) => {
+  
+  const unitPrice = (Number(premium.usd) + Number(spot)).toFixed(2);
+
   return (
     <div className={styles.root}>
       <Flipper images={images} />
@@ -27,10 +28,13 @@ const Component = ({id, name, country, year, alloy, purity, premium, images }) =
           <p>{purity}</p>
         </div>
         <div className={styles.priceGrid}>
-          <p>Premium per piece: <b>{premium.usd} $</b></p>          
+          <p className={styles.premium}>Premium per piece: <b>{premium.usd} $</b></p>          
+        </div>
+        <div className={styles.priceGrid}>
+          <p className={styles.unitPrice}>Price per piece: <b>{unitPrice} $</b></p>          
         </div>
       </div>
-      <Link to={`/product/${id}`} className={styles.link}>Check Coin</Link>  
+      <Link to={`/product/${id}`} className={styles.link}>Get Coin</Link>  
     </div>
   );
 }

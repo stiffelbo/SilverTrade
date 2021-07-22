@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { removeUnderscore } from '../../../utils/removeUnderscore'
+import { removeUnderscore } from '../../../utils/removeUnderscore';
 
 import { Alert, Progress } from 'reactstrap';
 
@@ -60,6 +60,10 @@ class Comp extends React.Component {
         {
           prop: "ID",
           val: product._id,
+        },
+        {
+          prop: "Premium",
+          val: `${product.premium.usd} $`,
         },
       ];
       return (

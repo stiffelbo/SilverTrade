@@ -8,55 +8,64 @@ import { Rates } from '../../features/Rates/Rates';
 import { Logo } from '../../common/Logo/Logo';
 import { CartLogo } from '../../common/CartLogo/CartLogo';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import { connect } from 'react-redux';
+import { getSpot, loadSpotRequest } from '../../../redux/spotRedux.js';
 
 import styles from './Navbar.module.scss';
 
-const Component = ({click}) => {
+class Comp extends React.Component {
 
-  return (
-    <nav className={styles.root}>
-      <Logo />  
-      <Rates className={styles.rates}/> 
-      <ul>
-        <li>
-          <Link to="/cart" className={styles.cart_link}>
-            <CartLogo />
-          </Link>
-        </li>
-        <li>
-          <Link to="/" className={styles.cart_link}>
-            <h2>Shop</h2>
-          </Link>
-        </li>
-      </ul>
-      <div className={styles.hamburger} onClick={click}>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </nav>
-  );
+  componentDidMount() {
+    const { loadSpot } = this.props;
+    loadSpot();
+  }
+  
+  render() {
+
+    const { spot, click } = this.props;
+    return (
+      <nav className={styles.root}>
+        <Logo />  
+        <Rates className={styles.rates} spot={spot}/> 
+        <ul>
+          <li>
+            <Link to="/cart" className={styles.cart_link}>
+              <CartLogo />
+            </Link>
+          </li>
+          <li>
+            <Link to="/" className={styles.cart_link}>
+              <h2>Shop</h2>
+            </Link>
+          </li>
+        </ul>
+        <div className={styles.hamburger} onClick={click}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </nav>
+    );    
+  }
 }
 
-Component.propTypes = {  
+Comp.propTypes = {  
   className: PropTypes.string,
   click: PropTypes.func,
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+const mapStateToProps = state => ({
+  spot: getSpot(state),
+});
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+  loadSpot: () => dispatch(loadSpotRequest()),
+});
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Comp);
 
 export {
-  Component as Navbar,
-  // Container as Navbar,
+  //Component as Navbar,
+  Container as Navbar,
   // Component as NavbarComponent,
 };

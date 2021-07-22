@@ -4,12 +4,14 @@ import thunk from 'redux-thunk';
 // import reducers
 import productsReducer from './productsRedux';
 import productReducer from './productRedux';
+import spotReducer from './spotRedux';
 //import cart from './cartRedux';
 
 // define reducers
 const reducers = {
   products: productsReducer,
   product: productReducer,
+  spot: spotReducer,
 };
 
 // combine reducers

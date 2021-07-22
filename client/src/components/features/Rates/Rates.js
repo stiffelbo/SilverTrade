@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import styles from './Rates.module.scss';
 
-const Component = (props) => {
+const Component = ({spot}) => {
 
   return (
     <div className={styles.root}>
@@ -12,7 +12,7 @@ const Component = (props) => {
       </div>
       <div className={styles.rate}>
         <i class="fas fa-dollar-sign"></i>
-        <h4>26.98</h4>
+        <h4>{spot.spot}</h4>
       </div>
     </div>
   );
