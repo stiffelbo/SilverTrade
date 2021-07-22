@@ -9,7 +9,7 @@ import { Alert, Progress } from 'reactstrap';
 
 import { connect } from 'react-redux';
 import { getProducts, getRequest, loadProductsRequest } from '../../../redux/productsRedux.js';
-import { getSpot, loadSpotRequest } from '../../../redux/spotRedux.js';
+import { getSpot } from '../../../redux/spotRedux.js';
 
 import styles from './Home.module.scss';
 

@@ -1,5 +1,11 @@
 @import '../../../styles/settings.scss';
-
+.empty{
+  width: 50%;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .root {
   max-width: $screen-width;
   margin: 4rem auto;

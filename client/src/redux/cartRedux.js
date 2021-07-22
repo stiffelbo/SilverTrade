@@ -9,8 +9,8 @@ export const getCartItems = ({ cart }) => cart.cartItems;
 const reducerName = 'cart';
 const createActionName = name => `app/${reducerName}/${name}`;
 
-const ADD_TO_CARD = createActionName('ADD_TO_CARD');
-const REMOVE_FROM_CARD = createActionName('REMOVE_FROM_CARD');
+const ADD_TO_CART = createActionName('ADD_TO_CART');
+const REMOVE_FROM_CART = createActionName('REMOVE_FROM_CART');
 
 //actions
 
@@ -18,13 +18,15 @@ export const addToCart = (id, quantity) => async (dispatch, getState) => {
   const { data } = await axios.get(`${API_URL}/products/${id}`); 
 
   dispatch({
-    type: ADD_TO_CARD,
+    type: ADD_TO_CART,
     payload: {
       id: data._id,
       name: data.name,
       images: data.images,
       premium: data.premium.usd,
       stock: data.stock,
+      year: data.year,
+      faceValue: data.faceValue,
       quantity,
     }
   });
@@ -33,9 +35,9 @@ export const addToCart = (id, quantity) => async (dispatch, getState) => {
   localStorage.setItem('cart', JSON.stringify(getState().cart.cartItems));
 };
 
-export const removeFromCard = (id) => (dispatch, getState) => {
+export const removeFromCart = (id) => (dispatch, getState) => {
   dispatch({
-    type: REMOVE_FROM_CARD,
+    type: REMOVE_FROM_CART,
     payload: id,
   });
 
@@ -54,7 +56,7 @@ const initalState = {
 
 export const cartReducer = (state = initalState, action) => {
   switch(action.type) {
-    case ADD_TO_CARD:
+    case ADD_TO_CART:
 
     // payload jest objektem { id: 7373737, quantity: 3}
       const item = action.payload;
@@ -74,7 +76,7 @@ export const cartReducer = (state = initalState, action) => {
           cartItems: [...state.cartItems, item],
         }
       }
-    case REMOVE_FROM_CARD:
+    case REMOVE_FROM_CART:
       // payload to string z watosć id produktu po którym odfiltujemy istnijące w koszyku produkty
       return {
         ...state,

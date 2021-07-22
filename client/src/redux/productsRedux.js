@@ -59,8 +59,7 @@ const initialState = {
 
 export default function productsReducer(statePart = initialState, action = {}) {
   switch (action.type) {
-    case LOAD_PRODUCTS:   
-    console.log(action.payload);    
+    case LOAD_PRODUCTS:        
       return { ...statePart, data: [...action.payload] };
     case START_REQUEST:
       return { ...statePart, request: { pending: true, error: null, success: false } };

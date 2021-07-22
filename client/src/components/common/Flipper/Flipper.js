@@ -44,7 +44,7 @@ export default class Flipper extends React.Component {
 }
 
 Flipper.propTypes = {  
-  images: PropTypes.array,
+  images: PropTypes.object,
 };
 
 

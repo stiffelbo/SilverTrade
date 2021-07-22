@@ -15,11 +15,22 @@ import styles from './Navbar.module.scss';
 
 class Comp extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      spot : 0,
+      classSpot : 'up',
+    };
+  }
+
   componentDidMount() {
     const { loadSpot } = this.props;
-    loadSpot();
+    loadSpot();    
   }
   
+
+
   render() {
 
     const { spot, click } = this.props;
