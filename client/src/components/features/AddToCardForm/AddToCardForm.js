@@ -19,10 +19,19 @@ class Comp extends React.Component {
     super(props);
 
     this.state = {
-      display : false,
-      class : styles.hide,
+      quantity : 0,
+      total: 0,      
     };
+  }
 
+  handleChange = (quantity, unitPrice) => {
+    console.log(quantity, unitPrice);
+    if(quantity !== this.state.quantity){
+      this.setState( () => ({
+        quantity : quantity,
+        total : (quantity * unitPrice).toFixed(2),
+      }));
+    }    
   }
 
   render() {
@@ -60,7 +69,7 @@ class Comp extends React.Component {
             <span>Total: </span>
           </div>
           <div className={styles.value}>
-            <p>{unitPrice} $</p>
+            <p>{this.state.total} $</p>
           </div>       
         </div>
         <div className={styles.row}>
@@ -69,7 +78,16 @@ class Comp extends React.Component {
             <span>Amount: </span>
           </div>
           <div className={styles.value}>
-            <input type="number" step="1" min="0" max={stock} className={styles.input} required disabled={disabled} />
+            <input 
+              type="number" 
+              step="1" 
+              min="0" 
+              max={stock} 
+              className={styles.input} 
+              required 
+              disabled={disabled} 
+              onChange={(e) => {this.handleChange(e.target.value, unitPrice)}}
+              />
           </div>       
         </div>    
         <button className={clsx(disabledClass)} disabled={disabled}>Add To Cart <i className={bntIcon}></i></button> 
