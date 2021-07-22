@@ -8,6 +8,8 @@
   align-items: center;
   margin-top: 0.7rem;
   padding: 0.5rem;
+  background-color: white;  
+  border-radius: 5px;
   .image{
     flex: 0.2;
     height: 100px;
@@ -64,6 +66,50 @@
         font-size: 1rem;
       }
     }
+  }  
+}
+
+@media (max-width: 600px) {
+  .root{
+    font-size: 15px;
+    .quantity_input{
+      font-size: 15px;
+    }
   }
+}
+
+@media (max-width: 450px) {
+  .root{
+    .image{
+      flex: 0.2;  
+    }
+    .link{
+      flex: 0.3;
+      overflow: hidden;      
+    }
+    .price{
+      flex: 0.2;
+      text-align: center;
   
+    }
+    .quantity{
+      flex: 0.2;
+      padding: 0.5rem 0;    
+      text-align: center; 
+    }    
+    
+    .delete{
+      flex: 0.1;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .root{
+    font-size: 12px;
+    .quantity_input{
+      font-size: 12px;
+    }
+  }
+
 }

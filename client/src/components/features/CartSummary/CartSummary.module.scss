@@ -4,7 +4,10 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 1rem;  
+  padding: 1rem; 
+  margin: 1rem; 
+  background-color: white;
+  border-radius: 5px;
   .row{
     padding: 0.5rem 1rem;
     
@@ -41,5 +44,12 @@
       transition: all 0.3s ease-out;      
       background-color: $color-success;
     }
+  }
+}
+
+@media (max-width: 960px) {
+  .root {
+    margin: 1rem auto;
+    
   }
 }

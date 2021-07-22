@@ -22,19 +22,18 @@ const Component = (props) => {
         <Flipper images={images} />
       </div>        
       
-      <Link to={'/product/9997766'} className={styles.link} >
+      <Link to={'/product/9997766'} className={styles.link} title="go to product">
         <p>Product Name</p>
       </Link>
-      <p className={styles.price}>667.43 <i className="fas fa-dollar-sign"></i></p>
+      <p className={styles.price} title="price for items">667.43 <i className="fas fa-dollar-sign"></i></p>
       <div className={styles.quantity}>
-        <input type="number" className={styles.quantity_input} />
+        <input type="number" className={styles.quantity_input} title="quantity"/>
       </div>          
       <div className={styles.delete}>
         <button className={styles.delete_btn}>
           <i className="fas fa-trash-alt"></i>
         </button>
-      </div>
-        
+      </div>        
     </div>
   );
 }
