@@ -23,8 +23,9 @@ export const cartReducer = (state = { cartItems : []}, action) => {
     case ADD_TO_CARD:
       const item = action.payload;
 
-      const existItem = state.cartItems.find()
+      const existItem = state.cartItems.find();
 
   default:
     return state;
+  }
 }

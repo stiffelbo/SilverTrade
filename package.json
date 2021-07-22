@@ -23,6 +23,7 @@
     "@material-ui/core": "^4.12.2",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
+    "cheerio": "^1.0.0-rc.10",
     "cors": "^2.8.5",
     "es6-promise": "^4.2.8",
     "express": "^4.17.1",
@@ -33,6 +34,7 @@
     "nock": "^13.1.0",
     "nodemon": "^1.19.1",
     "onchange": "^6.1.0",
+    "request": "^2.88.2",
     "socket.io": "^2.2.0"
   }
 }

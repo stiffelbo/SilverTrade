@@ -35,11 +35,7 @@ const Component = (props) => {
           <p><i class="fas fa-euro-sign"></i> 5.98</p>  
         </div>
       </div>
-      <Link to={`/product/${89990}`} className={styles.link}>Check Coin</Link>
-      <div className={styles.form}>
-        <AddToCardForm stock={90} price={5.98}  /> 
-      </div>
-        
+      <Link to={`/product/${89990}`} className={styles.link}>Check Coin</Link>  
     </div>
   );
 }
