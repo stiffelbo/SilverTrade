@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 import { getSpot } from '../../../redux/spotRedux.js';
 
 
-const Component = ({stock, price, spot}) => {
+const Component = ({stock, price, spot, prodID}) => {
 
   const disabled = stock > 0 ? false : true;
   const disabledClass = disabled ? styles.disabled : styles.enabled;
@@ -54,10 +54,10 @@ const Component = ({stock, price, spot}) => {
       <div className={styles.row}>
         <div className={styles.label}>
           <i class="fas fa-shopping-basket"></i>
-          <span>Amount: </span>
+          <span>Amount: {prodID} </span>
         </div>
         <div className={styles.value}>
-          <input type="number" step="1" min="0" max={stock} className={styles.input} required disabled={disabled}/>
+          <input type="number" step="1" min="0" max={stock} className={styles.input} required disabled={disabled} />
         </div>       
       </div>    
       <button className={clsx(disabledClass)} disabled={disabled}>Add To Cart <i className={bntIcon}></i></button> 

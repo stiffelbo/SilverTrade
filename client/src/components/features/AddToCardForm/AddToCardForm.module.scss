@@ -60,6 +60,7 @@
   }
   .disabled {
     background-color: $color-error-back;
+    cursor: not-allowed;
     &:hover{
       transition: all 0.3s ease-out;      
       background-color: $color-error;

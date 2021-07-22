@@ -5,13 +5,14 @@ import thunk from 'redux-thunk';
 import productsReducer from './productsRedux';
 import productReducer from './productRedux';
 import spotReducer from './spotRedux';
-//import cart from './cartRedux';
+import { cartReducer } from './cartRedux';
 
 // define reducers
 const reducers = {
   products: productsReducer,
   product: productReducer,
   spot: spotReducer,
+  cart: cartReducer,
 };
 
 // combine reducers

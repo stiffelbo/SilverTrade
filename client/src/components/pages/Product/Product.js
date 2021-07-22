@@ -75,7 +75,7 @@ class Comp extends React.Component {
              <InfoTable data={data}/>
             </div> 
             <div className={styles.right}>          
-             <AddToCardForm price={product.premium.usd} stock={product.stock} />
+             <AddToCardForm price={product.premium.usd} stock={product.stock} prodID={product._id}/>
             </div>
         </div>
       );

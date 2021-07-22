@@ -8,8 +8,7 @@
   padding: $base-size*0.5 $base-size*2;
   height: $base-size*5;
   background-color: $color-dark;
-  color: white; 
-  box-shadow: 0px 3px 2px 1px rgba(0,0,0,0.75);
+  color: white;   
   z-index: 50;
   ul{
     display: flex;
@@ -27,7 +26,10 @@
 
 .cart_link{
   text-decoration: none;
-  color: inherit;  
+  color: inherit;
+  &:hover{
+    color: $color-warning-back;
+  }  
 }
 
 .hamburger{
@@ -42,6 +44,9 @@
     border-radius: 2px;
     width: 100%;  
   }
+  &:hover div{
+    background-color: $color-warning-back;
+  } 
 }
 
 
