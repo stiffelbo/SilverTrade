@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_URL } from '../config';
 
 /* SELECTORS */
-
+export const getCartItems = ({ cart }) => cart.cartItems;
 /* ACTIONS */
 
 // action name creator
@@ -11,7 +11,6 @@ const createActionName = name => `app/${reducerName}/${name}`;
 
 const ADD_TO_CARD = createActionName('ADD_TO_CARD');
 const REMOVE_FROM_CARD = createActionName('REMOVE_FROM_CARD');
-
 
 //actions
 
@@ -81,7 +80,7 @@ export const cartReducer = (state = initalState, action) => {
         ...state,
         cartItems: state.cartItems.filter( prod => prod.id !== action.payload ),
       } 
-      
+
   default:
     return state;
   }

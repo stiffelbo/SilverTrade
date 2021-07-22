@@ -12,7 +12,7 @@ import clsx from 'clsx';
 
 import { connect } from 'react-redux';
 import { getSpot } from '../../../redux/spotRedux.js';
-import { addToCart } from '../../../redux/cartRedux.js';
+import { getCartItems, addToCart } from '../../../redux/cartRedux.js';
 
 
 class Comp extends React.Component {
@@ -25,6 +25,19 @@ class Comp extends React.Component {
     };
   }
 
+  componentDidMount(){
+    const {cart, prodID, spot, price} = this.props;
+    const inCart = cart.find( prod => prod.id === prodID);
+
+    if(inCart){
+      const total = ((Number(price) + Number(spot.spot))*inCart.quantity).toFixed(2);
+      this.setState( ()=> ({
+        quantity: inCart.quantity,
+        total: total,
+      }));
+    }
+  }
+
   handleChange = (quantity, unitPrice) => {
     
     if(quantity !== this.state.quantity){
@@ -35,8 +48,7 @@ class Comp extends React.Component {
     }    
   }
 
-  handleSubmit = (id, quantity) => {
-    console.log(id, quantity);
+  handleAddToCard = (id, quantity) => {    
     const {addToCart} = this.props;
     addToCart(id, quantity);
   }
@@ -93,6 +105,7 @@ class Comp extends React.Component {
               className={styles.input} 
               required 
               disabled={disabled} 
+              value={this.state.quantity}
               onChange={(e) => {this.handleChange(e.target.value, unitPrice)}}
               />
           </div>       
@@ -102,7 +115,7 @@ class Comp extends React.Component {
           disabled={disabled}
           onClick={(e) => {
             e.preventDefault();
-            this.handleSubmit(prodID, this.state.quantity);
+            this.handleAddToCard(prodID, this.state.quantity);
           }}
           >
             Add To Cart <i className={bntIcon}></i>
@@ -120,6 +133,7 @@ Comp.propTypes = {
 
 const mapStateToProps = state => ({
   spot: getSpot(state),
+  cart: getCartItems(state),
 });
 
 const mapDispatchToProps = dispatch => ({
