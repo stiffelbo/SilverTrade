@@ -13,7 +13,7 @@
     justify-content: flex-start;
     align-items: center;
     .label{
-      flex: 0.7;
+      flex: 0.6;
       i{
         width: 30px;
         margin-right: 0.5rem;
@@ -21,7 +21,7 @@
     }
     .value{
       
-      flex: 0.3;
+      flex: 0.4;
       text-align: left;
     }
     input{
@@ -45,14 +45,24 @@
     text-align: center;    
     font-weight: 600;
     color: $color-text;
-    background-color: $color-editor-border-light;
+    
     border: none;
     border-radius: 3px;
     padding: 0.5rem 1rem;
-    transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;    
+  }
+  .enabled {
+    background-color: $color-editor-border-light;
     &:hover{
       transition: all 0.3s ease-out;      
       background-color: $color-success;
+    }
+  }
+  .disabled {
+    background-color: $color-error-back;
+    &:hover{
+      transition: all 0.3s ease-out;      
+      background-color: $color-error;
     }
   }
 }

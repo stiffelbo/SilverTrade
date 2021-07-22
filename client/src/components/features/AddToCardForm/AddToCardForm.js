@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import styles from './AddToCardForm.module.scss';
 
+import clsx from 'clsx';
+
 /* Components */
 
 
@@ -14,7 +16,10 @@ import styles from './AddToCardForm.module.scss';
 
 
 const Component = ({stock, price}) => {
-
+  const disabled = stock > 0 ? false : true;
+  const disabledClass = disabled ? styles.disabled : styles.enabled;
+  const onStock = disabled ? "Out of stock" : `${stock} pcs`;
+  const bntIcon = disabled ? "fas fa-times" : "fas fa-check";
   return (
     <div className={styles.root}>
       <div className={styles.row}>
@@ -23,7 +28,7 @@ const Component = ({stock, price}) => {
           <span>Stock: </span>
         </div>
         <div className={styles.value}>
-          <p>{stock}</p>
+          <p>{onStock}</p>
         </div>   
   
       </div>
@@ -42,10 +47,10 @@ const Component = ({stock, price}) => {
           <span>Amount: </span>
         </div>
         <div className={styles.value}>
-          <input type="number" step="1" className={styles.input} required/>
+          <input type="number" step="1" min="0" max={stock} className={styles.input} required disabled={disabled}/>
         </div>       
       </div>    
-      <button>Add To Card <i className="fas fa-check"></i></button> 
+      <button className={clsx(disabledClass)} disabled={disabled}>Add To Card <i className={bntIcon}></i></button> 
     </div>
   );
 }
