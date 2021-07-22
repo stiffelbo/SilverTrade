@@ -1,12 +1,31 @@
 @import '../../../styles/settings.scss';
 
 .root {
+  position: relative;
   height: 100%;
-  cursor: pointer;
-  .show{
-    display: flex;
+  .av {
+    height: 100%;
+    img{
+      height: 100%;
+    }
   }
-  .hide{
-    display: none;
+  
+  
+  .rev{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    img{
+      height: 100%;
+    } 
+       
+  }
+  .hide{    
+    visibility: hidden;
+  }
+
+  .show{    
+    visibility: visible;
   }
 }

@@ -17,8 +17,7 @@ const Component = (props) => {
         <CartItem />
         <CartItem />
         <CartItem />
-        <CartItem />
-    
+        <CartItem />    
       </div>
       <div className={styles.summary}>
       <CartSummary />
