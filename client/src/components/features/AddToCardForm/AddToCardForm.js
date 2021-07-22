@@ -12,6 +12,7 @@ import clsx from 'clsx';
 
 import { connect } from 'react-redux';
 import { getSpot } from '../../../redux/spotRedux.js';
+import { addToCart } from '../../../redux/cartRedux.js';
 
 
 class Comp extends React.Component {
@@ -25,7 +26,7 @@ class Comp extends React.Component {
   }
 
   handleChange = (quantity, unitPrice) => {
-    console.log(quantity, unitPrice);
+    
     if(quantity !== this.state.quantity){
       this.setState( () => ({
         quantity : quantity,
@@ -34,8 +35,14 @@ class Comp extends React.Component {
     }    
   }
 
+  handleSubmit = (id, quantity) => {
+    console.log(id, quantity);
+    const {addToCart} = this.props;
+    addToCart(id, quantity);
+  }
+
   render() {
-    const {stock, price, prodID, spot} = this.props;
+    const {stock, price, prodID, spot, addToCart} = this.props;
     const disabled = stock > 0 ? false : true;
     const disabledClass = disabled ? styles.disabled : styles.enabled;
     const onStock = disabled ? "Out of stock" : `${stock} pcs`;
@@ -90,7 +97,16 @@ class Comp extends React.Component {
               />
           </div>       
         </div>    
-        <button className={clsx(disabledClass)} disabled={disabled}>Add To Cart <i className={bntIcon}></i></button> 
+        <button type="submit"
+          className={clsx(disabledClass)} 
+          disabled={disabled}
+          onClick={(e) => {
+            e.preventDefault();
+            this.handleSubmit(prodID, this.state.quantity);
+          }}
+          >
+            Add To Cart <i className={bntIcon}></i>
+        </button> 
       </div>
     );
   }
@@ -106,11 +122,11 @@ const mapStateToProps = state => ({
   spot: getSpot(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+  addToCart: (id, quantity) => dispatch(addToCart(id, quantity)),
+});
 
-const Container = connect(mapStateToProps, null)(Comp);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Comp);
 
 export {
   // Component as AddToCardForm,
