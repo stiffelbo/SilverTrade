@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { removeUnderscore } from '../../../utils/removeUnderscore';
+
 import { ProductItem } from '../../features/ProductItem/ProductItem';
 import { Alert, Progress } from 'reactstrap';
 
@@ -21,7 +23,7 @@ class Comp extends React.Component {
   render() {
 
     const { products, request } = this.props;
-    console.log(products);
+ 
     if(request.pending) return <Progress animated color="primary" value={50} />; 
     else if(request.error) return <Alert color="warning">{request.error}</Alert>;
     else if(!request.success || !products.length) return <Alert color="info">No Producs</Alert>;
@@ -29,8 +31,8 @@ class Comp extends React.Component {
       return <div className={styles.root}><div className={styles.products}> {products.map(item => <ProductItem 
         key={item._id} 
         id={item._id}
-        name={item.name}
-        country={item.country}
+        name={removeUnderscore(item.name)}
+        country={removeUnderscore(item.country)}
         year={item.year}
         faceValue={item.faceValue}
         alloy={item.alloy}

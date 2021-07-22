@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { removeUnderscore } from '../../../utils/removeUnderscore'
+
 import { Alert, Progress } from 'reactstrap';
 
 import Flipper from '../../common/Flipper/Flipper';
@@ -29,11 +31,11 @@ class Comp extends React.Component {
       const data = [
         {
           prop: "Name",
-          val: product.name,
+          val: removeUnderscore(product.name),
         },
         {
           prop: "Country",
-          val: product.country,
+          val: removeUnderscore(product.country),
         },
         {
           prop: "Year",
