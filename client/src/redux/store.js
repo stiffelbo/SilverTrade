@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 
 // import reducers
 import productsReducer from './productsRedux';
+import productReducer from './productRedux';
 //import cart from './cartRedux';
 
 // define reducers
 const reducers = {
   products: productsReducer,
+  product: productReducer,
 };
 
 // combine reducers

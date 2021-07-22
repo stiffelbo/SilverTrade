@@ -1,92 +1,101 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Alert, Progress } from 'reactstrap';
+
 import Flipper from '../../common/Flipper/Flipper';
 import { AddToCardForm } from '../../features/AddToCardForm/AddToCardForm';
 import { InfoTable } from '../../common/InfoTable/InfoTable';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import { connect } from 'react-redux';
+import { getProduct, getRequest, loadProductRequest } from '../../../redux/productRedux.js';
 
 import styles from './Product.module.scss';
 
-const Component = (props) => {
+class Comp extends React.Component {
 
-  const data = [
-    {
-      prop: "Name",
-      val: "American Eagle",
-    },
-    {
-      prop: "Country",
-      val: "USA",
-    },
-    {
-      prop: "Year",
-      val: "2019",
-    },
-    {
-      prop: "Face Value",
-      val: "1 Dollar",
-    },
-    {
-      prop: "Metal",
-      val: "Silver",
-    },
-    {
-      prop: "Purity",
-      val: "999",
-    },
-    {
-      prop: "Quality",
-      val: "BU",
-    },
-    {
-      prop: "Mint",
-      val: "US Mint",
-    },
-    {
-      prop: "Product ID",
-      val: "57656jdj73738",
-    },
-  ];
+  componentDidMount() {
+    const { loadProduct } = this.props;
+    loadProduct(this.props.match.params.id);
+  } 
 
-  const images = [
-    "../coin_img/USA_2021_1oz_AmericanEagle_AW.jpg",
-    "../coin_img/USA_2021_1oz_AmericanEagle_REW.jpg",
-  ];
+  render() {
 
-  return (
-    <div className={styles.root}>
-        <div className={styles.left}>
-          <Flipper images={images} />                   
-        </div> 
-        <div className={styles.center}>          
-         <InfoTable data={data}/>
-        </div> 
-        <div className={styles.right}>          
-         <AddToCardForm price={5,666} stock={70} />
+    const { product, request } = this.props;
+    if(request.pending) return <Progress animated color="primary" value={50} />; 
+    else if(request.error) return <Alert color="warning">{request.error}</Alert>;
+    else if(!request.success || !product._id) return <Alert color="info">No Producs</Alert>;
+    else if(request.success) {
+      const data = [
+        {
+          prop: "Name",
+          val: product.name,
+        },
+        {
+          prop: "Country",
+          val: product.country,
+        },
+        {
+          prop: "Year",
+          val: product.year,
+        },
+        {
+          prop: "Face Value",
+          val: product.faceValue,
+        },
+        {
+          prop: "Metal",
+          val: product.alloy,
+        },
+        {
+          prop: "Purity",
+          val: product.purity,
+        },
+        {
+          prop: "Mint",
+          val: product.mint,
+        },
+        {
+          prop: "ID",
+          val: product._id,
+        },
+      ];
+      return (
+        <div className={styles.root}>
+            <div className={styles.left}>
+              <Flipper images={product.images} />                   
+            </div> 
+            <div className={styles.center}>          
+             <InfoTable data={data}/>
+            </div> 
+            <div className={styles.right}>          
+             <AddToCardForm price={product.premium.usd} stock={product.stock} />
+            </div>
         </div>
-    </div>
-  );
+      );
+    }
+
+  }
+  
 }
 
-Component.propTypes = {  
+Comp.propTypes = {  
   className: PropTypes.string,
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+const mapStateToProps = state => ({
+  product: getProduct(state),
+  request: getRequest(state),
+});
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+  loadProduct: (id) => dispatch(loadProductRequest(id)),
+});
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Comp);
 
 export {
-  Component as Product,
-  // Container as Product,
+  // Component as Product,
+  Container as Product,
   // Component as ProductComponent,
 };
