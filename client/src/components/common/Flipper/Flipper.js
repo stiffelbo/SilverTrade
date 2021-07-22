@@ -33,10 +33,10 @@ export default class Flipper extends React.Component {
     return (
       <div className={styles.root} onClick={this.flip}>
        <div className={styles.av}>
-         <img src={images[0]} alt="Coin obverse" />
+         <img src={`../coin_img/${images.av}`} alt="Coin obverse" />
        </div>
        <div className={clsx(this.state.class, styles.rev)}>
-         <img src={images[1]} alt="Coin reverse" />
+         <img src={`../coin_img/${images.rev}`} alt="Coin reverse" />
        </div>
       </div>
     )

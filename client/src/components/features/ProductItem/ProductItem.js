@@ -11,31 +11,26 @@ import { Link } from 'react-router-dom';
 
 import styles from './ProductItem.module.scss';
 
-const Component = (props) => {
-  const images = [
-    "../coin_img/USA_2021_1oz_AmericanEagle_AW.jpg",
-    "../coin_img/USA_2021_1oz_AmericanEagle_REW.jpg",
-  ];
-
+const Component = ({id, name, country, year, alloy, purity, premium, images }) => {
+ 
   return (
     <div className={styles.root}>
       <Flipper images={images} />
       <div className={styles.info}>
-        <p className={styles.title}>American Eagle</p>
+        <p className={styles.title}>{name}</p>
         <div className={styles.infoGrid}>
-          <p> USA</p>
-          <p> 2019</p>
+          <p>{country}</p>
+          <p>{year}</p>
         </div>
         <div className={styles.infoGrid}>
-          <p> Silver</p>
-          <p> 999</p>
+          <p>{alloy}</p>
+          <p>{purity}</p>
         </div>
         <div className={styles.priceGrid}>
-          <p><i class="fas fa-dollar-sign"></i> 5.98</p> 
-          <p><i class="fas fa-euro-sign"></i> 5.98</p>  
+          <p>Premium per piece: <b>{premium.usd} $</b></p>          
         </div>
       </div>
-      <Link to={`/product/${89990}`} className={styles.link}>Check Coin</Link>  
+      <Link to={`/product/${id}`} className={styles.link}>Check Coin</Link>  
     </div>
   );
 }

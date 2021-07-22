@@ -13,7 +13,8 @@ const Component = (props) => {
 
   return (
     <div className={styles.root}>
-      <div className={styles.items}>
+      
+      <div className={styles.items}>      
         <CartItem />
         <CartItem />
         <CartItem />
