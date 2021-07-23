@@ -48,11 +48,15 @@ class Comp extends React.Component {
     }    
   }
 
+  handleClickDelete = (id) => {
+    const {removeFromCart} = this.props;
+    removeFromCart(id);
+  }
+
   render() {
 
     const {id, name, images, premium, stock, quantity, spot, faceValue, year, addToCart, removeFromCart} = this.props
     const unitPrice = (Number(premium) + Number(spot.spot)).toFixed(2);
-    const total = (unitPrice*quantity).toFixed(2);
     return (
       <div className={styles.root}>
         <div className={styles.image}>
@@ -75,7 +79,13 @@ class Comp extends React.Component {
             />
         </div>          
         <div className={styles.delete}>
-          <button className={styles.delete_btn}>
+          <button 
+            className={styles.delete_btn}
+            onClick={(e) => {
+              e.preventDefault();
+              this.handleClickDelete(id)
+            }}
+          >
             <i className="fas fa-trash-alt"></i>
           </button>
         </div>        
