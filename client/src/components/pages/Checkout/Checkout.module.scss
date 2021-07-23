@@ -5,10 +5,26 @@
   margin: 4rem auto;
   padding: 1rem 2rem;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  flex-direction: column;
   align-items: center;
   background-color: rgb(228, 228, 228);
+  .summary{
+    width: 100%;
+  }
+  .form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(228, 228, 228);
+    .bill{
+      flex: 0.5;
+    }
+    .payment{
+      flex: 0.5;
+    }
+  }
+
 }
 
 .empty{

@@ -15,7 +15,7 @@ import { getSpot } from '../../../redux/spotRedux.js';
 
 
 
-const Component = ({cart, spot}) => {
+const Component = ({cart, spot, link}) => {
 
   if(cart.length){
     // tu cos nie poszło ale sie dobrze zapowiada
@@ -40,8 +40,7 @@ const Component = ({cart, spot}) => {
           </div>
           <div className={styles.value}>
             <p>
-              {total}
-              <i className="fas fa-dollar-sign"></i>
+              {`${total} $`}
             </p>
           </div>       
         </div>
@@ -54,9 +53,10 @@ const Component = ({cart, spot}) => {
             <p>{items}</p>
           </div>       
         </div>
+        {link && 
         <Link to="/checkout" >
           <button>Checkout <i className="fas fa-wallet"></i></button> 
-        </Link>            
+        </Link> }                   
       </div>
     );
 

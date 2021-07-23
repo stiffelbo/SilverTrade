@@ -6,7 +6,7 @@ import { CartItem } from '../../features/CartItem/CartItem';
 import { CartSummary } from '../../features/CartSummary/CartSummary';
 
 import { connect } from 'react-redux';
-import { getCartItems, addToCart, removeFromCart } from '../../../redux/cartRedux.js';
+import { getCartItems } from '../../../redux/cartRedux.js';
 import { getSpot } from '../../../redux/spotRedux.js';
 
 import styles from './Cart.module.scss';
@@ -54,7 +54,7 @@ class Comp extends React.Component {
           )}
           </div>
           <div className={styles.summary}>
-          <CartSummary />
+          <CartSummary link={true}/>
           </div>
 
       </div>)     
