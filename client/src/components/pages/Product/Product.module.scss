@@ -9,6 +9,7 @@
 .root {
   margin: 1rem auto;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
   max-width: $screen-width;    
@@ -27,9 +28,13 @@
   }
   .right{
     flex: 0.3;
-  }
-  
+  } 
 }
+.products{
+  max-width: $screen-width;
+  margin: 1rem auto;
+}
+
 
 @media (max-width: 960px) {
   .root {
@@ -41,5 +46,23 @@
       border: 1px solid $color-editor-border-light;
       border-radius: 5px;        
     }        
+  }
+}
+
+@media (max-width: 1280px){
+  .products{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 960px){
+  .products{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px){
+  .products{
+    grid-template-columns: 1fr;
   }
 }

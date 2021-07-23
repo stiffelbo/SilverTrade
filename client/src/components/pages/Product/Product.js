@@ -7,6 +7,7 @@ import { Alert, Progress } from 'reactstrap';
 
 import Flipper from '../../common/Flipper/Flipper';
 import { AddToCardForm } from '../../features/AddToCardForm/AddToCardForm';
+import { FeaturedProducts } from '../../features/FeaturedProducts/FeaturedProducts';
 import { InfoTable } from '../../common/InfoTable/InfoTable';
 
 import { connect } from 'react-redux';
@@ -16,10 +17,20 @@ import styles from './Product.module.scss';
 
 class Comp extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      productId : '',         
+    };
+  }
+
   componentDidMount() {
     const { loadProduct } = this.props;
     loadProduct(this.props.match.params.id);
+   
   } 
+ 
 
   render() {
 
@@ -67,17 +78,22 @@ class Comp extends React.Component {
         },
       ];
       return (
-        <div className={styles.root}>
+        <>
+          <div className={styles.root}>
             <div className={styles.left}>
               <Flipper images={product.images} />                   
             </div> 
             <div className={styles.center}>          
-             <InfoTable data={data}/>
+              <InfoTable data={data}/>
             </div> 
             <div className={styles.right}>          
-             <AddToCardForm price={product.premium.usd} stock={product.stock} prodID={product._id}/>
-            </div>
-        </div>
+              <AddToCardForm price={product.premium.usd} stock={product.stock} prodID={product._id}/>
+            </div>          
+          </div>
+          <div className={styles.products}>
+            <FeaturedProducts feature={{prop: 'mint', val: product.mint}} prodID={product._id}/>
+          </div>
+        </>
       );
     }
 

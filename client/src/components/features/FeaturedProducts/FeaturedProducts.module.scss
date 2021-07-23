@@ -1,0 +1,38 @@
+@import '../../../styles/settings.scss';
+
+.root {
+  margin-top: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .products{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 16px;
+  }
+}
+
+@media (max-width: 1280px){
+  .root {
+    .products{
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+}
+
+@media (max-width: 960px){
+  .root {
+    .products{
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media (max-width: 767px){
+  .root {
+    .products{
+      grid-template-columns: 1fr;
+    }
+  }
+}
