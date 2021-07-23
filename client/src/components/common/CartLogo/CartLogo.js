@@ -8,38 +8,55 @@ import styles from './CartLogo.module.scss';
 
 /* Redux */
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import { connect } from 'react-redux';
+import { getCartItems } from '../../../redux/cartRedux.js';
 
 
 
-const Component = ({dark}) => {
+const Component = ({cart}) => {
 
-  return (
-    <div className={styles.root}>
-      <i className="fas fa-shopping-cart"></i>
-      <h2 className={styles.title}>Cart</h2>
-      <span>73</span>      
-    </div>
-  );
+  if(cart.length){
+    
+    let items = 0;
+    cart.map(item => {
+      items += Number(item.quantity);     
+    });
+
+    return (
+      <div className={styles.root}>
+        <i className="fas fa-shopping-cart"></i>
+        <h2 className={styles.title}>Cart</h2>
+        <span>{items}</span>      
+      </div>
+    );
+
+  }else{
+    return (
+      <div className={styles.root}>
+        <i className="fas fa-shopping-cart"></i>
+        <h2 className={styles.title}>Cart</h2>
+        <span>0</span>      
+      </div>
+    )
+  }
+
+  
 }
 
 Component.propTypes = {  
   dark: PropTypes.bool,
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+const mapStateToProps = state => ({
+  cart: getCartItems(state),
+});
 
 // const mapDispatchToProps = dispatch => ({
 //   someAction: arg => dispatch(reduxActionCreator(arg)),
 // });
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps, null)(Component);
 
-export {
-  Component as CartLogo,
-  // Container as CartLogo,
-  // Component as CartLogoComponent,
+export {  
+  Container as CartLogo,  
 };

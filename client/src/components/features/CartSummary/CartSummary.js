@@ -8,58 +8,76 @@ import styles from './CartSummary.module.scss';
 
 /* Redux */
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import { connect } from 'react-redux';
+import { getCartItems } from '../../../redux/cartRedux.js';
+import { getSpot } from '../../../redux/spotRedux.js';
 
 
 
-const Component = (props) => {
+const Component = ({cart, spot}) => {
 
-  const price = 9987;
-  return (
-    <div className={styles.root}>      
-      <div className={styles.row}>
-        <div className={styles.label}>
-          <i className="fas fa-tag"></i>
-          <span>Total: </span>
+  if(cart.length){
+    // tu cos nie poszło ale sie dobrze zapowiada
+    // const {items, total} = cart.reduce( (res, item) => ({items: Number(res.items) + Number(item.quantity), total: res.total + (Number(item.quantity) * (Number(spot) + item.premium))}));
+
+    let items = 0;
+    let total = 0;
+
+    cart.map(item => {
+      items += Number(item.quantity);
+      total += (item.premium + Number(spot.spot)) * Number(item.quantity);
+    });
+
+    total = total.toFixed(2);
+
+    return (
+      <div className={styles.root}>      
+        <div className={styles.row}>
+          <div className={styles.label}>
+            <i className="fas fa-tag"></i>
+            <span>Total: </span>
+          </div>
+          <div className={styles.value}>
+            <p>
+              {total}
+              <i className="fas fa-dollar-sign"></i>
+            </p>
+          </div>       
         </div>
-        <div className={styles.value}>
-          <p>
-            {price}
-            <i className="fas fa-dollar-sign"></i>
-          </p>
-        </div>       
+        <div className={styles.row}>
+          <div className={styles.label}>
+            <i class="fas fa-shopping-basket"></i>
+            <span>Items: </span>
+          </div>
+          <div className={styles.value}>
+            <p>{items}</p>
+          </div>       
+        </div>    
+        <button>Checkout <i className="fas fa-wallet"></i></button> 
       </div>
-      <div className={styles.row}>
-        <div className={styles.label}>
-          <i class="fas fa-shopping-basket"></i>
-          <span>Items: </span>
-        </div>
-        <div className={styles.value}>
-          <p>67</p>
-        </div>       
-      </div>    
-      <button>Checkout <i className="fas fa-wallet"></i></button> 
-    </div>
-  );
+    );
+
+
+  }  
 }
 
 Component.propTypes = {  
   className: PropTypes.string,
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+const mapStateToProps = state => ({
+  cart: getCartItems(state),
+  spot: getSpot(state),
+});
 
 // const mapDispatchToProps = dispatch => ({
 //   someAction: arg => dispatch(reduxActionCreator(arg)),
 // });
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps, null)(Component);
 
 export {
-  Component as CartSummary,
-  // Container as CartSummary,
-  // Component as CartSummaryComponent,
+
+  Container as CartSummary,
+
 };

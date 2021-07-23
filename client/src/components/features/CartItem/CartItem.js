@@ -74,6 +74,7 @@ class Comp extends React.Component {
             title="quantity"
             min="1"
             step="1"
+            max={stock}
             defaultValue={quantity}
             onChange={(e) => {this.handleChange(e.target.value, unitPrice, id)}}
             />
