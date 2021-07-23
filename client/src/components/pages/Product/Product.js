@@ -28,7 +28,6 @@ class Comp extends React.Component {
   componentDidMount() {
     const { loadProduct } = this.props;
     loadProduct(this.props.match.params.id);
-   
   } 
  
 

@@ -46,7 +46,7 @@ const Component = ({cart, spot}) => {
         </div>
         <div className={styles.row}>
           <div className={styles.label}>
-            <i class="fas fa-shopping-basket"></i>
+            <i className="fas fa-shopping-basket"></i>
             <span>Items: </span>
           </div>
           <div className={styles.value}>

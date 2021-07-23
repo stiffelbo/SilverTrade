@@ -11,7 +11,7 @@ const Component = ({spot}) => {
         <h4>Silver Spot:</h4>
       </div>
       <div className={styles.rate}>
-        <i class="fas fa-dollar-sign"></i>
+        <i classNames="fas fa-dollar-sign"></i>
         <h4>{spot.spot}</h4>
       </div>
     </div>

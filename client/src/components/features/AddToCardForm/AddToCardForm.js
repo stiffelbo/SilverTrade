@@ -65,7 +65,7 @@ class Comp extends React.Component {
       <div className={styles.root}>
         <div className={styles.row}>
           <div className={styles.label}>
-            <i class="fas fa-warehouse"></i>
+            <i className="fas fa-warehouse"></i>
             <span>Stock: </span>
           </div>
           <div className={styles.value}>
@@ -84,7 +84,7 @@ class Comp extends React.Component {
         </div>
         <div className={styles.row}>
           <div className={styles.label}>
-          <i class="fas fa-hand-holding-usd"></i>
+          <i className="fas fa-hand-holding-usd"></i>
             <span>Total: </span>
           </div>
           <div className={styles.value}>
@@ -93,7 +93,7 @@ class Comp extends React.Component {
         </div>
         <div className={styles.row}>
           <div className={styles.label}>
-            <i class="fas fa-shopping-basket"></i>
+            <i className="fas fa-shopping-basket"></i>
             <span>Amount: </span>
           </div>
           <div className={styles.value}>
