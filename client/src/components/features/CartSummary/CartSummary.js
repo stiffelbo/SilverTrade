@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './CartSummary.module.scss';
+import { Link } from 'react-router-dom';
 
 /* Components */
 
@@ -52,8 +53,10 @@ const Component = ({cart, spot}) => {
           <div className={styles.value}>
             <p>{items}</p>
           </div>       
-        </div>    
-        <button>Checkout <i className="fas fa-wallet"></i></button> 
+        </div>
+        <Link to="/checkout" >
+          <button>Checkout <i className="fas fa-wallet"></i></button> 
+        </Link>            
       </div>
     );
 
