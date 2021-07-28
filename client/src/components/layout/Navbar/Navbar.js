@@ -29,11 +29,10 @@ class Comp extends React.Component {
     const { loadSpot, checkCart } = this.props;
     loadSpot();    
     checkCart();
+    setInterval(loadSpot, 10000);
   }
+
   
-
-
-
   render() {
 
     const { spot, click } = this.props;

@@ -24,18 +24,16 @@ export const loadSpot = payload => ({ payload, type: LOAD_SPOT });
 
 /* THUNKS */
 
-export const loadSpotRequest = (id) => {
+export const loadSpotRequest = () => {
   return async dispatch => {
 
     dispatch(startRequest());
     try {
 
       let res = await axios.get(`${API_URL}/spot/xagusd/`);      
-      dispatch(loadSpot(res.data));
+      dispatch(loadSpot(res.data));      
       dispatch(endRequest());
-      console.log('Loading spot', new Date);
-      setInterval(loadSpotRequest, 10000);
-
+      console.log('Load Spot', res.data.spot); 
     } catch(e) {
       dispatch(errorRequest(e.message));
     }
@@ -56,7 +54,8 @@ const initialState = {
 export default function spotReducer(statePart = initialState, action = {}) {
   switch (action.type) {
     case LOAD_SPOT: 
-      return { ...statePart, spot: action.payload.spot };
+      const change = statePart.spot > action.payload.spot ? -1 : statePart.spot == action.payload.spot ? 0 : 1;
+      return { ...statePart, spot: action.payload.spot, change };
     case START_REQUEST:
       return { ...statePart, request: { pending: true, error: null, success: false } };
     case END_REQUEST:

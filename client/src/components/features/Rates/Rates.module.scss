@@ -10,8 +10,18 @@
     align-items: center;
     &:first-child{
       margin-right: 1rem;
-    }
+    }    
   }
+  .up{
+    color: $color-success;
+  }
+  .flat{
+    color: inherit;
+  }
+  .down{
+    color: $color-error;
+  }
+
 }
 
 
