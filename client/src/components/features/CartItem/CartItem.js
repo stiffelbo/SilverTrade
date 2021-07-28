@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { removeFromCart, addToCart } from '../../../redux/cartRedux.js';
 import { setItemID } from '../../../redux/commentsRedux.js';
+import {removeUnderscore} from '../../../utils/removeUnderscore';
 
 import styles from './CartItem.module.scss';
 
@@ -71,7 +72,7 @@ class Comp extends React.Component {
         </div>        
         
         <Link to={`/product/${id}`} className={styles.link} title="go to product">
-          <p>{`${name} ${year} ${faceValue}`}</p>
+          <p>{`${removeUnderscore(name)} ${year} ${faceValue}`}</p>
         </Link>
         <p className={styles.price} title="price for items">{this.state.total} $ </p>
         <div className={styles.quantity}>
@@ -103,7 +104,7 @@ class Comp extends React.Component {
             className={styles.comment_btn}
             onClick={(e) => {
               e.preventDefault();
-              this.handleClickComment(id, `${name} ${year}`)
+              this.handleClickComment(id, `${removeUnderscore(name)} ${year}`)
             }}
             title="comment item"
           >

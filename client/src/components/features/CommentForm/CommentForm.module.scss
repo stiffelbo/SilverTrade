@@ -5,9 +5,32 @@
   display: flex;
   flex-direction: column;
   padding: 1rem; 
-  p{
-    font-size: $base-size*0.75;
+  .row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    p{
+      font-size: $base-size*0.75;
+    }
+    .close{
+      width: $base-size;
+      color: #141414;
+      background: none;
+      transition: all 0.3s ease-out;
+      &:hover,
+      &:focus,
+      &:active      
+      {
+        transition: all 0.3s ease-out;
+        transform: scale(1.2);
+        color: red; 
+      }      
+      i{
+        font-size: 1rem;
+      }
+    }
   }
+  
   input{
     line-height: inherit;
     padding: 00.5rem 1rem;
@@ -26,7 +49,9 @@
 
     &:focus{
       outline: none;
-    }
-    
+    }    
+  }
+  > button{
+    padding: 0.5rem 1rem;
   }
 }

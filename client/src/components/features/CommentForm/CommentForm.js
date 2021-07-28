@@ -9,7 +9,7 @@ import styles from './CommentForm.module.scss';
 /* Redux */
 
 import { connect } from 'react-redux';
-import { getItemToComment } from '../../../redux/commentsRedux.js';
+import { getItemToComment, setItemID } from '../../../redux/commentsRedux.js';
 
 
 
@@ -42,12 +42,22 @@ class Comp extends React.Component {
     }
   }
 
+  handleClose(){
+    const { setItemID } = this.props;
+    setItemID({id: '', itemDescription: ''});
+  }
+
   render(){
     const itemToComment = this.props;
-    if(itemToComment.itemToComment.comments && itemToComment.itemToComment.comments.itemId){
+    if(this.state.itemId && this.state.itemDescription){
       return (
         <div className={styles.root}>
-          <p>Comment on:  {itemToComment.itemToComment.comments.itemDescription}</p>
+          <div className={styles.row}>
+            <p>Comment on:  {itemToComment.itemToComment.comments.itemDescription}</p>
+            <button className={styles.close} onClick={()=>{this.handleClose()}}>
+              <i className="far fa-times-circle"></i>              
+            </button>
+          </div>
           <label className={styles.label}>Name:</label>
           <input type="text" name="name" className={styles.name} required/>
           <label className={styles.label}>Last Name:</label>
@@ -78,11 +88,11 @@ const mapStateToProps = state => ({
   itemToComment: getItemToComment(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+  setItemID : (id) => dispatch(setItemID(id)),
+});
 
-const Container = connect(mapStateToProps, null)(Comp);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Comp);
 
 export {
   // Comp as CommentForm,
