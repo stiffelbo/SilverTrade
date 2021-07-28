@@ -40,6 +40,7 @@ class Comp extends React.Component {
   handleChange = (quantity, unitPrice) => {
     
     if(quantity !== this.state.quantity){
+      quantity = quantity <= this.props.stock ? quantity : this.props.stock;
       this.setState( () => ({
         quantity : quantity,
         total : (quantity * unitPrice).toFixed(2),
@@ -111,8 +112,7 @@ class Comp extends React.Component {
               disabled={disabled} 
               value={this.state.quantity}
               onChange={(e) => {
-                this.handleChange(e.target.value, unitPrice);
-                e.target.value = e.target.value > stock ? stock : e.target.value;              
+                this.handleChange(e.target.value, unitPrice);                              
               }}      
               />
               
@@ -127,8 +127,7 @@ class Comp extends React.Component {
           }}
           >
             Add To Cart <i className={bntIcon}></i>
-        </button> 
-        <p>!!! AMount input. kiedy ilość jest wieksza niz max nalezy ja wyrownąć do max.</p>
+        </button>
       </div>
     );
   }
