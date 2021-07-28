@@ -5,7 +5,7 @@ import styles from './CartSummary.module.scss';
 import { Link } from 'react-router-dom';
 
 /* Components */
-
+import { CommentForm } from '../CommentForm/CommentForm';
 
 /* Redux */
 
@@ -32,7 +32,8 @@ const Component = ({cart, spot, link}) => {
     total = total.toFixed(2);
 
     return (
-      <div className={styles.root}>      
+      <div className={styles.root}>
+        <CommentForm />      
         <div className={styles.row}>
           <div className={styles.label}>
             <i className="fas fa-tag"></i>

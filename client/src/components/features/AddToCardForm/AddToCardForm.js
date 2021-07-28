@@ -7,7 +7,6 @@ import clsx from 'clsx';
 
 /* Components */
 
-
 /* Redux */
 
 import { connect } from 'react-redux';
@@ -49,12 +48,17 @@ class Comp extends React.Component {
   }
 
   handleAddToCard = (id, quantity) => {    
-    const {addToCart} = this.props;
-    addToCart(id, quantity);
+    const {addToCart, stock} = this.props;
+    if(quantity > stock){
+      addToCart(id, stock);
+    }else{
+      addToCart(id, quantity);
+    }
+    
   }
 
   render() {
-    const {stock, price, prodID, spot, addToCart} = this.props;
+    const {stock, price, prodID, spot} = this.props;
     const disabled = stock > 0 ? false : true;
     const disabledClass = disabled ? styles.disabled : styles.enabled;
     const onStock = disabled ? "Out of stock" : `${stock} pcs`;
@@ -106,8 +110,12 @@ class Comp extends React.Component {
               required 
               disabled={disabled} 
               value={this.state.quantity}
-              onChange={(e) => {this.handleChange(e.target.value, unitPrice)}}
+              onChange={(e) => {
+                this.handleChange(e.target.value, unitPrice);
+                e.target.value = e.target.value > stock ? stock : e.target.value;              
+              }}      
               />
+              
           </div>       
         </div>    
         <button type="submit"
@@ -120,6 +128,7 @@ class Comp extends React.Component {
           >
             Add To Cart <i className={bntIcon}></i>
         </button> 
+        <p>!!! AMount input. kiedy ilość jest wieksza niz max nalezy ja wyrownąć do max.</p>
       </div>
     );
   }

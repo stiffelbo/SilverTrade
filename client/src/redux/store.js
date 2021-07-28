@@ -6,6 +6,7 @@ import productsReducer from './productsRedux';
 import productReducer from './productRedux';
 import spotReducer from './spotRedux';
 import { cartReducer } from './cartRedux';
+import { commentsReducer } from './commentsRedux';
 
 // define reducers
 const reducers = {
@@ -13,6 +14,7 @@ const reducers = {
   product: productReducer,
   spot: spotReducer,
   cart: cartReducer,
+  comments: commentsReducer,
 };
 
 // combine reducers

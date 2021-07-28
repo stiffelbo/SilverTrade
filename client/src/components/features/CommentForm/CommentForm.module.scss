@@ -1,0 +1,32 @@
+@import '../../../styles/settings.scss';
+
+.root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem; 
+  p{
+    font-size: $base-size*0.75;
+  }
+  input{
+    line-height: inherit;
+    padding: 00.5rem 1rem;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid $color-editor-border-light;
+    &:focus{
+      outline: none;
+    }
+  }
+  textarea{
+    padding: 00.5rem 1rem;   
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid $color-editor-border-light;
+
+    &:focus{
+      outline: none;
+    }
+    
+  }
+}

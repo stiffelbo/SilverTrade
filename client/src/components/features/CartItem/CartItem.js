@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { removeFromCart, addToCart } from '../../../redux/cartRedux.js';
+import { setItemID } from '../../../redux/commentsRedux.js';
 
 import styles from './CartItem.module.scss';
 
@@ -49,13 +50,19 @@ class Comp extends React.Component {
   }
 
   handleClickDelete = (id) => {
-    const {removeFromCart} = this.props;
+    const {removeFromCart, setItemID} = this.props;
     removeFromCart(id);
+    setItemID({id: '', itemDescription: ''});
+  }
+
+  handleClickComment = (id, itemDescription) => {
+    const {setItemID} = this.props;
+    setItemID({id, itemDescription: itemDescription});
   }
 
   render() {
 
-    const {id, name, images, premium, stock, quantity, spot, faceValue, year, addToCart, removeFromCart} = this.props
+    const {id, name, images, premium, stock, quantity, spot, faceValue, year} = this.props
     const unitPrice = (Number(premium) + Number(spot.spot)).toFixed(2);
     return (
       <div className={styles.root}>
@@ -66,7 +73,7 @@ class Comp extends React.Component {
         <Link to={`/product/${id}`} className={styles.link} title="go to product">
           <p>{`${name} ${year} ${faceValue}`}</p>
         </Link>
-        <p className={styles.price} title="price for items">{this.state.total} $ <i className="fas fa-dollar-sign"></i></p>
+        <p className={styles.price} title="price for items">{this.state.total} $ </p>
         <div className={styles.quantity}>
           <input 
             type="number" 
@@ -86,8 +93,21 @@ class Comp extends React.Component {
               e.preventDefault();
               this.handleClickDelete(id)
             }}
+            title="remove item"
           >
             <i className="fas fa-trash-alt"></i>
+          </button>
+        </div> 
+        <div className={styles.comment}>
+          <button 
+            className={styles.comment_btn}
+            onClick={(e) => {
+              e.preventDefault();
+              this.handleClickComment(id, `${name} ${year}`)
+            }}
+            title="comment item"
+          >
+            <i className="far fa-comment"></i>
           </button>
         </div>        
       </div>
@@ -106,6 +126,7 @@ Comp.propTypes = {
 const mapDispatchToProps = dispatch => ({
   addToCart: (id, quantity) => dispatch(addToCart(id, quantity)),
   removeFromCart: (id) => dispatch(removeFromCart(id)),
+  setItemID : (id) => dispatch(setItemID(id)),
 });
 
 const Container = connect(null, mapDispatchToProps)(Comp);

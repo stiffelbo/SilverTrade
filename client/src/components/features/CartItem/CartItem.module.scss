@@ -43,11 +43,11 @@
       }
     }    
   }
-  .delete{
+  .delete, .comment{
     
     text-align: right;
     flex: 0.05;
-    .delete_btn{
+    .delete_btn, .comment_btn {
       padding: 0.7rem;
       border: none;
       border-radius: 5px;
@@ -61,12 +61,25 @@
         background-color: red;
         color: white;
         
-      }
+      }      
       i{
         font-size: 1rem;
       }
     }
-  }  
+    .comment_btn {
+      &:hover,
+      &:focus,
+      &:active      
+      {
+        
+        background-color: $color-info;
+        color: white;
+        
+      }      
+    }
+    
+  }
+   
 }
 
 @media (max-width: 600px) {

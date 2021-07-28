@@ -8,6 +8,7 @@ const path = require('path');
 // import routes
 const coinsRoutes = require('./routes/coins.routes');
 const spotRoutes = require('./routes/spot.routes');
+const commentsRoutes = require('./routes/comments.routes');
 
 //use in app
 app.use(cors());
@@ -20,6 +21,7 @@ app.use((req, res, next) => {
 //connect routes
 
 app.use('/api', coinsRoutes);
+app.use('/api/', commentsRoutes);
 app.use('/api/spot', spotRoutes);
 
 app.get('*', (req, res) => {
