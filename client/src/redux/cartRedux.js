@@ -9,10 +9,13 @@ export const getCartItems = ({ cart }) => cart.cartItems;
 const reducerName = 'cart';
 const createActionName = name => `app/${reducerName}/${name}`;
 
+const CHECK_CART = createActionName('CHECK_CART');
 const ADD_TO_CART = createActionName('ADD_TO_CART');
 const REMOVE_FROM_CART = createActionName('REMOVE_FROM_CART');
 
 //actions
+export const checkCart = () => ({type: CHECK_CART});
+
 
 export const addToCart = (id, quantity) => async (dispatch, getState) => {
   const { data } = await axios.get(`${API_URL}/products/${id}`); 
@@ -81,7 +84,17 @@ export const cartReducer = (state = initalState, action) => {
       return {
         ...state,
         cartItems: state.cartItems.filter( prod => prod.id !== action.payload ),
-      } 
+      }
+      
+    case CHECK_CART:
+      const cartInStorage = localStorage.getItem('cart');
+      if(cartInStorage){
+        return {
+          ...state,
+          cartItems: JSON.parse(cartInStorage),
+        }
+      }
+      return state;
 
   default:
     return state;

@@ -11,9 +11,24 @@ const createActionName = name => `app/${reducerName}/${name}`;
 
 
 const SET_ITEM_ID = createActionName('SET_ITEM_ID');
-//const COMMENT_ITEM = createActionName('COMMENT_ITEM');
+const COMMENT_ITEM = createActionName('COMMENT_ITEM');
 
 export const setItemID = payload => ({ payload, type: SET_ITEM_ID });
+export const commentItem = payload => ({ payload, type: COMMENT_ITEM });
+
+/* THUNKS */
+
+export const commentItemRequest = (data) => {
+  return async dispatch => {    
+    try {
+      let res = await axios.post(`${API_URL}/comments/?name=${data.name}&lastName=${data.lastName}&email=${data.email}&comment=${data.comment}&coinId=${data.coinId}`);      
+      console.log(data);
+    } catch(e) {
+      console.log(e.message);
+    }
+  };
+};
+
 
 /* INITIAL STATE */
 
@@ -58,7 +73,8 @@ export const commentsReducer = (state = initalState, action) => {
           },
         }
       }      
-    
+    case COMMENT_ITEM:
+      return state;
   default:
     return state;
   }

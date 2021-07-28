@@ -10,6 +10,7 @@ import { CartLogo } from '../../common/CartLogo/CartLogo';
 
 import { connect } from 'react-redux';
 import { getSpot, loadSpotRequest } from '../../../redux/spotRedux.js';
+import { checkCart } from '../../../redux/cartRedux.js';
 
 import styles from './Navbar.module.scss';
 
@@ -25,10 +26,12 @@ class Comp extends React.Component {
   }
 
   componentDidMount() {
-    const { loadSpot } = this.props;
+    const { loadSpot, checkCart } = this.props;
     loadSpot();    
+    checkCart();
   }
   
+
 
 
   render() {
@@ -71,6 +74,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadSpot: () => dispatch(loadSpotRequest()),
+  checkCart: () => dispatch(checkCart()),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Comp);

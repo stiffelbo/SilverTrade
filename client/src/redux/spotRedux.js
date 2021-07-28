@@ -33,6 +33,8 @@ export const loadSpotRequest = (id) => {
       let res = await axios.get(`${API_URL}/spot/xagusd/`);      
       dispatch(loadSpot(res.data));
       dispatch(endRequest());
+      console.log('Loading spot', new Date);
+      setInterval(loadSpotRequest, 10000);
 
     } catch(e) {
       dispatch(errorRequest(e.message));
@@ -45,6 +47,8 @@ export const loadSpotRequest = (id) => {
 
 const initialState = {
   spot: 0,
+  change: 0,
+  //w reducerze akcja prosta porówna state i action.payload i ustawi -1 0 lub 1
 };
 
 /* REDUCER */

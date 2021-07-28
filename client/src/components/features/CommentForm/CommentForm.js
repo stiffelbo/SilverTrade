@@ -9,7 +9,7 @@ import styles from './CommentForm.module.scss';
 /* Redux */
 
 import { connect } from 'react-redux';
-import { getItemToComment, setItemID } from '../../../redux/commentsRedux.js';
+import { getItemToComment, setItemID, commentItemRequest } from '../../../redux/commentsRedux.js';
 
 
 
@@ -19,7 +19,11 @@ class Comp extends React.Component {
 
     this.state = {
       itemId : '',
-      itemDescription: '',      
+      itemDescription: '',
+      name: '',
+      lastName: '',
+      email: '',
+      comment: '',      
     };
   }
 
@@ -42,8 +46,21 @@ class Comp extends React.Component {
     }
   }
 
+  //jedna metoda na update state.
+
   handleClose(){
     const { setItemID } = this.props;
+    setItemID({id: '', itemDescription: ''});
+  }
+
+  handleSubmitComment(){
+    const { commentItemRequest, setItemID } = this.props;
+    const {name, lastName, email, comment, itemId} = this.state;
+    if(name && lastName && email && comment && itemId){
+      commentItemRequest({
+        name, lastName, email, comment, coinId : itemId 
+      });
+    }
     setItemID({id: '', itemDescription: ''});
   }
 
@@ -59,14 +76,33 @@ class Comp extends React.Component {
             </button>
           </div>
           <label className={styles.label}>Name:</label>
-          <input type="text" name="name" className={styles.name} required/>
+          <input type="text" name="name" className={styles.name} 
+          onChange={ (e)=>{
+            const name = e.target.value;
+            this.setState( ()=> ({name}));
+          }} required/>
           <label className={styles.label}>Last Name:</label>
-          <input type="text" name="lastName" className={styles.name} required/>
+          <input type="text" name="lastName" className={styles.name} 
+          onChange={ (e)=>{
+            const lastName = e.target.value;
+            this.setState( ()=> ({lastName}));
+          }}
+          required/>
           <label className={styles.label}>Email:</label>
-          <input type="email" name="email" className={styles.name} required/>
+          <input type="email" name="email" className={styles.name} 
+          onChange={ (e)=>{
+            const email = e.target.value;
+            this.setState( ()=> ({email}));
+          }}
+          required/>
           <label className={styles.label}>Comment: </label>        
-          <textarea name="comment" className={styles.comment} rows="6" required/>
-          <button className={styles.submit}>Submit Comment</button>
+          <textarea name="comment" className={styles.comment} rows="6" 
+          onChange={ (e)=>{
+            const comment = e.target.value;
+            this.setState( ()=> ({comment}));
+          }}
+          required/>
+          <button className={styles.submit} onClick={()=>{this.handleSubmitComment()}}>Submit Comment</button>
         </div>
       )
     }else{
@@ -90,6 +126,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   setItemID : (id) => dispatch(setItemID(id)),
+  commentItemRequest : (data) => dispatch(commentItemRequest(data)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Comp);

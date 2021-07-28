@@ -73,8 +73,7 @@ const mapStateToProps = state => ({
 });
 
 // const mapDispatchToProps = dispatch => ({
-//   addToCart: (id, quantity) => dispatch(addToCart(id, quantity)),
-//   removeFromCart : (id) => dispatch(removeFromCart(id)),
+ 
 // });
 
 const Container = connect(mapStateToProps, null)(Comp);
