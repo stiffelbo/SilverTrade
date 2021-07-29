@@ -17,10 +17,8 @@ import { getCartItems, addToCart } from '../../../redux/cartRedux.js';
 class Comp extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      quantity : 0,
-      total: 0,      
+      quantity : 0,   
     };
   }
 
@@ -29,10 +27,9 @@ class Comp extends React.Component {
     const inCart = cart.find( prod => prod.id === prodID);
 
     if(inCart){
-      const total = ((Number(price) + Number(spot.spot))*inCart.quantity).toFixed(2);
+      
       this.setState( ()=> ({
         quantity: inCart.quantity,
-        total: total,
       }));
     }
   }
@@ -43,7 +40,6 @@ class Comp extends React.Component {
       quantity = quantity <= this.props.stock ? quantity : this.props.stock;
       this.setState( () => ({
         quantity : quantity,
-        total : (quantity * unitPrice).toFixed(2),
       }));
     }    
   }
@@ -65,6 +61,7 @@ class Comp extends React.Component {
     const onStock = disabled ? "Out of stock" : `${stock} pcs`;
     const bntIcon = disabled ? "fas fa-times" : "fas fa-check";
     const unitPrice = (Number(price) + Number(spot.spot)).toFixed(2);
+    const total = ((Number(price) + Number(spot.spot))*this.state.quantity).toFixed(2);
 
     return (
       <div className={styles.root}>
@@ -84,7 +81,7 @@ class Comp extends React.Component {
             <span>Price: </span>
           </div>
           <div className={styles.value}>
-            <p>{unitPrice} $</p>
+            <p>$ {unitPrice}</p>
           </div>       
         </div>
         <div className={styles.row}>
@@ -93,7 +90,7 @@ class Comp extends React.Component {
             <span>Total: </span>
           </div>
           <div className={styles.value}>
-            <p>{this.state.total} $</p>
+            <p>$ {total}</p>
           </div>       
         </div>
         <div className={styles.row}>

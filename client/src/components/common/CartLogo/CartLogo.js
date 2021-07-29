@@ -35,7 +35,7 @@ const Component = ({cart}) => {
       <div className={styles.root}>
         <i className="fas fa-shopping-cart"></i>
         <h2 className={styles.title}>Cart</h2>
-        <span>0</span>      
+        <span>x</span>      
       </div>
     )
   }

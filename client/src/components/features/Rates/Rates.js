@@ -14,9 +14,8 @@ const Component = ({spot}) => {
       <div className={styles.rate}>        
         <h4>Silver Spot:</h4>
       </div>
-      <div className={clsx(styles.rate, rateChange)}>
-        <i className="fas fa-dollar-sign"></i>
-        <h4>{spot.spot}</h4>
+      <div className={clsx(styles.rate, rateChange)}>        
+        <h4>$ / oz {spot.spot}</h4>
       </div>
     </div>
   );

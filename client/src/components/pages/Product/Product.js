@@ -80,7 +80,7 @@ class Comp extends React.Component {
         },
         {
           prop: "Premium",
-          val: `${product.premium.usd} $`,
+          val: `$ ${product.premium.usd}`,
         },
       ];
       return (

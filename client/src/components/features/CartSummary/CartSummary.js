@@ -41,7 +41,7 @@ const Component = ({cart, spot, link}) => {
           </div>
           <div className={styles.value}>
             <p>
-              {`${total} $`}
+              {`$ ${total}`}
             </p>
           </div>       
         </div>

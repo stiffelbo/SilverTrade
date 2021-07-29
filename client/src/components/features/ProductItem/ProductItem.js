@@ -28,10 +28,10 @@ const Component = ({id, name, country, year, alloy, purity, premium, images, spo
           <p>{purity}</p>
         </div>
         <div className={styles.priceGrid}>
-          <p className={styles.premium}>Premium per piece: <b>{premium.usd} $</b></p>          
+          <p className={styles.premium}>Premium per piece: <b>$ {premium.usd}</b></p>          
         </div>
         <div className={styles.priceGrid}>
-          <p className={styles.unitPrice}>Price per piece: <b>{unitPrice} $</b></p>          
+          <p className={styles.unitPrice}>Price per piece: <b>$ {unitPrice}</b></p>          
         </div>
       </div>
       <Link to={`/product/${id}`} className={styles.link}>Get Coin</Link>  

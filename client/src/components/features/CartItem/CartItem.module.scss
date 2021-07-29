@@ -24,6 +24,7 @@
     .comment_input{
       outline: none;  
       border: none;
+      border-bottom: 1px solid $color-editor-border;
       padding: 0.25rem;
       resize: none;
     }  
@@ -40,16 +41,15 @@
     text-align: center;
   
     .quantity_input{
-      text-align: center;
+      text-align: left;
       border: none;
-      border-bottom: 1px solid $color-editor-border ;    
+      //border-bottom: 1px solid $color-editor-border ;    
       font-size: 18.2px;
       font-family: $font;
       background-color: inherit;
-      width: 70%;
+      
       &:focus{
-        outline: none;
-        text-align: center;
+        outline: none;             
       }
     }    
   }
@@ -67,7 +67,7 @@
       &:active      
       {
         transition: all 0.3s ease-out;
-        transform: scale(1.2);
+        transform: scale(1.16);
         background-color: red;
         color: white;
         

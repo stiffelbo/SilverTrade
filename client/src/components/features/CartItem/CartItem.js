@@ -23,25 +23,27 @@ class Comp extends React.Component {
   }
 
   componentDidMount(){
-    const {quantity, comment} = this.props
+    const {quantity, comment, stock} = this.props
 
     if(this.state.quantity !== quantity){
+      const qty = quantity <= stock ? quantity : stock;
       this.setState( ()=> ({
-        quantity: quantity,
+        quantity: qty,
         comment: comment ? comment : '',
       }));
     }
   }
 
   handleChange = (quantity, unitPrice, id) => {
-    const {addToCart} = this.props
+    const {addToCart, stock} = this.props
     
     if(quantity !== this.state.quantity && quantity > 0){
+      const qty = quantity <= stock ? quantity : stock;
       this.setState( () => ({
-        quantity : quantity,
-        total : (quantity * unitPrice).toFixed(2),        
+        quantity : qty,
+        total : (qty * unitPrice).toFixed(2),        
       }));      
-      addToCart(id, quantity);
+      addToCart(id, this.state.quantity);
     }else{
       this.setState( () => ({
         quantity : 1,
@@ -85,8 +87,9 @@ class Comp extends React.Component {
         <Link to={`/product/${id}`} className={styles.link} title="go to product">
           <p>{`${removeUnderscore(name)} ${year} ${faceValue}`}</p>
         </Link>
-        <p className={styles.price} title="price for items">{total} $ </p>
-        <div className={styles.quantity}>
+        <p className={styles.price} title="price for items">$ {total}</p>
+        <div className={styles.quantity} title="number of items">
+          Pcs.
           <input 
             type="number" 
             className={styles.quantity_input} 
@@ -94,7 +97,7 @@ class Comp extends React.Component {
             min="1"
             step="1"
             max={stock}
-            defaultValue={quantity}
+            value={this.state.quantity}
             onChange={(e) => {this.handleChange(e.target.value, unitPrice, id)}}
             />
         </div>  
