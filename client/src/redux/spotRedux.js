@@ -32,8 +32,7 @@ export const loadSpotRequest = () => {
 
       let res = await axios.get(`${API_URL}/spot/xagusd/`);      
       dispatch(loadSpot(res.data));      
-      dispatch(endRequest());
-      console.log('Load Spot', res.data.spot); 
+      dispatch(endRequest());      
     } catch(e) {
       dispatch(errorRequest(e.message));
     }

@@ -5,8 +5,9 @@ import Flipper from '../../common/Flipper/Flipper';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { removeFromCart, addToCart } from '../../../redux/cartRedux.js';
+import { removeFromCart, addToCart, addComment } from '../../../redux/cartRedux.js';
 import { setItemID } from '../../../redux/commentsRedux.js';
+import { getSpot } from '../../../redux/spotRedux.js';
 import {removeUnderscore} from '../../../utils/removeUnderscore';
 
 import styles from './CartItem.module.scss';
@@ -17,18 +18,20 @@ class Comp extends React.Component {
 
     this.state = {
       quantity : 0,
-      total: 0,      
+      total: 0,
+      comment: '',      
     };
   }
 
   componentDidMount(){
-    const {premium, quantity, spot} = this.props
+    const {premium, quantity, spot, comment} = this.props
     const unitPrice = (Number(premium) + Number(spot.spot)).toFixed(2);
     const total = (unitPrice*quantity).toFixed(2);
     if(this.state.total !== total || this.state.quantity !== quantity){
       this.setState( ()=> ({
         quantity: quantity,
         total: total,
+        comment: comment ? comment : '',
       }));
     }
   }
@@ -56,15 +59,26 @@ class Comp extends React.Component {
     setItemID({id: '', itemDescription: ''});
   }
 
-  handleClickComment = (id, itemDescription) => {
-    const {setItemID} = this.props;
-    setItemID({id, itemDescription: itemDescription});
+  handleAddComment = (comment) => {
+
+    const data = {
+      coinId: this.props.id,
+      comment,
+    };
+
+    this.setState(()=>({
+      comment,
+    }));
+
+    this.props.addComment(data);   
+
   }
 
   render() {
 
-    const {id, name, images, premium, stock, quantity, spot, faceValue, year} = this.props
+    const {id, name, images, premium, stock, quantity, spot, faceValue, year, comment} = this.props
     const unitPrice = (Number(premium) + Number(spot.spot)).toFixed(2);
+    const commentValue = comment ? comment : '';
     return (
       <div className={styles.root}>
         <div className={styles.image}>
@@ -86,7 +100,16 @@ class Comp extends React.Component {
             defaultValue={quantity}
             onChange={(e) => {this.handleChange(e.target.value, unitPrice, id)}}
             />
-        </div>          
+        </div>  
+        <div className={styles.comment}>
+          <textarea 
+            className={styles.comment_input} 
+            name="comment" rows="6" 
+            placeholder="add comment..." 
+            defaultValue={this.state.comment} 
+            onKeyUp={(e)=>this.handleAddComment(e.target.value)}
+          />
+        </div>        
         <div className={styles.delete}>
           <button 
             className={styles.delete_btn}
@@ -98,19 +121,7 @@ class Comp extends React.Component {
           >
             <i className="fas fa-trash-alt"></i>
           </button>
-        </div> 
-        <div className={styles.comment}>
-          <button 
-            className={styles.comment_btn}
-            onClick={(e) => {
-              e.preventDefault();
-              this.handleClickComment(id, `${removeUnderscore(name)} ${year}`)
-            }}
-            title="comment item"
-          >
-            <i className="far fa-comment"></i>
-          </button>
-        </div>        
+        </div>
       </div>
     );
   }
@@ -120,17 +131,18 @@ Comp.propTypes = {
   className: PropTypes.string,
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+const mapStateToProps = state => ({
+  spot: getSpot(state),
+});
 
 const mapDispatchToProps = dispatch => ({
   addToCart: (id, quantity) => dispatch(addToCart(id, quantity)),
   removeFromCart: (id) => dispatch(removeFromCart(id)),
   setItemID : (id) => dispatch(setItemID(id)),
+  addComment : (data) => dispatch(addComment(data)),
 });
 
-const Container = connect(null, mapDispatchToProps)(Comp);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Comp);
 
 export {
   

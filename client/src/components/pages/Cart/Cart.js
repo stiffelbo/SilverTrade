@@ -46,8 +46,8 @@ class Comp extends React.Component {
           stock={prod.stock} 
           quantity={prod.quantity} 
           year={prod.year} 
-          faceValue={prod.faceValue} 
-          spot={spot} 
+          faceValue={prod.faceValue}   
+          comment={prod.comment}   
           
           />
           

@@ -12,9 +12,11 @@ const createActionName = name => `app/${reducerName}/${name}`;
 const CHECK_CART = createActionName('CHECK_CART');
 const ADD_TO_CART = createActionName('ADD_TO_CART');
 const REMOVE_FROM_CART = createActionName('REMOVE_FROM_CART');
+const ADD_COMMENT = createActionName('ADD_COMMENT');
 
 //actions
 export const checkCart = () => ({type: CHECK_CART});
+export const addComment = payload => ({payload, type: ADD_COMMENT});
 
 
 export const addToCart = (id, quantity) => async (dispatch, getState) => {
@@ -95,6 +97,24 @@ export const cartReducer = (state = initalState, action) => {
         }
       }
       return state;
+    case ADD_COMMENT:
+      const newState = {
+        ...state,
+        cartItems: state.cartItems.map(item => {
+          if(item.id == action.payload.coinId){
+            return (
+              {
+                ...item,
+                comment: action.payload.comment
+              }
+            );
+          }
+          return item;
+        })
+      } 
+      console.log(newState); 
+      localStorage.setItem('cart', JSON.stringify(newState.cartItems));    
+      return newState;      
 
   default:
     return state;

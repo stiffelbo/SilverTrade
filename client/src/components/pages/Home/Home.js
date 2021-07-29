@@ -9,7 +9,6 @@ import { Alert, Progress } from 'reactstrap';
 
 import { connect } from 'react-redux';
 import { getProducts, getRequest, loadProductsRequest } from '../../../redux/productsRedux.js';
-import { getSpot } from '../../../redux/spotRedux.js';
 
 import styles from './Home.module.scss';
 
@@ -23,7 +22,7 @@ class Comp extends React.Component {
 
   render() {
 
-    const { products, request, spot } = this.props;
+    const { products, request } = this.props;
  
     if(request.pending) return <Progress animated color="primary" value={50} />; 
     else if(request.error) return <Alert color="warning">{request.error}</Alert>;
@@ -39,8 +38,7 @@ class Comp extends React.Component {
         alloy={item.alloy}
         purity={item.purity}
         premium={item.premium}
-        images={item.images}
-        spot={spot.spot}
+        images={item.images}     
         />)}</div></div>;
 
     } 
@@ -55,7 +53,6 @@ Comp.propTypes = {
 const mapStateToProps = state => ({
   products: getProducts(state),
   request: getRequest(state),
-  spot: getSpot(state),
 });
 
 const mapDispatchToProps = dispatch => ({

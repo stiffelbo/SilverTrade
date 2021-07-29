@@ -5,14 +5,14 @@ import Flipper from '../../common/Flipper/Flipper';
 
 import { Link } from 'react-router-dom';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import { connect } from 'react-redux';
+import { getSpot } from '../../../redux/spotRedux.js';
 
 import styles from './ProductItem.module.scss';
 
 const Component = ({id, name, country, year, alloy, purity, premium, images, spot }) => {
   
-  const unitPrice = (Number(premium.usd) + Number(spot)).toFixed(2);
+  const unitPrice = (Number(premium.usd) + Number(spot.spot)).toFixed(2);
 
   return (
     <div className={styles.root}>
@@ -43,18 +43,18 @@ Component.propTypes = {
   className: PropTypes.string,
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+const mapStateToProps = state => ({
+  spot: getSpot(state),
+});
 
 // const mapDispatchToProps = dispatch => ({
 //   someAction: arg => dispatch(reduxActionCreator(arg)),
 // });
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps, null)(Component);
 
 export {
-  Component as ProductItem,
-  // Container as ProductItem,
+  // Component as ProductItem,
+  Container as ProductItem,
   // Component as ProductItemComponent,
 };

@@ -16,7 +16,7 @@ import { getSpot } from '../../../redux/spotRedux.js';
 
 
 const Component = ({cart, spot, link}) => {
-
+  
   if(cart.length){
     // tu cos nie poszło ale sie dobrze zapowiada
     // const {items, total} = cart.reduce( (res, item) => ({items: Number(res.items) + Number(item.quantity), total: res.total + (Number(item.quantity) * (Number(spot) + item.premium))}));

@@ -12,16 +12,25 @@
   border-radius: 5px;
   width: 100%;
   .image{
-    flex: 0.2;
+    flex: 0.15;
     height: 100px;
     
   }
   .link{
-    flex: 0.4;
+    flex: 0.3;
+  }
+  .comment{
+    flex: 0.2;
+    .comment_input{
+      outline: none;  
+      border: none;
+      padding: 0.25rem;
+      resize: none;
+    }  
     
   }
   .price{
-    flex: 0.2;
+    flex: 0.15;
     text-align: center;
 
   }
@@ -44,11 +53,11 @@
       }
     }    
   }
-  .delete, .comment{
+  .delete{
     
     text-align: right;
     flex: 0.05;
-    .delete_btn, .comment_btn {
+    .delete_btn {
       padding: 0.7rem;
       border: none;
       border-radius: 5px;
@@ -66,18 +75,7 @@
       i{
         font-size: 1rem;
       }
-    }
-    .comment_btn {
-      &:hover,
-      &:focus,
-      &:active      
-      {
-        
-        background-color: $color-info;
-        color: white;
-        
-      }      
-    }
+    }    
     
   }
    
