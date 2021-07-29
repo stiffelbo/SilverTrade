@@ -18,19 +18,16 @@ class Comp extends React.Component {
 
     this.state = {
       quantity : 0,
-      total: 0,
       comment: '',      
     };
   }
 
   componentDidMount(){
-    const {premium, quantity, spot, comment} = this.props
-    const unitPrice = (Number(premium) + Number(spot.spot)).toFixed(2);
-    const total = (unitPrice*quantity).toFixed(2);
-    if(this.state.total !== total || this.state.quantity !== quantity){
+    const {quantity, comment} = this.props
+
+    if(this.state.quantity !== quantity){
       this.setState( ()=> ({
         quantity: quantity,
-        total: total,
         comment: comment ? comment : '',
       }));
     }
@@ -76,9 +73,9 @@ class Comp extends React.Component {
 
   render() {
 
-    const {id, name, images, premium, stock, quantity, spot, faceValue, year, comment} = this.props
-    const unitPrice = (Number(premium) + Number(spot.spot)).toFixed(2);
-    const commentValue = comment ? comment : '';
+    const {id, name, images, premium, stock, quantity, spot, faceValue, year} = this.props
+    const unitPrice = (Number(premium) + Number(spot.spot)).toFixed(2);   
+    const total = (unitPrice*quantity).toFixed(2); 
     return (
       <div className={styles.root}>
         <div className={styles.image}>
@@ -88,7 +85,7 @@ class Comp extends React.Component {
         <Link to={`/product/${id}`} className={styles.link} title="go to product">
           <p>{`${removeUnderscore(name)} ${year} ${faceValue}`}</p>
         </Link>
-        <p className={styles.price} title="price for items">{this.state.total} $ </p>
+        <p className={styles.price} title="price for items">{total} $ </p>
         <div className={styles.quantity}>
           <input 
             type="number" 

@@ -1,5 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './Navbar.module.scss';
+
+/* React Components */
+
 import { Link } from 'react-router-dom';
 
 /* Components */
@@ -8,30 +12,23 @@ import { Rates } from '../../features/Rates/Rates';
 import { Logo } from '../../common/Logo/Logo';
 import { CartLogo } from '../../common/CartLogo/CartLogo';
 
+/* Redux */
+
 import { connect } from 'react-redux';
 import { getSpot, loadSpotRequest } from '../../../redux/spotRedux.js';
 import { checkCart } from '../../../redux/cartRedux.js';
 
-import styles from './Navbar.module.scss';
+/* Config */
+import { spotUpdateTimeOut } from '../../../config';
 
-class Comp extends React.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      spot : 0,
-      classSpot : 'up',
-    };
-  }
+class Comp extends React.Component { 
 
   componentDidMount() {
     const { loadSpot, checkCart } = this.props;
     loadSpot();    
     checkCart();
-    setInterval(loadSpot, 30000);
+    setInterval(loadSpot, spotUpdateTimeOut);
   }
-
   
   render() {
 
