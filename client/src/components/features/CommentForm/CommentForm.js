@@ -64,6 +64,12 @@ class Comp extends React.Component {
     setItemID({id: '', itemDescription: ''});
   }
 
+  formToState(prop, val){
+    this.setState(()=>({
+      [prop] : val,
+    }));
+  }
+
   render(){
     const itemToComment = this.props;
     if(this.state.itemId && this.state.itemDescription){
@@ -78,28 +84,24 @@ class Comp extends React.Component {
           <label className={styles.label}>Name:</label>
           <input type="text" name="name" className={styles.name} 
           onChange={ (e)=>{
-            const name = e.target.value;
-            this.setState( ()=> ({name}));
+            this.formToState(this.name, e.target.value)
           }} required/>
           <label className={styles.label}>Last Name:</label>
           <input type="text" name="lastName" className={styles.name} 
           onChange={ (e)=>{
-            const lastName = e.target.value;
-            this.setState( ()=> ({lastName}));
+            this.formToState(this.name, e.target.value)
           }}
           required/>
           <label className={styles.label}>Email:</label>
           <input type="email" name="email" className={styles.name} 
           onChange={ (e)=>{
-            const email = e.target.value;
-            this.setState( ()=> ({email}));
+            this.formToState(this.name, e.target.value)
           }}
           required/>
           <label className={styles.label}>Comment: </label>        
           <textarea name="comment" className={styles.comment} rows="6" 
           onChange={ (e)=>{
-            const comment = e.target.value;
-            this.setState( ()=> ({comment}));
+            this.formToState(this.name, e.target.value)
           }}
           required/>
           <button className={styles.submit} onClick={()=>{this.handleSubmitComment()}}>Submit Comment</button>
