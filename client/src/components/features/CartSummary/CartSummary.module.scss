@@ -60,6 +60,7 @@
       line-height: inherit;
       padding: 0.5rem 0;
       text-align: left;
+      color: $color-textfield-border;
       border: none;
       border-bottom: 1px solid $color-editor-border-light;
       width: 90%;
@@ -79,7 +80,7 @@
     }
     input, select{
       color: $color-text;
-      border-color: $color-text;
+      border: none;
     }
   }
 

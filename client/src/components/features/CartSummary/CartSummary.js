@@ -9,7 +9,7 @@ import clsx from 'clsx';
 /* Redux */
 
 import { connect } from 'react-redux';
-import { getCartItems } from '../../../redux/cartRedux.js';
+import { getCartItems, fillBillingData, getBillingData } from '../../../redux/cartRedux.js';
 import { getSpot } from '../../../redux/spotRedux.js';
 
 
@@ -29,6 +29,13 @@ class Comp extends React.Component {
       payment: '',
       shipping: '',            
     }
+  }
+
+  componentDidMount(){
+    const newState = {...this.props.bilingData};
+    this.setState(()=>({
+      ...newState,
+    }));
   }
 
   checkBillingData(){
@@ -53,6 +60,7 @@ class Comp extends React.Component {
     this.setState(()=>(
         {[prop] : val,}
     ));
+    this.props.fillBillingData(this.state);
   }  
 
   render() {
@@ -217,13 +225,15 @@ class Comp extends React.Component {
               <span>Shipping: </span>
             </div>
             <div className={styles.valueForm}>
-              <select name="shipping" 
-              value={this.state.shipping}
+              <select name="shipping"              
               onChange={ (e)=>{
                 this.formToState('shipping', e.target.value)
               }} required>
                 <option value="">---</option>
-                {shippings.map(item => <option value={item}>{item}</option>)}
+                {shippings.map(item => {
+                  if(this.state.shipping == item) return <option key={item} value={item} selected>{item}</option>;
+                  return <option key={item} value={item}>{item}</option>
+                  })}
               </select>
             </div>            
           </div>
@@ -239,7 +249,7 @@ class Comp extends React.Component {
                 this.formToState('payment', e.target.value)
               }} required>
                 <option value="">---</option>
-                {payments.map(item => <option value={item}>{item}</option>)}
+                {payments.map(item => <option key={item} value={item}>{item}</option>)}
               </select>
             </div>            
           </div> 
@@ -257,13 +267,14 @@ Comp.propTypes = {
 const mapStateToProps = state => ({
   cart: getCartItems(state),
   spot: getSpot(state),
+  bilingData: getBillingData(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+  fillBillingData: data => dispatch(fillBillingData(data)),
+});
 
-const Container = connect(mapStateToProps, null)(Comp);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Comp);
 
 export {
 
