@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const socket = require('socket.io');
+//const socket = require('socket.io');
 const mongoose = require('mongoose');
 const path = require('path');
 
@@ -9,19 +9,23 @@ const path = require('path');
 const coinsRoutes = require('./routes/coins.routes');
 const spotRoutes = require('./routes/spot.routes');
 const commentsRoutes = require('./routes/comments.routes');
+const ordersRoutes = require('./routes/orders.routes');
 
 //use in app
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+/*
 app.use((req, res, next) => {
   req.io = io;
   next();
 });
+*/
 //connect routes
 
 app.use('/api', coinsRoutes);
 app.use('/api/', commentsRoutes);
+app.use('/api/', ordersRoutes);
 app.use('/api/spot', spotRoutes);
 
 app.get('*', (req, res) => {
@@ -54,6 +58,7 @@ const server = app.listen(process.env.PORT || 8000, () => {
 });
 
 //web sockets
+/*
 const io = socket(server);
 io.on('connection', (socket) => {
   socket.on('disconnect', () => { 
@@ -62,5 +67,5 @@ io.on('connection', (socket) => {
   });
   console.log(`Server.js new client connected: ${socket.id}`);
 });
-
+*/
 module.exports = server;

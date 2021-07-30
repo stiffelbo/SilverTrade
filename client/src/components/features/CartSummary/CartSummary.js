@@ -11,6 +11,7 @@ import clsx from 'clsx';
 import { connect } from 'react-redux';
 import { getCartItems, fillBillingData, getBillingData } from '../../../redux/cartRedux.js';
 import { getSpot } from '../../../redux/spotRedux.js';
+import { orderRequest } from '../../../redux/orderRedux.js';
 
 
 
@@ -29,10 +30,12 @@ class Comp extends React.Component {
       payment: '',
       shipping: '',            
     }
+
+    this.handleOrder = this.handleOrder.bind(this);
   }
 
   componentDidMount(){
-    const newState = {...this.props.bilingData};
+    const newState = {...this.props.billingData};
     this.setState(()=>({
       ...newState,
     }));
@@ -62,7 +65,29 @@ class Comp extends React.Component {
     ));    
     //moze głupie ale nie wiem jak inaczej przekazać cały aktualny stan do reduxa. bez tego leci poprzednia wartość.
     setTimeout(()=>this.props.fillBillingData(this.state), 2000);    
-  }  
+  }
+  
+  handleOrder(){
+    const {billingData, cart, spot, orderRequest} = this.props
+    const order = {
+      items : [],
+      billingData,
+      spot: spot.spot,
+    };
+
+    cart.map(item => {
+      const data = {
+        id: item.id,
+        quantity: item.quantity,
+        comment: item.comment ? item.comment : null,
+        premium: item.premium,
+      }
+      order.items.push(data);
+    });
+
+    console.log('orderdata', order);
+    orderRequest(order);
+  }
 
   render() {
     const {cart, spot} = this.props;
@@ -256,7 +281,7 @@ class Comp extends React.Component {
               </select>
             </div>            
           </div> 
-          <button className={showButton}>Place Order <i className="fas fa-handshake"></i></button>
+          <button className={showButton} onClick={this.handleOrder}>Place Order <i className="fas fa-handshake"></i></button>
         </div>
       );
     }
@@ -270,11 +295,12 @@ Comp.propTypes = {
 const mapStateToProps = state => ({
   cart: getCartItems(state),
   spot: getSpot(state),
-  bilingData: getBillingData(state),
+  billingData: getBillingData(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   fillBillingData: data => dispatch(fillBillingData(data)),
+  orderRequest: data => dispatch(orderRequest(data)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Comp);

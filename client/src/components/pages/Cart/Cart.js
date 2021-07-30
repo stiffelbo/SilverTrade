@@ -22,7 +22,7 @@ class Comp extends React.Component {
   }
 
   render() {
-    const {cart, spot } = this.props;
+    const {cart } = this.props;
 
     if(!cart.length){
       return (
@@ -54,7 +54,7 @@ class Comp extends React.Component {
           )}
           </div>
           <div className={styles.summary}>
-          <CartSummary link={true}/>
+          <CartSummary />
           </div>
 
       </div>)     

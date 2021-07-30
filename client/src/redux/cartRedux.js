@@ -120,8 +120,7 @@ export const cartReducer = (state = initalState, action) => {
       localStorage.setItem('cart', JSON.stringify(newState.cartItems));    
       return newState;
     case FILL_BILLING_DATA:
-      const newBillingData = action.payload;
-      console.log('dostałem stan', newBillingData);
+      const newBillingData = action.payload;   
       localStorage.setItem('billingData', JSON.stringify(newBillingData));
       return (
         {
