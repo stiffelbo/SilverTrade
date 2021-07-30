@@ -37,42 +37,21 @@ class Comp extends React.Component {
         comment: comment ? comment : '',
         total,
       }));
-    }
-    
+    }    
   }
 
   handleQtyChange = (e) => {
-    const {addToCart, stock, premium, spot, id, name} = this.props
+    const {addToCart, stock, premium, spot, id} = this.props
     const quantity = e.target.value;
-
-    console.log('cartItem:', name, quantity);
-    console.log('cartItem before:', name, this.state.quantity); 
     const unitPrice = (Number(premium) + Number(spot.spot)).toFixed(2);  
     const total = (unitPrice * quantity).toFixed(2);
-
     if(quantity <= stock){
       this.setState(()=>({
         quantity,        
         total,
       }));
       addToCart(id, quantity);
-    }
-    
-    console.log('cartItem after:',this.state);
-
-    /*
-
-    if(quantity !== this.state.quantity){
-      const qty = quantity <= stock ? quantity : stock;
-      this.setState( () => ({
-        quantity : qty,
-        total : (qty * unitPrice).toFixed(2),        
-      }));      
-      addToCart(id, this.state.quantity);
-    };
-    console.log('cartItem after state:', name, this.state.quantity);    
-
-    */
+    }   
   }
 
   handleClickDelete = () => {
@@ -91,9 +70,7 @@ class Comp extends React.Component {
     this.setState(()=>({
       comment,
     }));
-
-    this.props.addComment(data);   
-
+    this.props.addComment(data);
   }
 
   render() {

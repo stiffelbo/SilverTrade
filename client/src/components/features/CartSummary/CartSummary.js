@@ -29,10 +29,6 @@ class Comp extends React.Component {
       payment: '',
       shipping: '',            
     }
-
-    this.formToState = this.formToState.bind(this);
-
-
   }
 
   componentDidMount(){
@@ -63,8 +59,9 @@ class Comp extends React.Component {
   formToState(prop, val){
     this.setState(()=>(
         {[prop] : val,}
-    ));
-    this.props.fillBillingData(this.state);
+    ));    
+    //moze głupie ale nie wiem jak inaczej przekazać cały aktualny stan do reduxa. bez tego leci poprzednia wartość.
+    setTimeout(()=>this.props.fillBillingData(this.state), 2000);    
   }  
 
   render() {
@@ -85,6 +82,8 @@ class Comp extends React.Component {
       subtotal = subtotal.toFixed(2);
       total = total.toFixed(2);
       
+      const showButton = this.checkBillingData() ? styles.show : '';
+      const hideSubTitle = this.checkBillingData() ? styles.hide : '';
       return (
         <div className={styles.root}>
           {/* Summary */}  
@@ -131,7 +130,7 @@ class Comp extends React.Component {
           </div>       
           {/* Bill Form */} 
           <h3 className={styles.title}>Billing Data:</h3>
-          {!this.checkBillingData() && <h6 className={styles.subtitle}>Fill all to enable order placement.</h6>}
+          {<h6 className={clsx(styles.subtitle, hideSubTitle)}>Fill all to enable order placement.</h6>}
           <div className={clsx(styles.rowForm, this.isFilled('name', check.name))}>
             <div className={styles.labelForm}>
               <i className="fas fa-user"></i>
@@ -257,7 +256,7 @@ class Comp extends React.Component {
               </select>
             </div>            
           </div> 
-          {this.checkBillingData() && <button>Place Order <i className="fas fa-handshake"></i></button>}
+          <button className={showButton}>Place Order <i className="fas fa-handshake"></i></button>
         </div>
       );
     }
