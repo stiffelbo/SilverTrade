@@ -11,7 +11,7 @@ import clsx from 'clsx';
 
 import { connect } from 'react-redux';
 import { getSpot } from '../../../redux/spotRedux.js';
-import { getCartItems, addToCart } from '../../../redux/cartRedux.js';
+import { getCartItems, addToCart, removeFromCart } from '../../../redux/cartRedux.js';
 
 
 class Comp extends React.Component {
@@ -23,7 +23,7 @@ class Comp extends React.Component {
   }
 
   componentDidMount(){
-    const {cart, prodID, spot, price} = this.props;
+    const {cart, prodID} = this.props;
     const inCart = cart.find( prod => prod.id === prodID);
 
     if(inCart){
@@ -34,34 +34,37 @@ class Comp extends React.Component {
     }
   }
 
-  handleChange = (quantity, unitPrice) => {
-    
+  handleQtyChange = (e) => {
+    let quantity = e.target.value;
     if(quantity !== this.state.quantity){
       quantity = quantity <= this.props.stock ? quantity : this.props.stock;
       this.setState( () => ({
-        quantity : quantity,
+        quantity,
       }));
     }    
   }
 
-  handleAddToCard = (id, quantity) => {    
-    const {addToCart, stock} = this.props;
-    if(quantity > stock){
-      addToCart(id, stock);
+  handleAddToCard = () => {    
+    
+    const {addToCart, stock, prodID, removeFromCart} = this.props;
+    if(this.state.quantity > stock){
+      addToCart(prodID, stock);
+    }else if(this.state.quantity > 0){
+      addToCart(prodID, this.state.quantity);
     }else{
-      addToCart(id, quantity);
+      removeFromCart(prodID);
     }
     
   }
 
   render() {
-    const {stock, price, prodID, spot} = this.props;
+    const {stock, premium, spot} = this.props;
     const disabled = stock > 0 ? false : true;
-    const disabledClass = disabled ? styles.disabled : styles.enabled;
+    const disabledClass = disabled || this.state.quantity == 0 ? styles.disabled : styles.enabled;
     const onStock = disabled ? "Out of stock" : `${stock} pcs`;
     const bntIcon = disabled ? "fas fa-times" : "fas fa-check";
-    const unitPrice = (Number(price) + Number(spot.spot)).toFixed(2);
-    const total = ((Number(price) + Number(spot.spot))*this.state.quantity).toFixed(2);
+    const unitPrice = (Number(premium) + Number(spot.spot)).toFixed(2);
+    const total = ((Number(premium) + Number(spot.spot))*this.state.quantity).toFixed(2);
 
     return (
       <div className={styles.root}>
@@ -108,9 +111,9 @@ class Comp extends React.Component {
               required 
               disabled={disabled} 
               value={this.state.quantity}
-              onChange={(e) => {
-                this.handleChange(e.target.value, unitPrice);                              
-              }}      
+              onChange={
+                this.handleQtyChange                              
+              }      
               />
               
           </div>       
@@ -118,10 +121,9 @@ class Comp extends React.Component {
         <button type="submit"
           className={clsx(disabledClass)} 
           disabled={disabled}
-          onClick={(e) => {
-            e.preventDefault();
-            this.handleAddToCard(prodID, this.state.quantity);
-          }}
+          onClick={
+            this.handleAddToCard
+          }
           >
             Add To Cart <i className={bntIcon}></i>
         </button>
@@ -133,7 +135,8 @@ class Comp extends React.Component {
 
 Comp.propTypes = {  
   stock: PropTypes.number,
-  price: PropTypes.number,
+  premium: PropTypes.number,
+  spot: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
@@ -143,6 +146,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addToCart: (id, quantity) => dispatch(addToCart(id, quantity)),
+  removeFromCart: (id) => dispatch(removeFromCart(id)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Comp);

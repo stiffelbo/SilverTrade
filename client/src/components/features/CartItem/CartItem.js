@@ -20,46 +20,69 @@ class Comp extends React.Component {
       quantity : 0,
       comment: '',      
     };
+
+    this.handleQtyChange = this.handleQtyChange.bind(this);
+    this.handleAddComment = this.handleAddComment.bind(this);
+    this.handleClickDelete = this.handleClickDelete.bind(this);
   }
 
   componentDidMount(){
-    const {quantity, comment, stock} = this.props
-
+    const {quantity, comment, stock, premium, spot} = this.props
+    const unitPrice = (Number(premium) + Number(spot.spot)).toFixed(2); 
+    const total = (unitPrice * quantity).toFixed(2);
     if(this.state.quantity !== quantity){
       const qty = quantity <= stock ? quantity : stock;
       this.setState( ()=> ({
         quantity: qty,
         comment: comment ? comment : '',
+        total,
       }));
     }
+    
   }
 
-  handleChange = (quantity, unitPrice, id) => {
-    const {addToCart, stock} = this.props
+  handleQtyChange = (e) => {
+    const {addToCart, stock, premium, spot, id, name} = this.props
+    const quantity = e.target.value;
+
+    console.log('cartItem:', name, quantity);
+    console.log('cartItem before:', name, this.state.quantity); 
+    const unitPrice = (Number(premium) + Number(spot.spot)).toFixed(2);  
+    const total = (unitPrice * quantity).toFixed(2);
+
+    if(quantity <= stock){
+      this.setState(()=>({
+        quantity,        
+        total,
+      }));
+      addToCart(id, quantity);
+    }
     
-    if(quantity !== this.state.quantity && quantity > 0){
+    console.log('cartItem after:',this.state);
+
+    /*
+
+    if(quantity !== this.state.quantity){
       const qty = quantity <= stock ? quantity : stock;
       this.setState( () => ({
         quantity : qty,
         total : (qty * unitPrice).toFixed(2),        
       }));      
       addToCart(id, this.state.quantity);
-    }else{
-      this.setState( () => ({
-        quantity : 1,
-        total : unitPrice,        
-      }));
-    }    
+    };
+    console.log('cartItem after state:', name, this.state.quantity);    
+
+    */
   }
 
-  handleClickDelete = (id) => {
-    const {removeFromCart, setItemID} = this.props;
+  handleClickDelete = () => {
+    const {removeFromCart, setItemID, id} = this.props;
     removeFromCart(id);
     setItemID({id: '', itemDescription: ''});
   }
 
-  handleAddComment = (comment) => {
-
+  handleAddComment = (e) => {
+    const comment = e.target.value;
     const data = {
       coinId: this.props.id,
       comment,
@@ -96,9 +119,9 @@ class Comp extends React.Component {
             title="quantity"
             min="1"
             step="1"
-            max={stock}
+            max={stock}           
             value={this.state.quantity}
-            onChange={(e) => {this.handleChange(e.target.value, unitPrice, id)}}
+            onChange={this.handleQtyChange}
             />
         </div>  
         <div className={styles.comment}>
@@ -107,16 +130,15 @@ class Comp extends React.Component {
             name="comment" rows="6" 
             placeholder="add comment..." 
             defaultValue={this.state.comment} 
-            onKeyUp={(e)=>this.handleAddComment(e.target.value)}
+            onKeyUp={this.handleAddComment}
           />
         </div>        
         <div className={styles.delete}>
           <button 
             className={styles.delete_btn}
-            onClick={(e) => {
-              e.preventDefault();
-              this.handleClickDelete(id)
-            }}
+            onClick={
+              this.handleClickDelete
+            }
             title="remove item"
           >
             <i className="fas fa-trash-alt"></i>

@@ -29,6 +29,10 @@ class Comp extends React.Component {
       payment: '',
       shipping: '',            
     }
+
+    this.formToState = this.formToState.bind(this);
+
+
   }
 
   componentDidMount(){
