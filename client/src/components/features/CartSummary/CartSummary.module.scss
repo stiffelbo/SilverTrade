@@ -7,14 +7,23 @@
   padding: 1rem;    
   background-color: white;
   border-radius: 5px;
+  .title{
+    margin: 0;
+    padding-top: 0.5rem;
+    font-size: 1.5*$base-size;
+  }
+  .subtitle{
+    margin: 0;
+    padding-top: 0.5rem;
+  }
   .row{
-    padding: 0.5rem 1rem;    
+    padding: 0.5rem 0;    
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     .label{
-      flex: 0.6;
+      flex: 0.5;
       i{
         width: 30px;
         margin-right: 0.5rem;
@@ -22,11 +31,60 @@
     }
     .value{
       
+      flex: 0.5;
+      text-align: left;
+    }    
+  }
+
+  .rowForm{
+    padding: 0.1rem 0;    
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    .labelForm{
+      color: $color-textfield-border;
       flex: 0.4;
+      font-size: $base-size;
+      i{
+        width: 30px;
+        margin-right: 0.5rem;        
+      }
+    }    
+    .valueForm{
+      
+      flex: 0.6;
       text-align: left;
     }
+    input, select{
+      line-height: inherit;
+      padding: 0.5rem 0;
+      text-align: left;
+      border: none;
+      border-bottom: 1px solid $color-editor-border-light;
+      width: 90%;
+      &:focus, :active {
+        outline: none;
+        background-color: inherit;
+      }
+    }
   }
+  .filled{
+    .labelForm{
+      color: $color-text;
+      font-weight: 600;
+      i{
+        color: $color-text;
+      }
+    }
+    input, select{
+      color: $color-text;
+      border-color: $color-text;
+    }
+  }
+
   button{
+    margin-top: $base-size;
     display: block;
     width: 100%;
     text-decoration: none;
