@@ -5,6 +5,7 @@ import { removeUnderscore } from '../../../utils/removeUnderscore';
 
 import { ProductItem } from '../../features/ProductItem/ProductItem';
 import { Pagination } from '../../features/Pagination/Pagination';
+import { ProductsOptions } from '../../features/ProductsOptions/ProductsOptions';
 
 
 import { Alert, Progress } from 'reactstrap';
@@ -56,6 +57,7 @@ class Comp extends React.Component {
     else if(request.success) {
       return (
       <div className={styles.root}>
+        <ProductsOptions />
         <Pagination totalItems={products.length} itemsPerPage={itemsPerPage} paginate={this.paginate} currentPage={this.state.currentPage}/>  
         <div className={styles.products}>               
           {products.slice(indexFrom, indexTo).map(item => <ProductItem 

@@ -1,4 +1,30 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid $color-text;
+  .filterBox{
+    display: flex;
+    flex-direction: row;    
+    .textInput{  
+      flex: 0.7; 
+      line-height: inherit;
+      padding: 0.5rem;
+      text-align: left;
+      color: $color-textfield-border;
+      border: none;      
+      width: 90%;
+      &:focus, :active {
+        outline: none;
+        background-color: inherit;
+      } 
+    }
+    i{
+      padding: 0.5rem;
+      flex: 0.3; 
+    }
+  }
+}

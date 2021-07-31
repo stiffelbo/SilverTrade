@@ -1,6 +1,6 @@
 /* SELECTORS */
 
-export const getAllFilters = ({filters}) => filters;
+export const getFilters = ({filters}) => filters;
 
 /* ACTIONS */
 
@@ -13,14 +13,16 @@ export const SEARCH_COUNRY = createActionName('SEARCH_COUNRY');
 export const SEARCH_NAME = createActionName('SEARCH_NAME');
 export const SEARCH_YEAR = createActionName('SEARCH_YEAR');
 export const SEARCH_MINT = createActionName('SEARCH_MINT');
-export const SEARCH_PREMIUM = createActionName('SEARCH_PREMIUM');
+export const SEARCH_PREMIUM_FROM = createActionName('SEARCH_PREMIUM_FROM');
+export const SEARCH_PREMIUM_TO = createActionName('SEARCH_PREMIUM_TO');
 
 //action creators
 export const searchCountry = payload => ({ payload, type: SEARCH_COUNRY });
 export const searchName = payload => ({ payload, type: SEARCH_NAME });
 export const searchMint = payload => ({ payload, type: SEARCH_MINT });
 export const searchYear = payload => ({ payload, type: SEARCH_YEAR });
-export const searchPremium = payload => ({ payload, type: SEARCH_PREMIUM });
+export const searchPremiumFrom = payload => ({ payload, type: SEARCH_PREMIUM_FROM });
+export const searchPremiumTo = payload => ({ payload, type: SEARCH_PREMIUM_TO });
 
 /*Initial state*/
 
@@ -29,10 +31,8 @@ const initialState = {
   namePhrase: '',
   mintPhrase: '',
   yearPhrase: '',
-  premiumVal: {
-    form: 0,
-    to: 10000,
-  },
+  premiumFrom: 0,
+  premiumTo: 1000,
 };
 
 // reducer
@@ -63,14 +63,18 @@ export function filtersReducer(statePart = initialState, action = {}) {
         ...statePart,
         yearPhrase: action.payload,
       }
-    case SEARCH_PREMIUM:
+    case SEARCH_PREMIUM_FROM:
       console.log(action.type, action.payload);
       return {
         ...statePart,
-        premiumVal: {
-          from: action.payload.from,
-          to: action.payload.to,
-        },
+        premiumFrom: action.payload,
+      }
+
+    case SEARCH_PREMIUM_TO:
+      console.log(action.type, action.payload);
+      return {
+        ...statePart,
+        premiumTo: action.payload,
       }
 
     default:
