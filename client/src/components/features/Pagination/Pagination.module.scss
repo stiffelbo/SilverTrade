@@ -16,21 +16,15 @@
     .item{
       width: $base-size*3;
       height: $base-size*3;
-      list-style: none;
-      border: 1px solid $color-textfield-border;      
+      list-style: none;      
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
       color: $color-textfield-border;
+      border-radius: 50%;
       cursor: pointer;
-      transition: all 0.3s ease-out;
-      &:last-child{
-        border-right: 2px solid $color-textfield-border;
-      }
-      &:first-child{
-        border-left: 2px solid $color-textfield-border;
-      }
+      transition: all 0.3s ease-out;      
       &:hover{
         background-color: $color-textfield-border;
         font-weight: 600;

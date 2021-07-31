@@ -46,32 +46,28 @@ class Comp extends React.Component {
       );
     }else if(!confirmation._id && !request.success){
 
-      return (<div className={styles.root}>
-        
-        <div className={styles.items}> 
-          <h3 className={styles.title}>Cart items:</h3>
-        {cart.map(prod => 
-          <CartItem 
-          key={prod.id}
-          id={prod.id} 
-          name={prod.name} 
-          images={prod.images} 
-          premium={prod.premium} 
-          stock={prod.stock} 
-          quantity={prod.quantity} 
-          year={prod.year} 
-          faceValue={prod.faceValue}   
-          comment={prod.comment}   
-          
-          />
-          
-          )}
+      return (
+      <div className={styles.root}>        
+        <div className={styles.items}>
+          {cart.map(prod => 
+            <CartItem 
+            key={prod.id}
+            id={prod.id} 
+            name={prod.name} 
+            images={prod.images} 
+            premium={prod.premium} 
+            stock={prod.stock} 
+            quantity={prod.quantity} 
+            year={prod.year} 
+            faceValue={prod.faceValue}   
+            comment={prod.comment}          
+            />          
+            )}
           <button className={styles.clearCart} onClick={this.handleClear}>Clear Cart</button>
-          </div>
-          <div className={styles.summary}>
+        </div>
+        <div className={styles.summary}>
           <CartSummary />
-          </div>
-
+        </div>
       </div>)     
 
     }else{
