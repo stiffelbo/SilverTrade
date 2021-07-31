@@ -2,21 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './ProductsOptions.module.scss';
-
-/* Components */
-
+import clsx from 'clsx';
 
 /* Redux */
 
 import { connect } from 'react-redux';
 import { getFilters, searchCountry, searchMint, searchName, searchPremiumFrom, searchPremiumTo, searchYear } from '../../../redux/filtersRedux.js';
 
-
-
 class Comp extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      searchCountry: null, 
+      searchMint: null, 
+      searchName: null, 
+      searchPremiumFrom: null, 
+      searchPremiumTo: null, 
+      searchYear: null, 
+    }
     
     this.handleCountry = this.handleCountry.bind(this);
     this.handleName = this.handleName.bind(this);
@@ -30,32 +34,58 @@ class Comp extends React.Component {
   handleCountry(e){    
     const val = e.target.value;
     this.props.searchCountry(val);
+    this.setState(()=>({
+      searchCountry: val,
+    }));
   }
   handleName(e){    
     const val = e.target.value;
     this.props.searchName(val);
+    this.setState(()=>({
+      searchName: val,
+    }));
   }
   handleYear(e){    
     const val = e.target.value;
     this.props.searchYear(val);
+    this.setState(()=>({
+      searchYear: val,
+    }));
   }
   handleMint(e){    
     const val = e.target.value;
     this.props.searchMint(val);
+    this.setState(()=>({
+      searchMint: val,
+    }));
   }
   handlePremiumFrom(e){    
     const val = e.target.value;
     this.props.searchPremiumFrom(val);
+    this.setState(()=>({
+      searchPremiumFrom: val,
+    }));
   }
   handlePremiumTo(e){    
     const val = e.target.value;
     this.props.searchPremiumTo(val);
+    this.setState(()=>({
+      searchPremiumTo: val,
+    }));
   }
   
   render() {
+
+    const searchCountryClass = this.state.searchCountry ? styles.active : '' ;
+    const searchMintClass = this.state.searchMint ? styles.active : '' ;
+    const searchNameClass = this.state.searchName ? styles.active : '' ;
+    const searchPremiumFromClass = this.state.searchPremiumFrom ? styles.active : '' ;
+    const searchPremiumToClass = this.state.searchPremiumTo ? styles.active : '' ;
+    const searchYearClass = this.state.searchYear ? styles.active : '' ;
+
     return (
       <div className={styles.root}>
-        <div className={styles.filterBox}>
+        <div className={clsx(styles.filterBox, searchCountryClass)}>
           <label className={styles.filterBox}>
             <i className="fas fa-flag"></i>        
           </label>
@@ -63,7 +93,7 @@ class Comp extends React.Component {
           onChange={this.handleCountry}          
           />
         </div>
-        <div className={styles.filterBox}>
+        <div className={clsx(styles.filterBox, searchNameClass)}>
           <label className={styles.filterBox}>
             <i className="far fa-grin-beam"></i>            
           </label>
@@ -71,7 +101,7 @@ class Comp extends React.Component {
           onChange={this.handleName}
           />
         </div>
-        <div className={styles.filterBox}>
+        <div className={clsx(styles.filterBox, searchYearClass)}>
           <label className={styles.filterBox}>
             <i className="fas fa-calendar-alt"></i>       
           </label>
@@ -79,7 +109,7 @@ class Comp extends React.Component {
           onChange={this.handleYear}
           />
         </div>
-        <div className={styles.filterBox}>
+        <div className={clsx(styles.filterBox, searchMintClass)}>
           <label className={styles.filterBox}>
             <i className="fas fa-industry"></i>      
           </label>
@@ -87,7 +117,7 @@ class Comp extends React.Component {
           onChange={this.handleMint}
           />
         </div>
-        <div className={styles.filterBox}>
+        <div className={clsx(styles.filterBox, searchPremiumFromClass)}>
           <label className={styles.filterBox}>
             <i className="fas fa-sort-amount-up"></i> Premium from:
           </label>
@@ -95,7 +125,7 @@ class Comp extends React.Component {
           onChange={this.handlePremiumFrom}
           />
         </div>
-        <div className={styles.filterBox}>
+        <div className={clsx(styles.filterBox, searchPremiumToClass)}>
           <label className={styles.filterBox}>
             <i className="fas fa-sort-amount-down"></i> Premium To:
           </label>

@@ -7,15 +7,13 @@ import { ProductItem } from '../../features/ProductItem/ProductItem';
 import { Pagination } from '../../features/Pagination/Pagination';
 import { ProductsOptions } from '../../features/ProductsOptions/ProductsOptions';
 
-
 import { Alert, Progress } from 'reactstrap';
 
 import { connect } from 'react-redux';
-import { getProducts, getRequest, loadProductsRequest } from '../../../redux/productsRedux.js';
+import { getProducts, getFilteredProducts, getRequest, loadProductsRequest } from '../../../redux/productsRedux.js';
 import { getRequest as orderRequest, orderClear } from '../../../redux/orderRedux.js';
 
 import styles from './Home.module.scss';
-
 
 class Comp extends React.Component {
 
@@ -45,7 +43,7 @@ class Comp extends React.Component {
   }
 
   render() {    
-    const { products, request } = this.props;
+    const { products, filteredProducts, request } = this.props;
     //pagination
     const itemsPerPage = 4;
     const indexTo = this.state.currentPage * itemsPerPage;
@@ -54,13 +52,13 @@ class Comp extends React.Component {
     if(request.pending) return <Progress animated color="primary" value={50} />; 
     else if(request.error) return <Alert color="warning">{request.error}</Alert>;
     else if(!request.success || !products.length) return <Alert color="info">No Products</Alert>;
-    else if(request.success) {
+    else if(request.success && filteredProducts.length) {
       return (
       <div className={styles.root}>
         <ProductsOptions />
-        <Pagination totalItems={products.length} itemsPerPage={itemsPerPage} paginate={this.paginate} currentPage={this.state.currentPage}/>  
+        <Pagination totalItems={filteredProducts.length} itemsPerPage={itemsPerPage} paginate={this.paginate} currentPage={this.state.currentPage}/>  
         <div className={styles.products}>               
-          {products.slice(indexFrom, indexTo).map(item => <ProductItem 
+          {filteredProducts.slice(indexFrom, indexTo).map(item => <ProductItem 
             key={item._id} 
             id={item._id}
             name={removeUnderscore(item.name)}
@@ -75,6 +73,13 @@ class Comp extends React.Component {
         </div>        
       </div>
       );
+    }else{
+      return (
+        <div className={styles.root}>
+          <ProductsOptions />
+          <h3>Sorry no products found.</h3>      
+          <h3>Please adjust filters</h3>      
+        </div>);
     } 
       
   }
@@ -91,6 +96,7 @@ Comp.propTypes = {
 
 const mapStateToProps = state => ({
   products: getProducts(state),
+  filteredProducts: getFilteredProducts(state),
   request: getRequest(state),
   orderRequest: orderRequest(state),
 });

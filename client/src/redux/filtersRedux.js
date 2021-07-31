@@ -32,7 +32,7 @@ const initialState = {
   mintPhrase: '',
   yearPhrase: '',
   premiumFrom: 0,
-  premiumTo: 1000,
+  premiumTo: 0,
 };
 
 // reducer

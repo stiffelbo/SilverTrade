@@ -4,6 +4,39 @@ import { API_URL } from '../config';
 /* SELECTORS */
 export const getProducts = ({ products }) => products.data;
 export const getRequest = ({ products }) => products.request;
+export const getFilteredProducts = ({ products, filters }) => {
+  let output = products.data;
+  if(filters.countryPhrase){
+    
+    output = output.filter(item => item.country.toLowerCase().indexOf(filters.countryPhrase.toLowerCase()) > -1);
+
+  }
+  if(filters.namePhrase){
+    
+    output = output.filter(item => item.name.toLowerCase().indexOf(filters.namePhrase.toLowerCase()) > -1);
+    
+  }
+  if(filters.mintPhrase){
+
+    output = output.filter(item => item.mint.toLowerCase().indexOf(filters.mintPhrase.toLowerCase()) > -1);
+
+  }
+  if(filters.yearPhrase){
+    
+    output = output.filter(item => item.year.toLowerCase().indexOf(filters.yearPhrase.toLowerCase()) > -1);
+
+  }
+  if(Number(filters.premiumFrom) > 0){
+    
+    output = output.filter(item => item.premium.usd >= filters.premiumFrom);
+  }
+  if(Number(filters.premiumTo) > 0){
+    
+    output = output.filter(item => item.premium.usd <= filters.premiumTo);
+  }
+  return output;
+};
+
 
 /* ACTIONS */
 
