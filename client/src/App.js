@@ -12,7 +12,7 @@ import { Product } from './components/pages/Product/Product';
 import { NotFound } from './components/pages/NotFound/NotFound';
  
 class App extends React.Component {
-
+  
   render() {
     return (
     <BrowserRouter>

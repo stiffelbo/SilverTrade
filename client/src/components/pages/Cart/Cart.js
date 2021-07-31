@@ -36,7 +36,7 @@ class Comp extends React.Component {
 
   render() {
     const {cart, confirmation, request } = this.props;
-
+    //Empty Cart
     if(!cart.length && !confirmation._id){
       return (
         <div className={styles.empty}>
@@ -44,7 +44,8 @@ class Comp extends React.Component {
           <h2><Link to="/">Back to shop</Link></h2>
         </div>
       );
-    }else if(!confirmation._id && !request.success){
+    }//Something in Cart, no order placed
+    else if(!confirmation._id && !request.success){
 
       return (
       <div className={styles.root}>        
@@ -70,7 +71,8 @@ class Comp extends React.Component {
         </div>
       </div>)     
 
-    }else{
+    }//Order placed, confirmation view
+    else{
 
       return (
       <div className={styles.root}>

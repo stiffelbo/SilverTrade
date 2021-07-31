@@ -23,6 +23,7 @@ class Comp extends React.Component {
     this.state = {
       display : false,
       class : styles.hide,
+      //pagination
       currentPage : 1,
     };
     this.paginate = this.paginate.bind(this);
@@ -42,11 +43,13 @@ class Comp extends React.Component {
     }));
   }
 
-  render() {
-    const itemsPerPage = 4;
+  render() {    
     const { products, request } = this.props;
+    //pagination
+    const itemsPerPage = 4;
     const indexTo = this.state.currentPage * itemsPerPage;
     const indexFrom = indexTo - itemsPerPage;
+
     if(request.pending) return <Progress animated color="primary" value={50} />; 
     else if(request.error) return <Alert color="warning">{request.error}</Alert>;
     else if(!request.success || !products.length) return <Alert color="info">No Products</Alert>;
@@ -77,6 +80,11 @@ class Comp extends React.Component {
 
 Comp.propTypes = {  
   className: PropTypes.string,
+  products: PropTypes.array,
+  request: PropTypes.object,
+  orderRequest: PropTypes.object,
+  loadProducts: PropTypes.func,  
+  orderClear: PropTypes.func,
 };
 
 const mapStateToProps = state => ({

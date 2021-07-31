@@ -19,8 +19,7 @@ const Component = ({itemsPerPage, totalItems, paginate, currentPage}) => {
   return (
     <nav className={styles.root}>
         <ul className={styles.pagination}>
-          {pageNumbers.map(item => {
-            console.log(item, currentPage);
+          {pageNumbers.map(item => {        
             if(item == currentPage){
               return (
               <li key={`page-${item}`} className={clsx(styles.item, styles.active)} onClick={()=>{paginate(item)}}>
@@ -40,6 +39,10 @@ const Component = ({itemsPerPage, totalItems, paginate, currentPage}) => {
 
 Component.propTypes = {  
   className: PropTypes.string,
+  itemsPerPage: PropTypes.number, 
+  totalItems: PropTypes.number,  
+  currentPage: PropTypes.number,
+  paginate: PropTypes.func,
 };
 
 // const mapStateToProps = state => ({
