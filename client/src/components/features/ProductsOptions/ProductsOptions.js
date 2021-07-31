@@ -8,6 +8,7 @@ import clsx from 'clsx';
 
 import { connect } from 'react-redux';
 import { getFilters, searchCountry, searchMint, searchName, searchPremiumFrom, searchPremiumTo, searchYear } from '../../../redux/filtersRedux.js';
+import { getMints } from '../../../redux/productsRedux.js';
 
 class Comp extends React.Component {
 
@@ -113,9 +114,14 @@ class Comp extends React.Component {
           <label className={styles.filterBox}>
             <i className="fas fa-industry"></i>      
           </label>
-          <input type="text" className={styles.textInput} placeholder={'mint..'}
+          {/* <input type="text" className={styles.textInput} placeholder={'mint..'}
           onChange={this.handleMint}
-          />
+          />*/}
+          <select className={styles.textInput} onChange={this.handleMint}>
+            <option key="mint_null" value="">mint..</option>
+            {this.props.mints.map(item => <option key={item} value={item} >{item}</option>)}
+          </select>
+          
         </div>
         <div className={clsx(styles.filterBox, searchPremiumFromClass)}>
           <label className={styles.filterBox}>
@@ -150,6 +156,7 @@ Comp.propTypes = {
 
 const mapStateToProps = state => ({
   filters: getFilters(state),
+  mints: getMints(state),
 });
 
 const mapDispatchToProps = dispatch => ({

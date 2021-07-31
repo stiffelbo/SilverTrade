@@ -36,6 +36,16 @@ export const getFilteredProducts = ({ products, filters }) => {
   }
   return output;
 };
+export const getMints = ({products}) => {
+  const mints = [];
+  products.data.map(item => {
+    if(mints.indexOf(item.mint) == -1){
+      mints.push(item.mint);
+    }
+  });
+  mints.sort();
+  return mints;
+}
 
 
 /* ACTIONS */
