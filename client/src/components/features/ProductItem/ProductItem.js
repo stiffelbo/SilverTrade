@@ -16,7 +16,9 @@ const Component = ({id, name, country, year, alloy, purity, premium, images, spo
 
   return (
     <div className={styles.root}>
-      <Flipper images={images} />
+      <div className={styles.images}>
+        <Flipper images={images} />
+      </div>      
       <div className={styles.info}>
         <p className={styles.title}>{name}</p>
         <div className={styles.infoGrid}>

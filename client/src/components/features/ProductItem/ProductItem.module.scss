@@ -10,9 +10,10 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  img{
-    height: 200px;
-    border-radius: 50%;
+  .images{
+    height: 250px;
+    width: 250px;
+    margin: 0 auto;    
   }
   p {
     margin-bottom: 0.5rem;
