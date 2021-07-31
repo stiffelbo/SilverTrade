@@ -15,9 +15,11 @@ const ADD_TO_CART = createActionName('ADD_TO_CART');
 const REMOVE_FROM_CART = createActionName('REMOVE_FROM_CART');
 const ADD_COMMENT = createActionName('ADD_COMMENT');
 const FILL_BILLING_DATA = createActionName('FILL_BILLING_DATA');
+const CLEAR_CART = createActionName('CLEAR_CART');
 
 //actions
 export const checkCart = () => ({type: CHECK_CART});
+export const clearCart = () => ({type: CLEAR_CART});
 export const addComment = payload => ({payload, type: ADD_COMMENT});
 export const fillBillingData = payload => ({payload, type: FILL_BILLING_DATA});
 
@@ -127,7 +129,9 @@ export const cartReducer = (state = initalState, action) => {
           ...state,
           billingData: newBillingData,
         }
-      );    
+      );
+    case CLEAR_CART:
+      return initalState;  
 
   default:
     return state;

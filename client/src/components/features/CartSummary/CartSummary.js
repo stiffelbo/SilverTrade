@@ -9,9 +9,10 @@ import clsx from 'clsx';
 /* Redux */
 
 import { connect } from 'react-redux';
-import { getCartItems, fillBillingData, getBillingData } from '../../../redux/cartRedux.js';
+import { getCartItems, fillBillingData, getBillingData, clearCart } from '../../../redux/cartRedux.js';
 import { getSpot } from '../../../redux/spotRedux.js';
-import { orderRequest } from '../../../redux/orderRedux.js';
+import { orderRequest, getRequest, getConfirmation, orderClear } from '../../../redux/orderRedux.js';
+
 
 
 
@@ -35,10 +36,14 @@ class Comp extends React.Component {
   }
 
   componentDidMount(){
-    const newState = {...this.props.billingData};
+    const {orderClear, request, billingData} = this.props;
+    const newState = {...billingData};
     this.setState(()=>({
       ...newState,
     }));
+    if(request.success){
+      orderClear();
+    }
   }
 
   checkBillingData(){
@@ -68,25 +73,22 @@ class Comp extends React.Component {
   }
   
   handleOrder(){
-    const {billingData, cart, spot, orderRequest} = this.props
+    const {billingData, cart, spot, orderRequest } = this.props
     const order = {
       items : [],
       billingData,
       spot: spot.spot,
     };
-
     cart.map(item => {
       const data = {
-        id: item.id,
+        product: item.id,
         quantity: item.quantity,
         comment: item.comment ? item.comment : null,
         premium: item.premium,
       }
       order.items.push(data);
     });
-
-    console.log('orderdata', order);
-    orderRequest(order);
+    orderRequest(order);    
   }
 
   render() {
@@ -249,7 +251,7 @@ class Comp extends React.Component {
           </div> 
           <div className={clsx(styles.rowForm, this.isFilled('shipping', check.shipping))}>
             <div className={styles.labelForm}>
-              <i className="fas fa-truck-loading"></i>
+              <i className="fas fa-shipping-fast"></i>
               <span>Shipping: </span>
             </div>
             <div className={styles.valueForm}>
@@ -294,13 +296,16 @@ Comp.propTypes = {
 
 const mapStateToProps = state => ({
   cart: getCartItems(state),
-  spot: getSpot(state),
+  spot: getSpot(state),  
   billingData: getBillingData(state),
+  request: getRequest(state), 
+  orderConfirmation: getConfirmation(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   fillBillingData: data => dispatch(fillBillingData(data)),
   orderRequest: data => dispatch(orderRequest(data)),
+  clearCart: ()=> dispatch(clearCart()),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Comp);

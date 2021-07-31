@@ -14,7 +14,7 @@ const orderSchema = new mongoose.Schema({
   },
   items: [
     {
-      id: {type: String, required: true, ref: 'Coin'},
+      product: {type: String, required: true, ref: 'Coin'},
       quantity: {type: Number, required: true },
       comment: { type: String, required: false },
       premium: {type: Number, required: true },

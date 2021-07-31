@@ -60,7 +60,7 @@ class Comp extends React.Component {
   render() {
     const {stock, premium, spot} = this.props;
     const disabled = stock > 0 ? false : true;
-    const disabledClass = disabled || this.state.quantity == 0 ? styles.disabled : styles.enabled;
+    const disabledClass = disabled ? styles.disabled : styles.enabled;
     const onStock = disabled ? "Out of stock" : `${stock} pcs`;
     const bntIcon = disabled ? "fas fa-times" : "fas fa-check";
     const unitPrice = (Number(premium) + Number(spot.spot)).toFixed(2);

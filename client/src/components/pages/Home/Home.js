@@ -9,6 +9,7 @@ import { Alert, Progress } from 'reactstrap';
 
 import { connect } from 'react-redux';
 import { getProducts, getRequest, loadProductsRequest } from '../../../redux/productsRedux.js';
+import { getRequest as orderRequest, orderClear } from '../../../redux/orderRedux.js';
 
 import styles from './Home.module.scss';
 
@@ -16,8 +17,11 @@ import styles from './Home.module.scss';
 class Comp extends React.Component {
 
   componentDidMount() {
-    const { loadProducts } = this.props;
+    const { loadProducts, orderRequest, orderClear } = this.props;
     loadProducts();
+    if(orderRequest.success){
+      orderClear();
+    }
   }
 
   render() {
@@ -26,7 +30,7 @@ class Comp extends React.Component {
  
     if(request.pending) return <Progress animated color="primary" value={50} />; 
     else if(request.error) return <Alert color="warning">{request.error}</Alert>;
-    else if(!request.success || !products.length) return <Alert color="info">No Producs</Alert>;
+    else if(!request.success || !products.length) return <Alert color="info">No Products</Alert>;
     else if(request.success) {
       return <div className={styles.root}><div className={styles.products}> {products.map(item => <ProductItem 
         key={item._id} 
@@ -53,10 +57,12 @@ Comp.propTypes = {
 const mapStateToProps = state => ({
   products: getProducts(state),
   request: getRequest(state),
+  orderRequest: orderRequest(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   loadProducts: () => dispatch(loadProductsRequest()),
+  orderClear: () => dispatch(orderClear()),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Comp);
