@@ -9,7 +9,6 @@ import MainLayout from './components/layout/MainLayout/MainLayout';
 import { Home } from './components/pages/Home/Home';
 import { Cart } from './components/pages/Cart/Cart';
 import { Product } from './components/pages/Product/Product';
-import { Checkout } from './components/pages/Checkout/Checkout';
 import { NotFound } from './components/pages/NotFound/NotFound';
  
 class App extends React.Component {
@@ -28,7 +27,6 @@ class App extends React.Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/cart' component={Cart} />
             <Route exact path='/product/:id' component={Product} />
-            <Route exact path='/checkout' component={Checkout} />
             <Route path='*' component={NotFound} />
           </Switch>
         </AnimatedSwitch>

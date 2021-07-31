@@ -82,8 +82,7 @@ class Comp extends React.Component {
           <h3 className={styles.title}>{`Dear ${confirmation.billingData.name},`}</h3>
           <h3 className={styles.title}>{`Thank you for purchase at Silver Trader!`}</h3>
           <h3 className={styles.title}>{`Your order has been placed with ID: ${confirmation._id}`}</h3>  
-          <h3 className={styles.title}>{`Cart is clear! Please proceed to `}<Link to={'/'}>SHOP</Link></h3>
-          
+          <h3 className={styles.title}>{`Cart is clear! Please proceed to `}<Link to={'/'}>SHOP</Link></h3>          
         </div>        
       </div>
       );

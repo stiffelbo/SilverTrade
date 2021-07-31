@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import { removeUnderscore } from '../../../utils/removeUnderscore';
 
 import { ProductItem } from '../../features/ProductItem/ProductItem';
-import { Alert, Progress } from 'reactstrap';
+import { Pagination } from '../../features/Pagination/Pagination';
 
+
+import { Alert, Progress } from 'reactstrap';
 
 import { connect } from 'react-redux';
 import { getProducts, getRequest, loadProductsRequest } from '../../../redux/productsRedux.js';
@@ -16,6 +18,16 @@ import styles from './Home.module.scss';
 
 class Comp extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      display : false,
+      class : styles.hide,
+      currentPage : 1,
+    };
+    this.paginate = this.paginate.bind(this);
+  }
+
   componentDidMount() {
     const { loadProducts, orderRequest, orderClear } = this.props;
     loadProducts();
@@ -24,27 +36,40 @@ class Comp extends React.Component {
     }
   }
 
-  render() {
+  paginate(currentPage){
+    this.setState(()=>({
+      currentPage,
+    }));
+  }
 
+  render() {
+    const itemsPerPage = 4;
     const { products, request } = this.props;
- 
+    const indexTo = this.state.currentPage * itemsPerPage;
+    const indexFrom = indexTo - itemsPerPage;
     if(request.pending) return <Progress animated color="primary" value={50} />; 
     else if(request.error) return <Alert color="warning">{request.error}</Alert>;
     else if(!request.success || !products.length) return <Alert color="info">No Products</Alert>;
     else if(request.success) {
-      return <div className={styles.root}><div className={styles.products}> {products.map(item => <ProductItem 
-        key={item._id} 
-        id={item._id}
-        name={removeUnderscore(item.name)}
-        country={removeUnderscore(item.country)}
-        year={item.year}
-        faceValue={item.faceValue}
-        alloy={item.alloy}
-        purity={item.purity}
-        premium={item.premium}
-        images={item.images}     
-        />)}</div></div>;
-
+      return (
+      <div className={styles.root}>
+        <Pagination totalItems={products.length} itemsPerPage={itemsPerPage} paginate={this.paginate} currentPage={this.state.currentPage}/>  
+        <div className={styles.products}>               
+          {products.slice(indexFrom, indexTo).map(item => <ProductItem 
+            key={item._id} 
+            id={item._id}
+            name={removeUnderscore(item.name)}
+            country={removeUnderscore(item.country)}
+            year={item.year}
+            faceValue={item.faceValue}
+            alloy={item.alloy}
+            purity={item.purity}
+            premium={item.premium}
+            images={item.images}     
+          />)}
+        </div>        
+      </div>
+      );
     } 
       
   }

@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CheckoutComponent } from './Checkout';
+import { PaginationComponent } from './Pagination';
 
-describe('Component Checkout', () => {
+describe('Component Pagination', () => {
   it('should render without crashing', () => {
-    const component = shallow(<CheckoutComponent />);
+    const component = shallow(<PaginationComponent />);
     expect(component).toBeTruthy();
   });
 });
