@@ -131,6 +131,7 @@ export const cartReducer = (state = initalState, action) => {
         }
       );
     case CLEAR_CART:
+      localStorage.setItem('cart', '');
       return initalState;  
 
   default:
