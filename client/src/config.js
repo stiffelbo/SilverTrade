@@ -17,4 +17,15 @@ export const billDataCheck = {
   country: 4,
   payment: 3,
   shipping: 3, 
+};
+
+export const checkMode = resolution => {
+  return resolution <= 767 ? 'mobile' : resolution <= 960 ? 'tablet' : resolution <= 1280 ? 'small-desktop' : 'desktop';
+};
+
+export const cartsInMode = {
+  'mobile' : 4,
+  'tablet' : 2,
+  'small-desktop' : 3,
+  'desktop' : 4,
 }

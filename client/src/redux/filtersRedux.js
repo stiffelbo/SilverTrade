@@ -40,38 +40,38 @@ const initialState = {
 export function filtersReducer(statePart = initialState, action = {}) {
   switch (action.type) {
     case SEARCH_COUNRY:
-      console.log(action.type, action.payload);
+
       return {
         ...statePart,
         countryPhrase: action.payload,
       }
     case SEARCH_NAME:
-      console.log(action.type, action.payload);
+
       return {
         ...statePart,
         namePhrase: action.payload,
       }
     case SEARCH_MINT:
-      console.log(action.type, action.payload);
+
       return {
         ...statePart,
         mintPhrase: action.payload,
       }
     case SEARCH_YEAR:
-      console.log(action.type, action.payload);
+
       return {
         ...statePart,
         yearPhrase: action.payload,
       }
     case SEARCH_PREMIUM_FROM:
-      console.log(action.type, action.payload);
+
       return {
         ...statePart,
         premiumFrom: action.payload,
       }
 
     case SEARCH_PREMIUM_TO:
-      console.log(action.type, action.payload);
+
       return {
         ...statePart,
         premiumTo: action.payload,

@@ -12,6 +12,9 @@ import { Alert, Progress } from 'reactstrap';
 import { connect } from 'react-redux';
 import { getProducts, getFilteredProducts, getRequest, loadProductsRequest } from '../../../redux/productsRedux.js';
 import { getRequest as orderRequest, orderClear } from '../../../redux/orderRedux.js';
+import { getRwdMode } from '../../../redux/configRedux.js';
+
+import { cartsInMode } from '../../../config';
 
 import styles from './Shop.module.scss';
 
@@ -43,9 +46,9 @@ class Comp extends React.Component {
   }
 
   render() {    
-    const { products, filteredProducts, request } = this.props;
+    const { products, filteredProducts, request, rwdMode } = this.props;
     //pagination
-    const itemsPerPage = 4;
+    const itemsPerPage = cartsInMode[rwdMode];
     const indexTo = this.state.currentPage * itemsPerPage;
     const indexFrom = indexTo - itemsPerPage;
 
@@ -99,6 +102,7 @@ const mapStateToProps = state => ({
   filteredProducts: getFilteredProducts(state),
   request: getRequest(state),
   orderRequest: orderRequest(state),
+  rwdMode: getRwdMode(state),
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -9,6 +9,7 @@ import { cartReducer } from './cartRedux';
 import { commentsReducer } from './commentsRedux';
 import { orderReducer } from './orderRedux';
 import { filtersReducer } from './filtersRedux';
+import { configReducer } from './configRedux';
 
 // define reducers
 const reducers = {
@@ -19,6 +20,7 @@ const reducers = {
   comments: commentsReducer,
   order: orderReducer,
   filters: filtersReducer,
+  config: configReducer,
 };
 
 // combine reducers
