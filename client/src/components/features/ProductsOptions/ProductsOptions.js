@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import styles from './ProductsOptions.module.scss';
 import clsx from 'clsx';
 
+import { removeUnderscore } from '../../../utils/removeUnderscore';
+
 /* Redux */
 
 import { connect } from 'react-redux';
-import { getFilters, searchCountry, searchMint, searchName, searchPremiumFrom, searchPremiumTo, searchYear } from '../../../redux/filtersRedux.js';
+import { getFilters, searchCountry, searchMint, searchName, searchPremiumFrom, searchPremiumTo, searchYear, setCurrentPage } from '../../../redux/filtersRedux.js';
 import { getMints, getCountries } from '../../../redux/productsRedux.js';
 
 class Comp extends React.Component {
@@ -35,6 +37,7 @@ class Comp extends React.Component {
   handleCountry(e){    
     const val = e.target.value;
     this.props.searchCountry(val);
+    this.props.setCurrentPage(1);
     this.setState(()=>({
       searchCountry: val,
     }));
@@ -42,6 +45,7 @@ class Comp extends React.Component {
   handleName(e){    
     const val = e.target.value;
     this.props.searchName(val);
+    this.props.setCurrentPage(1);
     this.setState(()=>({
       searchName: val,
     }));
@@ -49,6 +53,7 @@ class Comp extends React.Component {
   handleYear(e){    
     const val = e.target.value;
     this.props.searchYear(val);
+    this.props.setCurrentPage(1);
     this.setState(()=>({
       searchYear: val,
     }));
@@ -56,6 +61,7 @@ class Comp extends React.Component {
   handleMint(e){    
     const val = e.target.value;
     this.props.searchMint(val);
+    this.props.setCurrentPage(1);
     this.setState(()=>({
       searchMint: val,
     }));
@@ -63,6 +69,7 @@ class Comp extends React.Component {
   handlePremiumFrom(e){    
     const val = e.target.value;
     this.props.searchPremiumFrom(val);
+    this.props.setCurrentPage(1);
     this.setState(()=>({
       searchPremiumFrom: val,
     }));
@@ -70,6 +77,7 @@ class Comp extends React.Component {
   handlePremiumTo(e){    
     const val = e.target.value;
     this.props.searchPremiumTo(val);
+    this.props.setCurrentPage(1);
     this.setState(()=>({
       searchPremiumTo: val,
     }));
@@ -95,7 +103,7 @@ class Comp extends React.Component {
           />*/}
           <select className={styles.select} onChange={this.handleCountry}>
             <option key="country_null" value="">country..</option>
-            {this.props.countries.map(item => <option key={item} value={item} >{item}</option>)}
+            {this.props.countries.map(item => <option key={item} value={item} >{removeUnderscore(item)}</option>)}
           </select>          
         </div>
         <div className={clsx(styles.filterBox, searchMintClass)}>
@@ -107,7 +115,7 @@ class Comp extends React.Component {
           />*/}
           <select className={styles.select} onChange={this.handleMint}>
             <option key="mint_null" value="">mint..</option>
-            {this.props.mints.map(item => <option key={item} value={item} >{item}</option>)}
+            {this.props.mints.map(item => <option key={item} value={item} >{removeUnderscore(item)}</option>)}
           </select>          
         </div>
         <div className={clsx(styles.filterBox, searchNameClass)}>
@@ -170,6 +178,7 @@ const mapDispatchToProps = dispatch => ({
   searchYear: arg => dispatch(searchYear(arg)),
   searchPremiumFrom: arg => dispatch(searchPremiumFrom(arg)), 
   searchPremiumTo: arg => dispatch(searchPremiumTo(arg)),
+  setCurrentPage: arg => dispatch(setCurrentPage(arg)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Comp);

@@ -1,6 +1,7 @@
 /* SELECTORS */
 
 export const getFilters = ({filters}) => filters;
+export const getCurrentPage = ({filters}) => filters.currentPage;
 
 /* ACTIONS */
 
@@ -15,6 +16,7 @@ export const SEARCH_YEAR = createActionName('SEARCH_YEAR');
 export const SEARCH_MINT = createActionName('SEARCH_MINT');
 export const SEARCH_PREMIUM_FROM = createActionName('SEARCH_PREMIUM_FROM');
 export const SEARCH_PREMIUM_TO = createActionName('SEARCH_PREMIUM_TO');
+export const SET_CURRENT_PAGE = createActionName('SET_CURRENT_PAGE');
 
 //action creators
 export const searchCountry = payload => ({ payload, type: SEARCH_COUNRY });
@@ -23,6 +25,7 @@ export const searchMint = payload => ({ payload, type: SEARCH_MINT });
 export const searchYear = payload => ({ payload, type: SEARCH_YEAR });
 export const searchPremiumFrom = payload => ({ payload, type: SEARCH_PREMIUM_FROM });
 export const searchPremiumTo = payload => ({ payload, type: SEARCH_PREMIUM_TO });
+export const setCurrentPage = payload => ({ payload, type: SET_CURRENT_PAGE });
 
 /*Initial state*/
 
@@ -33,6 +36,7 @@ const initialState = {
   yearPhrase: '',
   premiumFrom: 0,
   premiumTo: 0,
+  currentPage: 1,
 };
 
 // reducer
@@ -75,6 +79,13 @@ export function filtersReducer(statePart = initialState, action = {}) {
       return {
         ...statePart,
         premiumTo: action.payload,
+      }
+
+    case SET_CURRENT_PAGE:
+
+      return {
+        ...statePart,
+        currentPage: action.payload,
       }
 
     default:

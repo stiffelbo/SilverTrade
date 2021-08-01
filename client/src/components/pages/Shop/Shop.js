@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { getProducts, getFilteredProducts, getRequest, loadProductsRequest } from '../../../redux/productsRedux.js';
 import { getRequest as orderRequest, orderClear } from '../../../redux/orderRedux.js';
 import { getRwdMode } from '../../../redux/configRedux.js';
+import { getCurrentPage, setCurrentPage } from '../../../redux/filtersRedux.js';
 
 import { cartsInMode } from '../../../config';
 
@@ -32,10 +33,21 @@ class Comp extends React.Component {
   }
 
   componentDidMount() {
-    const { loadProducts, orderRequest, orderClear } = this.props;
+    const { loadProducts, orderRequest, orderClear, currentPage } = this.props;
     loadProducts();
     if(orderRequest.success){
       orderClear();
+    }
+    this.setState(()=>({
+      currentPage: currentPage,
+    }));
+  }
+
+  componentDidUpdate(){
+    if(this.state.currentPage !== this.props.currentPage){
+      this.setState(()=>({
+        currentPage: this.props.currentPage,
+      }));
     }
   }
 
@@ -43,6 +55,7 @@ class Comp extends React.Component {
     this.setState(()=>({
       currentPage,
     }));
+    this.props.setCurrentPage(currentPage);
   }
 
   render() {    
@@ -103,11 +116,13 @@ const mapStateToProps = state => ({
   request: getRequest(state),
   orderRequest: orderRequest(state),
   rwdMode: getRwdMode(state),
+  currentPage: getCurrentPage(state), 
 });
 
 const mapDispatchToProps = dispatch => ({
   loadProducts: () => dispatch(loadProductsRequest()),
   orderClear: () => dispatch(orderClear()),
+  setCurrentPage: (arg) => dispatch(setCurrentPage(arg)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Comp);
