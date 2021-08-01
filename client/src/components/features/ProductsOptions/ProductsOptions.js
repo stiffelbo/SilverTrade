@@ -33,6 +33,17 @@ class Comp extends React.Component {
     this.handlePremiumTo = this.handlePremiumTo.bind(this);
   }
 
+  componentDidMount(){
+    this.setState(()=>({
+      searchCountry: this.props.filters.countryPhrase, 
+      searchMint: this.props.filters.mintPhrase, 
+      searchName: this.props.filters.namePhrase, 
+      searchPremiumFrom: this.props.filters.PremiumFrom, 
+      searchPremiumTo: this.props.filters.PremiumTo, 
+      searchYear: this.props.filters.yearPhrase, 
+    }));
+  }
+
 
   handleCountry(e){    
     const val = e.target.value;
@@ -101,7 +112,7 @@ class Comp extends React.Component {
           {/*<input type="text" className={styles.textInput} placeholder={'country..'}
           onChange={this.handleCountry}          
           />*/}
-          <select className={styles.select} onChange={this.handleCountry}>
+          <select className={styles.select} onChange={this.handleCountry} value={this.state.searchCountry}>
             <option key="country_null" value="">country..</option>
             {this.props.countries.map(item => <option key={item} value={item} >{removeUnderscore(item)}</option>)}
           </select>          
@@ -113,7 +124,7 @@ class Comp extends React.Component {
           {/* <input type="text" className={styles.textInput} placeholder={'mint..'}
           onChange={this.handleMint}
           />*/}
-          <select className={styles.select} onChange={this.handleMint}>
+          <select className={styles.select} onChange={this.handleMint} value={this.state.searchMint}>
             <option key="mint_null" value="">mint..</option>
             {this.props.mints.map(item => <option key={item} value={item} >{removeUnderscore(item)}</option>)}
           </select>          
@@ -122,7 +133,7 @@ class Comp extends React.Component {
           <label>
             <i className="far fa-grin-beam"></i>            
           </label>
-          <input type="text" className={styles.textInput} placeholder={'name..'}
+          <input type="text" className={styles.textInput} placeholder={'name..'} value={this.state.searchName}
           onChange={this.handleName}
           />
         </div>
@@ -130,7 +141,7 @@ class Comp extends React.Component {
           <label>
             <i className="fas fa-calendar-alt"></i>       
           </label>
-          <input type="text" className={styles.textInput} placeholder={'year..'}
+          <input type="text" className={styles.textInput} placeholder={'year..'} value={this.state.searchYear}
           onChange={this.handleYear}
           />
         </div>        
@@ -138,7 +149,7 @@ class Comp extends React.Component {
           <label>
             <i className="fas fa-sort-amount-up"></i>
           </label>
-          <input type="number" className={styles.textInput} step="0.1" min="0" placeholder={'Premium from:'}
+          <input type="number" className={styles.textInput} step="0.1" min="0" placeholder={'Premium from:'} value={this.state.PremiumFrom}
           onChange={this.handlePremiumFrom}
           />
         </div>
@@ -146,7 +157,7 @@ class Comp extends React.Component {
           <label>
             <i className="fas fa-sort-amount-down"></i>
           </label>
-          <input type="number" className={styles.textInput} step="0.1" min="0" placeholder={'Premium to:'}
+          <input type="number" className={styles.textInput} step="0.1" min="0" placeholder={'Premium to:'} value={this.state.PremiumTo}
           onChange={this.handlePremiumTo}
           />
         </div>
