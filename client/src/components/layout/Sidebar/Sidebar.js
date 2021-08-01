@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { CartLogo } from '../../common/CartLogo/CartLogo';
+import { Rates } from '../../features/Rates/Rates';
 
 import clsx from 'clsx';
 
@@ -14,7 +15,11 @@ const Component = ({show, click}) => {
 
   return (
     <div className={clsx(display, styles.root)}>
+      
       <ul>
+        <li>
+          <Rates />
+        </li>
         <li>
           <Link to="/cart" className={styles.cart_link} onClick={click}>
             <CartLogo />
@@ -23,6 +28,11 @@ const Component = ({show, click}) => {
         <li>
           <Link to="/shop" className={styles.cart_link} onClick={click}>
             <h2>Shop</h2>
+          </Link>
+        </li>
+        <li>
+          <Link to="/" className={styles.cart_link} onClick={click}>
+            <h2>Home</h2>
           </Link>
         </li>
       </ul>

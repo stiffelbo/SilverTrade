@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import styles from './Home.module.scss';
 import {homePageSlides} from '../../../config';
-
+import { Link } from 'react-router-dom';
 /* Components */
 import { Slider } from '../../features/Slider/Slider';
 import { Stacker } from '../../features/Stacker/Stacker';
@@ -22,6 +22,14 @@ const Component = ({getSale, request}) => {
       <Slider slides={homePageSlides}/>
       <Brands />
       {request.success && <Stacker items={getSale}/>}
+      <div className={styles.shopInviter}>
+        <h3>Visit our shop!</h3>
+        <Link to={'/shop'}>
+          <i className="fas fa-chevron-right"></i>
+          <i className="fas fa-chevron-right"></i>
+          <i className="fas fa-chevron-right"></i>
+        </Link>
+      </div>
     </div>
   );
 }

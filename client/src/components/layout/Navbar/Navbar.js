@@ -39,7 +39,7 @@ class Comp extends React.Component {
           <Logo /> 
         </Link>
          
-        <Rates className={styles.rates} spot={spot}/> 
+        <Rates className={styles.rates} /> 
         <ul>
           <li>
             <Link to="/cart" className={styles.cart_link}>

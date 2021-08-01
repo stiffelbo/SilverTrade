@@ -30,6 +30,13 @@ export const cartsInMode = {
   'desktop' : 4,
 };
 
+export const featuresInMode = {
+  'mobile' : 1,
+  'tablet' : 2,
+  'small-desktop' : 3,
+  'desktop' : 4,
+};
+
 export const homePageSlides = [
   {
     image: "https://images.unsplash.com/photo-1595206133361-b1fe343e5e23?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",

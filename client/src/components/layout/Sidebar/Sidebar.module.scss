@@ -2,6 +2,8 @@
 
 .root {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 70%;
   height: 100vh;
   position: fixed;
@@ -29,6 +31,9 @@
       height: $base-size*6;
       &:hover{       
         background-color: rgb(172, 169, 172);
+      }
+      &:first-child:hover{
+        background-color: inherit;
       }      
       a{
         display: flex;

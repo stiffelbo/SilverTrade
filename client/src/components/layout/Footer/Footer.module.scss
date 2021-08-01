@@ -1,7 +1,7 @@
 @import '../../../styles/settings.scss';
 
 .root {
-  margin-top: 2rem;
+  margin-top: 6rem;
   .socials{
     display: flex;
     flex-direction: row;
@@ -22,7 +22,6 @@
       li{     
         padding: 0.5rem 1rem;
         font-size: 2rem;
-        
         a{
           text-decoration: none;
           i{
