@@ -16,10 +16,12 @@
       width: 300px;
       border-radius: 50%;
       top: 0;
-      transition: all 0.2s ease-out;
+      transform: rotate(16deg);
+      transition: all 0.2s ease-out;      
       &:hover{
         z-index: 100;
         transition: all 0.2s ease-out;
+        transform: rotate(0deg) scale(1.21);
       } 
     }
   }

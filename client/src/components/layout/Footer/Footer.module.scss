@@ -1,0 +1,42 @@
+@import '../../../styles/settings.scss';
+
+.root {
+  margin-top: 2rem;
+  .socials{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;  
+    background-color: $color-editor-border-light;
+    p{
+      font-weight: 700;
+    }
+    .socials_list{
+      margin: 0;
+      flex: 0.6;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+      li{     
+        padding: 0.5rem 1rem;
+        font-size: 2rem;
+        
+        a{
+          text-decoration: none;
+          i{
+            color: $color-text;
+            transition: all 0.3s ease-out;
+            &:hover{
+              transition: all 0.3s ease-out;
+              transform: scale(1.1);
+              color: $color-primary;
+            }
+          }          
+        }
+      }
+    }
+  }
+  
+}

@@ -11,7 +11,7 @@ const Component = ({items}) => {
   return (
     <div className={styles.root}>
       <div className={styles.header}>
-        <h1>Check our sale items</h1>
+        <h1>Check out sale items:</h1>
       </div>
       <div className={styles.stack}>
         {items.map((item, index) => {

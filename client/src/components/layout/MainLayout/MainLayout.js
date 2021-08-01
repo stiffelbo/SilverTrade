@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { Navbar } from '../Navbar/Navbar';
 import { Backdrop } from '../Backdrop/Backdrop';
 import { Sidebar } from '../Sidebar/Sidebar';
+import { Footer } from '../Footer/Footer';
 
 import styles from './MainLayout.module.scss';
 
@@ -19,7 +20,7 @@ const MainLayout = ({ children }) => {
       <Sidebar show={sideToggle} click={()=> setSideTogle(false)}/>
       <Backdrop show={sideToggle} click={()=> setSideTogle(false)}/>      
       {children}
-  
+      <Footer />
     </div>
   );
 }
