@@ -17,11 +17,12 @@ import { Shop } from './components/pages/Shop/Shop';
 import { Cart } from './components/pages/Cart/Cart';
 import { Product } from './components/pages/Product/Product';
 import { NotFound } from './components/pages/NotFound/NotFound';
+import { loadProductsRequest } from './redux/productsRedux.js';
  
 class App extends React.Component {
 
   componentWillMount() {
-    const { setRwdMode } = this.props;
+    const { setRwdMode, loadProducts } = this.props;
     let currentRwdMode = '';
     window.addEventListener('resize', e => {
       const mode = checkMode(e.target.window.innerWidth);
@@ -31,6 +32,7 @@ class App extends React.Component {
       }
       return null;
     });
+    loadProducts();
   }
 
   componentDidMount() {
@@ -72,6 +74,7 @@ App.propTypes = {
 
 const mapDispatchToProps = dispatch => ({
   setRwdMode: arg => dispatch(setRwdMode(arg)),
+  loadProducts: () => dispatch(loadProductsRequest()),
 });
 
 const Container = connect(null, mapDispatchToProps)(App);

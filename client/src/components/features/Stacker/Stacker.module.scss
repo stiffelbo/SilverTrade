@@ -1,0 +1,71 @@
+@import '../../../styles/settings.scss';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem;
+  .stack{
+    height: 300px;
+    width: 100%;
+    position: relative;
+    margin-top: 1rem;  
+    .card{
+      position: absolute;
+      height: 300px;
+      width: 300px;
+      border-radius: 50%;
+      top: 0;
+      transition: all 0.2s ease-out;
+      &:hover{
+        z-index: 100;
+        transition: all 0.2s ease-out;
+      } 
+    }
+  }
+  @media(max-width: 1080px){
+    .stack{
+      height: 250px;
+      .card{
+        height: 250px;
+        width: 250px;
+      }
+    }
+  }
+  @media(max-width: 960px){
+    .stack{
+      height: 220px;
+      .card{
+        height: 220px;
+        width: 220px;
+      }
+    }
+  }
+  @media(max-width: 800px){
+    .stack{
+      height: 190px;
+      .card{
+        height: 190px;
+        width: 190px;
+      }
+    }
+  }
+  @media(max-width: 650px){
+    .stack{
+      height: 150px;
+      .card{
+        height: 150px;
+        width: 150px;
+      }
+    }
+  }
+  @media(max-width: 550px){
+    .stack{
+      height: 120px;
+      .card{
+        height: 120px;
+        width: 120px;
+      }
+    }
+  }
+}

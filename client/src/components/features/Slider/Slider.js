@@ -27,12 +27,8 @@ export class Slider extends Component {
           current: 0,
         }));
       }
-      
-
     }
-   
-
-    setInterval(changeCurrent, 5000);
+    setInterval(changeCurrent, 8000);
   }
 
   handleLeft(){
@@ -75,8 +71,11 @@ export class Slider extends Component {
 
         {slides.map((item, index)=> {
           return (
-            <div key={`slide-${index}`} className={index === this.state.current ? clsx(styles.slide, styles.active) : styles.slide}>
-              {index === this.state.current && <img src={item.image} alt={item.alt} /> }
+            <div 
+            key={`slide-${index}`} 
+            className={index === this.state.current ? clsx(styles.slide, styles.active) : styles.slide} 
+            style={{ backgroundImage:`url(${item.image})` }}
+            >            
               {index === this.state.current && item.title && <h1 className={styles.title}>{item.title}</h1> }
               {index === this.state.current && item.subtitle && <h3 className={styles.subtitle}>{item.subtitle}</h3> }
             </div>

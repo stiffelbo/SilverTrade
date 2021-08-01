@@ -35,7 +35,10 @@ class Comp extends React.Component {
     const { spot, click } = this.props;
     return (
       <nav className={styles.root}>
-        <Logo />  
+        <Link to="/" className={styles.cart_link}>
+          <Logo /> 
+        </Link>
+         
         <Rates className={styles.rates} spot={spot}/> 
         <ul>
           <li>

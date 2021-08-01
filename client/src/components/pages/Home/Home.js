@@ -6,19 +6,20 @@ import {homePageSlides} from '../../../config';
 
 /* Components */
 import { Slider } from '../../features/Slider/Slider';
+import { Stacker } from '../../features/Stacker/Stacker';
 
 /* Redux */
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import { connect } from 'react-redux';
+import { getSale, getRequest } from '../../../redux/productsRedux.js';
 
 
-
-const Component = (props) => {
+const Component = ({getSale, request}) => {
 
   return (
     <div className={styles.root}>     
-      <Slider slides={homePageSlides}/>    
+      <Slider slides={homePageSlides}/>
+      {request.success && <Stacker items={getSale} className={styles.stacker}/>}
     </div>
   );
 }
@@ -27,18 +28,20 @@ Component.propTypes = {
   className: PropTypes.string,
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+const mapStateToProps = state => ({
+  getSale: getSale(state),
+  request: getRequest(state),
+});
+
 
 // const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
+//   loadProducts: arg => dispatch(loadProductsRequest()),
 // });
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps, null)(Component);
 
 export {
-  Component as Home,
-  // Container as Home,
+  // Component as Home,
+  Container as Home,
   // Component as HomeComponent,
 };

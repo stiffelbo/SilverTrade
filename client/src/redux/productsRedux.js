@@ -56,6 +56,7 @@ export const getCountries = ({products}) => {
   countries.sort();
   return countries;
 }
+export const getSale = ({products}) => products.data.filter(item => item.sale).slice(0,8);
 
 
 /* ACTIONS */
