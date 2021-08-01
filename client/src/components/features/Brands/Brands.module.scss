@@ -1,0 +1,26 @@
+@import '../../../styles/settings.scss';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem;
+  ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    li{
+      font-size: 1.5em;
+      padding: 1rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      a{
+        img{
+          height: 130px;
+        }
+      }
+    }
+  }
+}

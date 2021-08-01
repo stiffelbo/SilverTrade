@@ -7,6 +7,7 @@ import {homePageSlides} from '../../../config';
 /* Components */
 import { Slider } from '../../features/Slider/Slider';
 import { Stacker } from '../../features/Stacker/Stacker';
+import { Brands } from '../../features/Brands/Brands';
 
 /* Redux */
 
@@ -19,6 +20,7 @@ const Component = ({getSale, request}) => {
   return (
     <div className={styles.root}>     
       <Slider slides={homePageSlides}/>
+      <Brands />
       {request.success && <Stacker items={getSale}/>}
     </div>
   );

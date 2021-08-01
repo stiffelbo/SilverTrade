@@ -23,6 +23,9 @@
 
 @media (max-width: 960px){
   .root {
+    h2{
+      font-size: 1em;
+    }
     .products{
       grid-template-columns: repeat(2, 1fr);
     }

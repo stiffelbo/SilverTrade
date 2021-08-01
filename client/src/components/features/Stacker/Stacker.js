@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import styles from './Stacker.module.scss';
-import { style } from '@material-ui/system';
 
 const Component = ({items}) => {
   const offset = 80/items.length;
