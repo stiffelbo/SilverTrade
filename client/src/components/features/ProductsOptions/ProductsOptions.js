@@ -8,7 +8,7 @@ import clsx from 'clsx';
 
 import { connect } from 'react-redux';
 import { getFilters, searchCountry, searchMint, searchName, searchPremiumFrom, searchPremiumTo, searchYear } from '../../../redux/filtersRedux.js';
-import { getMints } from '../../../redux/productsRedux.js';
+import { getMints, getCountries } from '../../../redux/productsRedux.js';
 
 class Comp extends React.Component {
 
@@ -87,15 +87,31 @@ class Comp extends React.Component {
     return (
       <div className={styles.root}>
         <div className={clsx(styles.filterBox, searchCountryClass)}>
-          <label className={styles.filterBox}>
+          <label>
             <i className="fas fa-flag"></i>        
           </label>
-          <input type="text" className={styles.textInput} placeholder={'country..'}
+          {/*<input type="text" className={styles.textInput} placeholder={'country..'}
           onChange={this.handleCountry}          
-          />
+          />*/}
+          <select className={styles.select} onChange={this.handleCountry}>
+            <option key="country_null" value="">country..</option>
+            {this.props.countries.map(item => <option key={item} value={item} >{item}</option>)}
+          </select>          
+        </div>
+        <div className={clsx(styles.filterBox, searchMintClass)}>
+          <label>
+            <i className="fas fa-industry"></i>      
+          </label>
+          {/* <input type="text" className={styles.textInput} placeholder={'mint..'}
+          onChange={this.handleMint}
+          />*/}
+          <select className={styles.select} onChange={this.handleMint}>
+            <option key="mint_null" value="">mint..</option>
+            {this.props.mints.map(item => <option key={item} value={item} >{item}</option>)}
+          </select>          
         </div>
         <div className={clsx(styles.filterBox, searchNameClass)}>
-          <label className={styles.filterBox}>
+          <label>
             <i className="far fa-grin-beam"></i>            
           </label>
           <input type="text" className={styles.textInput} placeholder={'name..'}
@@ -103,39 +119,26 @@ class Comp extends React.Component {
           />
         </div>
         <div className={clsx(styles.filterBox, searchYearClass)}>
-          <label className={styles.filterBox}>
+          <label>
             <i className="fas fa-calendar-alt"></i>       
           </label>
           <input type="text" className={styles.textInput} placeholder={'year..'}
           onChange={this.handleYear}
           />
-        </div>
-        <div className={clsx(styles.filterBox, searchMintClass)}>
-          <label className={styles.filterBox}>
-            <i className="fas fa-industry"></i>      
-          </label>
-          {/* <input type="text" className={styles.textInput} placeholder={'mint..'}
-          onChange={this.handleMint}
-          />*/}
-          <select className={styles.textInput} onChange={this.handleMint}>
-            <option key="mint_null" value="">mint..</option>
-            {this.props.mints.map(item => <option key={item} value={item} >{item}</option>)}
-          </select>
-          
-        </div>
+        </div>        
         <div className={clsx(styles.filterBox, searchPremiumFromClass)}>
-          <label className={styles.filterBox}>
-            <i className="fas fa-sort-amount-up"></i> Premium from:
+          <label>
+            <i className="fas fa-sort-amount-up"></i>
           </label>
-          <input type="number" className={styles.textInput} step="0.01" 
+          <input type="number" className={styles.textInput} step="0.1" min="0" placeholder={'Premium from:'}
           onChange={this.handlePremiumFrom}
           />
         </div>
         <div className={clsx(styles.filterBox, searchPremiumToClass)}>
-          <label className={styles.filterBox}>
-            <i className="fas fa-sort-amount-down"></i> Premium To:
+          <label>
+            <i className="fas fa-sort-amount-down"></i>
           </label>
-          <input type="number" className={styles.textInput} step="0.01" 
+          <input type="number" className={styles.textInput} step="0.1" min="0" placeholder={'Premium to:'}
           onChange={this.handlePremiumTo}
           />
         </div>
@@ -157,6 +160,7 @@ Comp.propTypes = {
 const mapStateToProps = state => ({
   filters: getFilters(state),
   mints: getMints(state),
+  countries: getCountries(state),
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -41,7 +41,7 @@ class Comp extends React.Component {
       return (
         <div className={styles.empty}>
           <h2>Cart is empty!</h2>
-          <h2><Link to="/">Back to shop</Link></h2>
+          <h2><Link to="/shop">Back to shop</Link></h2>
         </div>
       );
     }//Something in Cart, no order placed

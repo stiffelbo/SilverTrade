@@ -7,6 +7,7 @@ import MainLayout from './components/layout/MainLayout/MainLayout';
 
 // import routes
 import { Home } from './components/pages/Home/Home';
+import { Shop } from './components/pages/Shop/Shop';
 import { Cart } from './components/pages/Cart/Cart';
 import { Product } from './components/pages/Product/Product';
 import { NotFound } from './components/pages/NotFound/NotFound';
@@ -24,7 +25,7 @@ class App extends React.Component {
           className={styles.switchWrapper}
         >
           <Switch location={location}>
-            <Route exact path='/' component={Home} />
+            <Route exact path='/shop' component={Shop} />
             <Route exact path='/cart' component={Cart} />
             <Route exact path='/product/:id' component={Product} />
             <Route path='*' component={NotFound} />

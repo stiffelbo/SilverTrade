@@ -44,7 +44,7 @@ class Comp extends React.Component {
             </Link>
           </li>
           <li>
-            <Link to="/" className={styles.cart_link}>
+            <Link to="/shop" className={styles.cart_link}>
               <h2>Shop</h2>
             </Link>
           </li>

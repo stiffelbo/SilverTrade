@@ -3,13 +3,27 @@
 .root {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-around;  
   padding-bottom: 0.5rem;
   //border-bottom: 1px solid $color-text;
   .filterBox{
     display: flex;
-    flex-direction: row;  
-    transition: all 0.3s ease-out;  
+    flex-direction: row;    
+    transition: all 0.3s ease-out; 
+    .select{
+      flex: 0.7; 
+      line-height: inherit;
+      padding: 0.5rem;
+      text-align: left;
+      color: $color-textfield-border;
+      border: none;        
+      width: 90%;
+      &:focus, :active {     
+        outline: none;   
+        background-color: inherit;
+        color: $color-danger;
+      }
+    } 
     .textInput{  
       flex: 0.7; 
       line-height: inherit;
@@ -19,11 +33,15 @@
       border: none;
       border-bottom: 1px solid $color-textfield-border;      
       width: 90%;
+      font-size: $base-size;
       &:focus, :active {
         outline: none;
         background-color: inherit;
         color: $color-danger;
       } 
+    }
+    label{
+      font-size: $base-size;
     }
     i{
       padding: 0.5rem;

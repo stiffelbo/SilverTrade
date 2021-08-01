@@ -46,6 +46,16 @@ export const getMints = ({products}) => {
   mints.sort();
   return mints;
 }
+export const getCountries = ({products}) => {
+  const countries = [];
+  products.data.map(item => {
+    if(countries.indexOf(item.country) == -1){
+      countries.push(item.country);
+    }
+  });
+  countries.sort();
+  return countries;
+}
 
 
 /* ACTIONS */
