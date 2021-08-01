@@ -17,12 +17,12 @@ class Comp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchCountry: null, 
-      searchMint: null, 
-      searchName: null, 
+      searchCountry: '', 
+      searchMint: '', 
+      searchName: '',
       searchPremiumFrom: null, 
       searchPremiumTo: null, 
-      searchYear: null, 
+      searchYear: '',
     }
     
     this.handleCountry = this.handleCountry.bind(this);
