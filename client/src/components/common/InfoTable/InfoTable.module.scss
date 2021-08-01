@@ -14,4 +14,15 @@
   tr td:last-child{
     text-align: right;
   }
+  @media(max-width:1080px){
+    font-size: 14px;
+  }
+  @media(max-width:960px){
+    font-size: 1em;
+  }
+  @media(max-width: 500px){
+    td{
+      padding: 0.2rem 0.2rem;
+    }
+  }
 }

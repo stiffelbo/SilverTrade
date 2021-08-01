@@ -21,7 +21,7 @@ const Component = ({show, click}) => {
           </Link>
         </li>
         <li>
-          <Link to="/" className={styles.cart_link} onClick={click}>
+          <Link to="/shop" className={styles.cart_link} onClick={click}>
             <h2>Shop</h2>
           </Link>
         </li>

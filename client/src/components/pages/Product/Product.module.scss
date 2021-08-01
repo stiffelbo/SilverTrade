@@ -1,13 +1,8 @@
 @import '../../../styles/settings.scss';
 
-/*
-
-
-
-*/
-
 .root {
   margin: 1rem auto;
+  padding: 2rem;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -16,8 +11,22 @@
 
   .left{
     flex: 0.3;
-    padding: 2rem;
-    height: 350px;    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    .imageWrapper{
+      position: relative;
+      width: 300px;
+      height: 300px;
+      @media(max-width:1100px){
+        width: 250px;
+        height: 250px;
+      }
+      @media(max-width:1000px){
+        width: 220px;
+        height: 220px;
+      }
+    }
   }
   .center{
     flex: 0.4;
@@ -38,14 +47,17 @@
 
 @media (max-width: 960px) {
   .root {
+    
     flex-direction: column;
     .left, .center, .right{
-      margin-top: 1rem;
-      flex: 1;
-      width: 90%;
+      margin-top: 1rem;      
+      width: 100%;
       border: 1px solid $color-editor-border-light;
       border-radius: 5px;        
-    }        
+    } 
+    .left{
+      border: none;
+    }          
   }
 }
 

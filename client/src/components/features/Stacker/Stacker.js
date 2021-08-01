@@ -18,7 +18,9 @@ const Component = ({items}) => {
           const style = index === 0 ? {"left" : "0"} : {"left" : `${(index * offset).toFixed(1)}%`};
           return (
             <Link to={`/product/${item._id}`}>
-              <img className={styles.card} src={`../coin_img/${item.images.av}`} style={style} title={item.id} />
+              
+                <img className={styles.card} src={`../coin_img/${item.images.av}`} style={style} title={item.id} />
+          
             </Link>
           );
         })}    

@@ -19,7 +19,7 @@ const Component = ({getSale, request}) => {
   return (
     <div className={styles.root}>     
       <Slider slides={homePageSlides}/>
-      {request.success && <Stacker items={getSale} className={styles.stacker}/>}
+      {request.success && <Stacker items={getSale}/>}
     </div>
   );
 }

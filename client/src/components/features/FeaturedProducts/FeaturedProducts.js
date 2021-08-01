@@ -21,7 +21,7 @@ const Component = ({products, feature, prodID, spot}) => {
   if(filteredProducts){
     return (
       <div className={styles.root}>
-        <h2>Other products from: {feature.val}</h2>
+        <h2>Other products from: {removeUnderscore(feature.val)}</h2>
         <div className={styles.products}>
           {filteredProducts.map( item => (<ProductItem 
             key={item._id} 

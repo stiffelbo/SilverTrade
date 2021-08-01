@@ -3,54 +3,86 @@
 .root {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;  
+  justify-content: space-evenly;  
   padding: 0 1rem;
   padding-bottom: 0.5rem;
   //border-bottom: 1px solid $color-text;
-  .filterBox{
+  .group{
     display: flex;
-    flex-direction: row;    
-    transition: all 0.3s ease-out; 
-    .select{
-      flex: 0.7; 
-      line-height: inherit;
-      padding: 0.5rem;
-      text-align: left;
-      color: $color-textfield-border;
-      border: none;        
-      width: 90%;
-      &:focus, :active {     
-        outline: none;   
-        background-color: inherit;
-        color: $color-danger;
-      }
-    } 
-    .textInput{  
-      flex: 0.7; 
-      line-height: inherit;
-      padding: 0.5rem;
-      text-align: left;
-      color: $color-textfield-border;
-      border: none;
-      border-bottom: 1px solid $color-textfield-border;      
-      width: 90%;
-      font-size: $base-size;
-      &:focus, :active {
-        outline: none;
-        background-color: inherit;
-        color: $color-danger;
+    flex-direction: row;
+    justify-content: space-around;
+    .filterBox{
+      display: flex;
+      flex-direction: row;    
+      transition: all 0.3s ease-out; 
+      .select{
+        flex: 0.8; 
+        line-height: inherit;
+        padding: 0.5rem;
+        text-align: left;
+        color: $color-textfield-border;
+        border: none;        
+        width: 90%;
+        &:focus, :active {     
+          outline: none;   
+          background-color: inherit;
+          color: $color-danger;
+        }
       } 
+      .textInput{  
+        flex: 0.8; 
+        line-height: inherit;
+        padding: 0.5rem;
+        text-align: left;
+        color: $color-textfield-border;
+        border: none;
+        border-bottom: 1px solid $color-textfield-border;      
+        width: 90%;
+        font-size: $base-size;
+        &:focus, :active {
+          outline: none;
+          background-color: inherit;
+          color: $color-danger;
+        } 
+      }
+      label{
+        font-size: $base-size;
+        i{
+          padding: 0.5rem;
+           
+        }
+      }
+         
     }
-    label{
-      font-size: $base-size;
+    .active{    
+      color: $color-danger;
+      transition: all 0.3s ease-out;
     }
-    i{
-      padding: 0.5rem;
-      flex: 0.3; 
-    }    
+
   }
-  .active{    
-    color: $color-danger;
-    transition: all 0.3s ease-out;
+  @media(max-width:1080px){
+    flex-direction: column;
+
   }
+  @media(max-width:767px){
+    .group{      
+      .filterBox{
+        padding: 0.5rem;
+      }
+    }
+  }
+  @media(max-width:600px){
+    .group{
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .filterBox{
+        justify-content: center;
+        width: 100%;
+      }
+
+    }
+
+  }
+  
 }

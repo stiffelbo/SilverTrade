@@ -87,7 +87,9 @@ class Comp extends React.Component {
         <>
           <div className={styles.root}>
             <div className={styles.left}>
-              <Flipper images={product.images} />                   
+              <div className={styles.imageWrapper}>
+                <Flipper images={product.images} />
+              </div>            
             </div> 
             <div className={styles.center}>          
               <InfoTable data={data}/>

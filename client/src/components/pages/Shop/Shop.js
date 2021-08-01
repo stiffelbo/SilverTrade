@@ -33,8 +33,10 @@ class Comp extends React.Component {
   }
 
   componentDidMount() {
-    const { loadProducts, orderRequest, orderClear, currentPage } = this.props;
-    loadProducts();
+    const { request, loadProducts, orderRequest, orderClear, currentPage } = this.props;
+    if(!request.success){
+      loadProducts();
+    }    
     if(orderRequest.success){
       orderClear();
     }

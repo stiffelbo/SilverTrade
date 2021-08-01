@@ -6,8 +6,7 @@
   flex-direction: column;
   padding: 1rem;  
   .row{
-    padding: 0.5rem 1rem;
-    
+    padding: 0.5rem 1rem;    
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -64,5 +63,11 @@
       transition: all 0.3s ease-out;      
       background-color: $color-error;
     }
+  }
+  @media(max-width:1080px){
+    font-size: 14px;
+  }
+  @media(max-width:960px){
+    font-size: 1em;
   }
 }

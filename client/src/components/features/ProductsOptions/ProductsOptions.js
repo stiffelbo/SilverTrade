@@ -105,61 +105,65 @@ class Comp extends React.Component {
 
     return (
       <div className={styles.root}>
-        <div className={clsx(styles.filterBox, searchCountryClass)}>
-          <label>
-            <i className="fas fa-flag"></i>        
-          </label>
-          {/*<input type="text" className={styles.textInput} placeholder={'country..'}
-          onChange={this.handleCountry}          
-          />*/}
-          <select className={styles.select} onChange={this.handleCountry} value={this.state.searchCountry}>
-            <option key="country_null" value="">country..</option>
-            {this.props.countries.map(item => <option key={item} value={item} >{removeUnderscore(item)}</option>)}
-          </select>          
+        <div className={styles.group}>
+          <div className={clsx(styles.filterBox, searchCountryClass)}>
+            <label>
+              <i className="fas fa-flag"></i>        
+            </label>
+            {/*<input type="text" className={styles.textInput} placeholder={'country..'}
+            onChange={this.handleCountry}          
+            />*/}
+            <select className={styles.select} onChange={this.handleCountry} value={this.state.searchCountry}>
+              <option key="country_null" value="">country..</option>
+              {this.props.countries.map(item => <option key={item} value={item} >{removeUnderscore(item)}</option>)}
+            </select>          
+          </div>
+          <div className={clsx(styles.filterBox, searchMintClass)}>
+            <label>
+              <i className="fas fa-industry"></i>      
+            </label>
+            {/* <input type="text" className={styles.textInput} placeholder={'mint..'}
+            onChange={this.handleMint}
+            />*/}
+            <select className={styles.select} onChange={this.handleMint} value={this.state.searchMint}>
+              <option key="mint_null" value="">mint..</option>
+              {this.props.mints.map(item => <option key={item} value={item} >{removeUnderscore(item)}</option>)}
+            </select>          
+          </div>
+          <div className={clsx(styles.filterBox, searchNameClass)}>
+            <label>
+              <i className="far fa-grin-beam"></i>            
+            </label>
+            <input type="text" className={styles.textInput} placeholder={'name..'} value={this.state.searchName}
+            onChange={this.handleName}
+            />
+          </div>
         </div>
-        <div className={clsx(styles.filterBox, searchMintClass)}>
-          <label>
-            <i className="fas fa-industry"></i>      
-          </label>
-          {/* <input type="text" className={styles.textInput} placeholder={'mint..'}
-          onChange={this.handleMint}
-          />*/}
-          <select className={styles.select} onChange={this.handleMint} value={this.state.searchMint}>
-            <option key="mint_null" value="">mint..</option>
-            {this.props.mints.map(item => <option key={item} value={item} >{removeUnderscore(item)}</option>)}
-          </select>          
-        </div>
-        <div className={clsx(styles.filterBox, searchNameClass)}>
-          <label>
-            <i className="far fa-grin-beam"></i>            
-          </label>
-          <input type="text" className={styles.textInput} placeholder={'name..'} value={this.state.searchName}
-          onChange={this.handleName}
-          />
-        </div>
-        <div className={clsx(styles.filterBox, searchYearClass)}>
-          <label>
-            <i className="fas fa-calendar-alt"></i>       
-          </label>
-          <input type="text" className={styles.textInput} placeholder={'year..'} value={this.state.searchYear}
-          onChange={this.handleYear}
-          />
-        </div>        
-        <div className={clsx(styles.filterBox, searchPremiumFromClass)}>
-          <label>
-            <i className="fas fa-sort-amount-up"></i>
-          </label>
-          <input type="number" className={styles.textInput} step="0.1" min="0" placeholder={'Premium from:'} value={this.state.PremiumFrom}
-          onChange={this.handlePremiumFrom}
-          />
-        </div>
-        <div className={clsx(styles.filterBox, searchPremiumToClass)}>
-          <label>
-            <i className="fas fa-sort-amount-down"></i>
-          </label>
-          <input type="number" className={styles.textInput} step="0.1" min="0" placeholder={'Premium to:'} value={this.state.PremiumTo}
-          onChange={this.handlePremiumTo}
-          />
+        <div className={styles.group}>
+          <div className={clsx(styles.filterBox, searchYearClass)}>
+            <label>
+              <i className="fas fa-calendar-alt"></i>       
+            </label>
+            <input type="text" className={styles.textInput} placeholder={'year..'} value={this.state.searchYear}
+            onChange={this.handleYear}
+            />
+          </div>        
+          <div className={clsx(styles.filterBox, searchPremiumFromClass)}>
+            <label>
+              <i className="fas fa-sort-amount-up"></i>
+            </label>
+            <input type="number" className={styles.textInput} step="0.1" min="0" placeholder={'Premium from:'} value={this.state.PremiumFrom}
+            onChange={this.handlePremiumFrom}
+            />
+          </div>
+          <div className={clsx(styles.filterBox, searchPremiumToClass)}>
+            <label>
+              <i className="fas fa-sort-amount-down"></i>
+            </label>
+            <input type="number" className={styles.textInput} step="0.1" min="0" placeholder={'Premium to:'} value={this.state.PremiumTo}
+            onChange={this.handlePremiumTo}
+            />
+          </div>
         </div>
       </div>
     )

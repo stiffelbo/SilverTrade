@@ -47,10 +47,8 @@ const Component = (props) => {
           </li>
         </ul>
       </div>
-      <div className={styles.links}>
-
+      <div className={styles.links}>        
       </div>
-          
     </div>
   );
 }
