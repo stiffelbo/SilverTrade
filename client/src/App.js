@@ -11,7 +11,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import MainLayout from './components/layout/MainLayout/MainLayout';
 
 // Components for routes
-import { Home } from './components/pages/Home/Home';
+
 import { Shop } from './components/pages/Shop/Shop';
 import { Cart } from './components/pages/Cart/Cart';
 import { Product } from './components/pages/Product/Product';

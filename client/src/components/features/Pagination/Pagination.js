@@ -11,17 +11,15 @@ import clsx from 'clsx';
 
 const Component = ({itemsPerPage, totalItems, paginate, currentPage}) => {
 
-    const numberOfPages = Math.floor(totalItems / itemsPerPage);
-    const pageNumbers = [];
-    for(let i=1; i<Math.ceil(totalItems / itemsPerPage); i++){
+    const numberOfPages = Math.ceil(totalItems / itemsPerPage);
+    const pageNumbers = [];    
+    for(let i=1; i<=Math.ceil(totalItems / itemsPerPage); i++){
       pageNumbers.push(i);
     }
     return (
       <nav className={styles.root}>
-          <ul className={styles.pagination}>
-            <li key={`page-before`} className={styles.item} onClick={()=>{currentPage > 1 && paginate(currentPage - 1)}}>
-              <i className="fas fa-chevron-left"></i>
-            </li>
+
+          <ul className={styles.pagination}>            
             {pageNumbers.map(item => {        
               if(item == currentPage){
                 return (
@@ -34,11 +32,17 @@ const Component = ({itemsPerPage, totalItems, paginate, currentPage}) => {
                     {item}
                   </li>);
               }
-            })}
+            })}            
+          </ul>
+
+          {numberOfPages > 1 && <ul className={clsx(styles.pagination, styles.chevrons)}>
+            <li key={`page-before`} className={styles.item} onClick={()=>{currentPage > 1 && paginate(currentPage - 1)}}>
+              <i className="fas fa-chevron-left"></i>
+            </li>
             <li key={`page-after`} className={styles.item} onClick={()=>{currentPage < numberOfPages && paginate(currentPage + 1)}}>
               <i className="fas fa-chevron-right"></i>
             </li>
-          </ul>
+          </ul>}
       </nav>
     );
 }

@@ -2,7 +2,7 @@
 
 .root {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   padding: $base-size*1.5;
   .pagination{    
@@ -37,6 +37,12 @@
       font-weight: 600;
       color: white;
 
+    }
+    
+  }
+  .chevrons{
+    .item{
+      margin: 0 1rem;
     }
   }
 }
