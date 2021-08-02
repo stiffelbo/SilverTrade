@@ -95,17 +95,15 @@ class FeaturedProducts extends Component {
     }  
   }
 
-  
-
   render(){
-    const {products, feature, prodID, spot, rwdMode} = this.props;
+    const {products, feature, prodID, spot, header} = this.props;
+    
     const filteredProducts = products.filter( prod => prod[feature.prop] === feature.val && prod._id !== prodID);
-    const itemsToDisplay = featuresInMode[rwdMode];
 
     if(filteredProducts){
       return (
         <div className={styles.root}>
-          <h2>Other products from: {removeUnderscore(feature.val)}</h2>
+          <h2>{header}</h2>
           <div className={styles.products}>
             {this.state.items > this.state.display && <div className={styles.button} >
               <i className="fas fa-chevron-left" onClick={this.handleLeft}/>
@@ -137,10 +135,10 @@ class FeaturedProducts extends Component {
 
 Component.propTypes = {  
   products: PropTypes.array,
-  feature: PropTypes.object,
+  feature: PropTypes.object.isRequired,
   prodID: PropTypes.string,
-  spot: PropTypes.object,
-  rwdMode: PropTypes.string,
+  spot: PropTypes.object.isRequired,
+  rwdMode: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({

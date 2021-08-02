@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { Slider } from '../../features/Slider/Slider';
 import { Stacker } from '../../features/Stacker/Stacker';
 import { Brands } from '../../features/Brands/Brands';
+import { FeaturedProducts } from '../../features/FeaturedProducts/FeaturedProducts';
 
 /* Redux */
 
@@ -22,6 +23,8 @@ const Component = ({getSale, request}) => {
       <Slider slides={homePageSlides}/>
       <Brands />
       {request.success && <Stacker items={getSale}/>}
+      <h1 className={styles.title}>Latest products:</h1>
+      {request.success && <FeaturedProducts feature={{prop: 'year', val: "2021"}} prodID={"nothing"} header={``}/>}
       <div className={styles.shopInviter}>
         <h3>Visit our shop!</h3>
         <Link to={'/shop'}>

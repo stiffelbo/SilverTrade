@@ -2,7 +2,11 @@
 
 .root {
   width: 100%;
+  .title{
+    padding:1rem;
+  }
   .shopInviter{
+    padding:1rem;
     display: flex;
     flex-direction: row;
     align-items: center;

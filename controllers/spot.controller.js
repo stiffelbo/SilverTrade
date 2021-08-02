@@ -11,7 +11,7 @@ exports.getUsd = async (req, res) => {
           const $ = cheerio.load(html);
           const priceContainer = $('.table-price--body-table--overview-bid p:nth-child(2)');  
           const result = parseFloat(priceContainer.text());                           
-          res.status(200).json({ spot : result });         
+          res.status(200).json({ spot : result});         
       }
     });    
   } catch (err) {

@@ -26,7 +26,6 @@
         &:focus, :active {     
           outline: none;   
           background-color: inherit;
-          color: $color-danger;
         }
       } 
       .textInput{  
@@ -41,8 +40,7 @@
         font-size: $base-size;
         &:focus, :active {
           outline: none;
-          background-color: inherit;
-          color: $color-danger;
+          background-color: inherit;        
         } 
       }
       label{
@@ -54,8 +52,11 @@
       }
          
     }
-    .active{    
-      color: $color-danger;
+    .active{  
+      i{
+        color: $color-danger;
+      }  
+      
       transition: all 0.3s ease-out;
     }
 

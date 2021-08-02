@@ -99,7 +99,7 @@ class Comp extends React.Component {
             </div>          
           </div>
           <div className={styles.products}>
-            <FeaturedProducts feature={{prop: 'mint', val: product.mint}} prodID={product._id}/>
+            <FeaturedProducts feature={{prop: 'mint', val: product.mint}} prodID={product._id} header={`Other products from ${removeUnderscore(product.mint)}`}/>
           </div>
         </>
       );
