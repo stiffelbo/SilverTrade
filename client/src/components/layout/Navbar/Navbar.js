@@ -38,8 +38,10 @@ class Comp extends React.Component {
         <Link to="/" className={styles.cart_link}>
           <Logo /> 
         </Link>
-         
-        <Rates className={styles.rates} /> 
+        <div className={styles.ratesWrapper}>
+          <Rates /> 
+        </div> 
+        
         <ul>
           <li>
             <Link to="/cart" className={styles.cart_link}>

@@ -18,7 +18,7 @@ class Comp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity : 0,   
+      quantity : 0,
     };
   }
 
