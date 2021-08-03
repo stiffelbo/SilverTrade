@@ -9,6 +9,7 @@
   "scripts": {
     "build": "cd client && npm run build",
     "start": "nodemon server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "test": "set NODE_ENV=production && mocha --timeout 10000 \"./{,!(node_modules|client)/**/}*.test.js\"",
     "test:watch": "onchange \"./**/*.js\" -i -k -- npm test"
   },
@@ -24,6 +25,7 @@
     "chai-http": "^4.3.0",
     "cheerio": "^1.0.0-rc.10",
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "es6-promise": "^4.2.8",
     "express": "^4.17.1",
     "mocha": "^6.2.1",

@@ -100,7 +100,7 @@ class FeaturedProducts extends Component {
     
     const filteredProducts = products.filter( prod => prod[feature.prop] === feature.val && prod._id !== prodID);
 
-    if(filteredProducts){
+    if(filteredProducts.length){
       return (
         <div className={styles.root}>
           <h2>{header}</h2>
